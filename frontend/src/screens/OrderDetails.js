@@ -46,11 +46,12 @@ const OrderDetails = ({ match, history }) => {
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPaypalScript()
+        console.log('AYAYA')
       } else {
         setSdkReady(true)
       }
     }
-  }, [orderId, dispatch, successPay, getOrderSuccess])
+  }, [orderId, dispatch, successPay, getOrderSuccess, order])
 
   const handleClickGoBack = () => {
     history.push('/')

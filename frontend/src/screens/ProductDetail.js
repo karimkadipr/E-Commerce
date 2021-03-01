@@ -12,6 +12,7 @@ import {
   Input,
 } from '@material-ui/core'
 import './styles/productDetail.css'
+import Meta from '../components/Meta'
 
 const ProductDetail = ({ match, history }) => {
   const [rating, setRating] = useState(0)
@@ -69,6 +70,7 @@ const ProductDetail = ({ match, history }) => {
             {product.reviews.map((review) => {
               return (
                 <div key={review._id}>
+                  <Meta title={product.name} />
                   <p>{review.name}</p>
                   <div style={{ display: 'flex' }}>
                     <RatingComponent rating={Number(review.rating)} />

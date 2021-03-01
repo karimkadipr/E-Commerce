@@ -125,11 +125,15 @@ const AdminUpdateProduct = ({ match, history }) => {
               onChange={(e) => setImage(e.target.value)}
             />
           </FormControl>
+
           <input
             type='file'
             id='img'
             name='img'
-            onChange={uploadFileHandler}></input>
+            onChange={uploadFileHandler}
+            className='upload_button_product_img'
+          />
+
           {uploading && <div>Uploading ...</div>}
         </div>
         <div className='input_update_product_container'>
