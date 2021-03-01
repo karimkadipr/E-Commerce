@@ -1,0 +1,21 @@
+.Footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+  margin: auto;
+}
+
+.Footer > a:hover {
+  color: grey;
+}
+
+.big {
+  padding-bottom: 50px;
+  padding-top: 30px;
+}
+
+.big > p {
+  padding-top: 20px;
+  text-align: center;
+}

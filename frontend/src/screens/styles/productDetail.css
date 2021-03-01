@@ -1,0 +1,124 @@
+.product_Item_Container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-evenly;
+}
+
+.name_price_container {
+  padding-top: 50px;
+}
+
+.product_Image {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: center;
+  max-width: 50%;
+}
+
+.name_price_container {
+  padding-left: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 25%;
+}
+
+.name_price_container > p {
+  padding: 10px 0;
+}
+
+.name_price_container > p:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+
+.add_to_cart_container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 25%;
+}
+
+.add_to_cart_container > p:not(:last-of-type) {
+  border-bottom: 1px solid grey;
+}
+
+.add_to_cart_container > p,
+.add_to_cart_container > button {
+  padding: 10px 0;
+}
+
+.add_to_cart_button,
+.go_back_button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  color: white;
+  font-size: 15px;
+  background-size: 200%;
+  background-position: left;
+  cursor: pointer;
+  margin-bottom: 10px;
+  max-width: 20%;
+  min-width: 100px;
+}
+
+.add_to_cart_button:hover,
+.go_back_button:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-image: linear-gradient(to right, #191654, #43c6ac);
+  background-position: right;
+  animation: bg-animation 1.5s;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.img_container_product {
+  border: 1px solid grey;
+  padding: 10px;
+}
+.img_container_product > img {
+  width: 100%;
+}
+
+.product_Image > h1 {
+  margin: 20px 0;
+}
+
+.comment_container {
+  padding: 5px 0 10px 0px;
+  margin-bottom: 20px;
+}
+
+.rate_product_container > h1 {
+  padding: 10px 0;
+}
+
+.rate_product_container {
+  margin-bottom: 200px;
+}
+
+.review_input {
+  padding: 10px 0;
+}
+
+.add_to_cart_container_item {
+  border-bottom: 1px solid grey;
+  width: 80%;
+  text-align: center;
+  padding: 10px 0;
+}

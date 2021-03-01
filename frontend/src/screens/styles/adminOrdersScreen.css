@@ -1,0 +1,84 @@
+.all_orders_container > h1 {
+  margin-bottom: 10px;
+}
+
+.all_orders_container {
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.orders_list_buttons {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  background-size: 200%;
+  background-position: left;
+}
+
+.orders_list_buttons_edit {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 200%;
+  background-position: left;
+}
+
+.orders_list_buttons_delete {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #93291e,
+    #ed213a
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #93291e,
+    #ed213a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 200%;
+  background-position: left;
+}
+
+.orders_list_buttons:hover,
+.orders_list_buttons_delete:hover,
+.orders_list_buttons_edit :hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  background-position: right;
+  animation: bg-animation 1.5s;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}

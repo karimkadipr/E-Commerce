@@ -1,0 +1,49 @@
+.update_user_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 33px -10px #000000;
+  background-color: white;
+  padding: 25px;
+}
+
+.form_user_container {
+  width: 100%;
+}
+
+.submit_user_button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  color: white;
+  font-size: 15px;
+  background-size: 200%;
+  background-position: left;
+}
+
+.submit_user_button:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-image: linear-gradient(to right, #191654, #43c6ac);
+  background-position: right;
+  animation: bg-animation 1.5s;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.update_user_admin_input {
+  padding: 1rem 0;
+}

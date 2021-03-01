@@ -1,0 +1,47 @@
+.shipping_container {
+  width: 30%;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.input_shipping_container {
+  padding: 15px 0;
+  width: 85%;
+  margin: auto;
+}
+
+.shipping_button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.shipping_container > div > form {
+  padding: 50px 0;
+}
+
+.form_shipping_address {
+  background: white;
+  margin-top: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 33px -10px #000000;
+  padding: 20px;
+}
+
+.form_shipping_address > button {
+  margin: auto;
+  margin-top: 20px;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+}
+
+.form_shipping_address > h3 {
+  margin-left: 6%;
+  margin-bottom: 15px;
+}

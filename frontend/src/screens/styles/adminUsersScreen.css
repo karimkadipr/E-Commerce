@@ -1,0 +1,91 @@
+.users_container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.users_container > h1 {
+  margin-bottom: 1rem;
+}
+.user_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.admin_users_delete_btn {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #93291e,
+    #ed213a
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #93291e,
+    #ed213a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  background-size: 200%;
+  background-position: left;
+}
+
+.admin_users_delete_btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-position: right;
+  animation: bg-animation 1.5s;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.admin_users_edit_btn {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  background-size: 200%;
+  background-position: left;
+}
+
+.admin_users_edit_btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-position: right;
+  animation: bg-animation 1.5s;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}

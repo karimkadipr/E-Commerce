@@ -1,0 +1,52 @@
+.Container {
+  position: relative;
+  width: 1500px;
+  display: block;
+  margin: auto;
+  margin-bottom: -350px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  display: inline-block;
+}
+
+.LeftButton {
+  position: absolute;
+  top: 125px;
+  left: 5%;
+  width: 50px;
+  transition: all 0.5s;
+}
+
+.rightButton {
+  position: absolute;
+  top: 125px;
+  right: 5%;
+  width: 50px;
+  transition: all 0.5s;
+}
+
+.rightButton:hover {
+  transform: translateX(20%);
+}
+
+.LeftButton:hover {
+  transform: translateX(-20%);
+}
+
+.image-slider-enter {
+  transform: translateX(0%);
+  display: none;
+}
+.image-slider-enter-active {
+  transform: translateX(-110%);
+  transition: all 500ms ease;
+}
+.image-slider-exit {
+}
+.image-slider-exit-active {
+  transform: translateX(110%);
+  transition: all 500ms ease;
+}

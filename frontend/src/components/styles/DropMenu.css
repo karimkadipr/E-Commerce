@@ -1,0 +1,44 @@
+a {
+  color: #dadce1;
+  text-decoration: none;
+  text-anchor: none;
+}
+
+.div_ref {
+  color: #dadce1;
+}
+
+.DropMenu {
+  position: absolute;
+  top: 60px;
+  background-color: #131a22;
+  border: 1px solid #474a4d;
+  width: 250px;
+  border-radius: 8px;
+  transform: translateX(-10%);
+  overflow: hidden;
+  z-index: 999;
+}
+
+.menu-item {
+  padding: 1rem;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+.menu-item:hover {
+  background-color: #273546;
+}
+
+.icon-button svg {
+  width: 20px;
+  height: 20px;
+  padding: 0.5rem;
+  padding-right: 1rem;
+}
+
+.div_ref {
+  cursor: pointer;
+  padding: 30px;
+}

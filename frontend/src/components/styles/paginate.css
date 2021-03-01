@@ -1,0 +1,12 @@
+.pagination {
+  display: flex;
+}
+
+.pagination_items {
+  padding: 10px 20px;
+  color: black;
+  font-weight: 700;
+  border: 2px solid black;
+  margin: 5px;
+  border-radius: 5px;
+}

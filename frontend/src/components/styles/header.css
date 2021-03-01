@@ -1,0 +1,90 @@
+.navbar_container {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background-color: #131a22;
+  font-weight: 700;
+}
+
+.navbar_leftSide {
+  flex-grow: 50;
+  display: flex;
+  align-items: center;
+}
+
+.search_bar {
+  display: flex;
+  flex-grow: 7;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.search_bar > input {
+  width: 100%;
+  height: 20px;
+  min-width: 400px;
+}
+
+.navbar_rightSide {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.navbar_rightSide:last-child {
+  margin-right: 5px;
+}
+
+.myshop_logo {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.text-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: inherit;
+  padding: 12px 10px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: 2px solid #131a22;
+  min-width: 80px;
+}
+
+.text-link:hover {
+  color: grey;
+  border: 2px solid grey;
+}
+
+.button_search {
+  margin-left: 3px;
+
+  padding: 15px 25px;
+  border: none;
+  background: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.button_search:active {
+  background: grey;
+  border: none;
+}
+
+.button_search {
+  border-radius: 5px;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  color: white;
+  font-size: 15px;
+  background-size: 200%;
+  background-position: left;
+}
+
+.button_search:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-image: linear-gradient(to right, #191654, #43c6ac);
+  background-position: right;
+  animation: bg-animation 1.5s;
+}

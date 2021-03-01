@@ -1,0 +1,32 @@
+.payment_container {
+  width: 30%;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.payment_button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.method_container {
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 33px -10px #000000;
+}
+
+.form_method_container > button {
+  margin-top: 30px;
+}
