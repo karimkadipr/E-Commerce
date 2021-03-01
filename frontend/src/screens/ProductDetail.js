@@ -18,7 +18,7 @@ const ProductDetail = ({ match, history }) => {
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
   const [title, setTitle] = useState('')
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   const productId = match.params.id
 
   const dispatch = useDispatch()
@@ -166,13 +166,13 @@ const ProductDetail = ({ match, history }) => {
           </p>
         </div>
         {product.countInStock !== 0 ? (
-          <div style={{ paddingTop: 10 }}>
+          <div style={{ paddingTop: 20 }}>
             <FormControl className='select_quantity'>
               <InputLabel id='demo-simple-select-label'>Quantity</InputLabel>
               <Select
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
-                value={qty === 0 ? '' : qty}
+                value={qty}
                 onChange={(e) => setQty(e.target.value)}>
                 {arr.map((item) => (
                   <MenuItem key={item._id} value={item}>

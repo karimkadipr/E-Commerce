@@ -46,7 +46,6 @@ const OrderDetails = ({ match, history }) => {
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPaypalScript()
-        console.log('AYAYA')
       } else {
         setSdkReady(true)
       }
