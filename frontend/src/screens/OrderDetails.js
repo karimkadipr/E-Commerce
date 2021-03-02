@@ -40,7 +40,7 @@ const OrderDetails = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    if (!order || successPay || order._id !== orderId) {
+    if (!getOrderSuccess || successPay || order._id !== orderId) {
       dispatch({ type: PAY_ORDER_RESET })
       dispatch(getOrderById(orderId))
     } else if (!order.isPaid) {
