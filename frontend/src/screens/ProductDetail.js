@@ -96,7 +96,9 @@ const ProductDetail = ({ match, history }) => {
                 <InputLabel id='demo-simple-select-label'>
                   Rate the product
                 </InputLabel>
-                <Select onChange={(e) => setRating(e.target.value)}>
+                <Select
+                  defaultValue=''
+                  onChange={(e) => setRating(e.target.value)}>
                   <MenuItem value='1'>1 - Very Bad Product</MenuItem>
                   <MenuItem value='2'>2 - Bad Product</MenuItem>
                   <MenuItem value='3'>3 - Average Product</MenuItem>
@@ -138,14 +140,14 @@ const ProductDetail = ({ match, history }) => {
         <p>
           <strong>{product.name}</strong>
         </p>
-        <p style={{ display: 'flex' }}>
+        <div style={{ display: 'flex' }}>
           <RatingComponent rating={product.rating} />
           <span>
             {' '}
             - {product.numReviews}{' '}
             {product.numReviews === 1 ? 'Review' : 'Reviews'}
           </span>
-        </p>
+        </div>
 
         <p>Price : ${product.price}</p>
         <span style={{ paddingTop: 10 }}>Description :</span>
@@ -170,12 +172,12 @@ const ProductDetail = ({ match, history }) => {
             <FormControl className='select_quantity'>
               <InputLabel id='demo-simple-select-label'>Quantity</InputLabel>
               <Select
+                defaultValue={qty}
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
-                value={qty}
                 onChange={(e) => setQty(e.target.value)}>
                 {arr.map((item) => (
-                  <MenuItem key={item._id} value={item}>
+                  <MenuItem key={item} value={item}>
                     {item}
                   </MenuItem>
                 ))}

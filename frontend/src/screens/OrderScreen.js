@@ -43,7 +43,7 @@ const OrderScreen = ({ history }) => {
       dispatch({ type: CREATE_ORDER_RESET })
       history.push(`/orderDetails/${order._id}`)
     }
-  }, [success, history])
+  }, [dispatch, success, history, order])
 
   const handleCreateOrder = () => {
     dispatch(

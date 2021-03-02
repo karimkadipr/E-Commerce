@@ -60,6 +60,8 @@ const AdminProductsScreen = ({ history, match }) => {
     }
   }, [
     dispatch,
+    sampleProduct,
+    userInfo,
     successCreate,
     successDelete,
     successUpdate,

@@ -28,11 +28,16 @@ import {
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
-      return { loading: false }
+      return { ...state, loading: false }
     case USER_LOGIN_SUCCESS:
-      return { loading: true, success: true, userInfo: action.payload }
+      return {
+        ...state,
+        loading: true,
+        success: true,
+        userInfo: action.payload,
+      }
     case USER_LOGIN_FAIL:
-      return { loading: true, error: action.payload }
+      return { ...state, loading: true, error: action.payload }
     case USER_LOGOUT:
       return {}
     default:
@@ -110,7 +115,7 @@ export const adminUpdateUserReducer = (state = {}, action) => {
 export const adminGetUserReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case GET_USER_BY_ID_REQUEST:
-      return { loading: false, user: {} }
+      return { ...state, loading: false }
     case GET_USER_BY_ID_SUCCESS:
       return { loading: true, success: true, user: action.payload }
     case GET_USER_BY_ID_FAIL:

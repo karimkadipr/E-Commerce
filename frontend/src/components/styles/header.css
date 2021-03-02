@@ -17,6 +17,7 @@
   flex-grow: 7;
   align-items: center;
   justify-content: space-evenly;
+  min-width: 100px;
 }
 
 .search_bar > input {
@@ -29,6 +30,11 @@
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+}
+
+.navbar_rightSide > a,
+.navbar_rightSide > div > div > p {
+  padding: 1rem 2rem;
 }
 
 .navbar_rightSide:last-child {
@@ -46,11 +52,14 @@
   justify-content: center;
   color: white;
   text-decoration: inherit;
-  padding: 12px 10px;
   margin-left: 5px;
   border-radius: 5px;
   border: 2px solid #131a22;
-  min-width: 80px;
+}
+
+@media (min-width: 600px) {
+  .text-link {
+  }
 }
 
 .text-link:hover {
@@ -60,8 +69,7 @@
 
 .button_search {
   margin-left: 3px;
-
-  padding: 15px 25px;
+  padding: 11px 11px;
   border: none;
   background: white;
   font-size: 20px;

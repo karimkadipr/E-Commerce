@@ -35,7 +35,7 @@ const AdminUserDetails = ({ match, history }) => {
         setEmail(user.email)
       }
     }
-  }, [dispatch, userID, success, updateSuccess])
+  }, [dispatch, userID, success, updateSuccess, user, history])
 
   const handleSubmit = (e) => {
     e.preventDefault()

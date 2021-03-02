@@ -51,6 +51,7 @@ const CartPage = ({ history }) => {
                     Quantity
                   </InputLabel>
                   <Select
+                    defaultValue=''
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     value={item.qty}

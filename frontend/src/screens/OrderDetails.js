@@ -25,7 +25,7 @@ const OrderDetails = ({ match, history }) => {
 
   useEffect(() => {
     dispatch(getOrderById(orderId))
-  }, [])
+  }, [orderId, dispatch])
 
   useEffect(() => {
     const addPaypalScript = async () => {
@@ -40,7 +40,7 @@ const OrderDetails = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    if (!order || successPay) {
+    if (!order || successPay || order._id !== orderId) {
       dispatch({ type: PAY_ORDER_RESET })
       dispatch(getOrderById(orderId))
     } else if (!order.isPaid) {
@@ -50,7 +50,7 @@ const OrderDetails = ({ match, history }) => {
         setSdkReady(true)
       }
     }
-  }, [orderId, dispatch, successPay, getOrderSuccess, order])
+  }, [orderId, dispatch, order, successPay, getOrderSuccess])
 
   const handleClickGoBack = () => {
     history.push('/')
@@ -72,8 +72,8 @@ const OrderDetails = ({ match, history }) => {
             <p>Name : {userInfo.name}</p>
             <p>Email : {userInfo.email}</p>
             <p>
-              Address : {order.shippingAddress.address} -
-              {order.shippingAddress.city} -{order.shippingAddress.country} -
+              Address : {order.shippingAddress.address} -{' '}
+              {order.shippingAddress.city} - {order.shippingAddress.country} -{' '}
               {order.shippingAddress.postalCode}
             </p>
             {order.isDelivered ? (
@@ -90,7 +90,7 @@ const OrderDetails = ({ match, history }) => {
               {order.isPaid ? (
                 <DeliveredPaid color='green'>
                   {' '}
-                  <p>Paid At : {order.paidAt.substring(0, 10)}</p>
+                  Paid At : {order.paidAt.substring(0, 10)}
                 </DeliveredPaid>
               ) : (
                 <DeliveredPaid color='red'>Not Paid</DeliveredPaid>

@@ -21,7 +21,8 @@ const LoginScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo || success) {
-      window.history.back()
+      history.goBack()
+      console.log('go back')
     }
   }, [history, dispatch, success, userInfo])
 

@@ -6,6 +6,7 @@ import { ReactComponent as LogoSvg } from './images/undraw_web_shopping_dd4l.svg
 import DropMenu from './DropMenu'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import { TextField } from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
 
 const Header = ({ history }) => {
   const [keyword, setKeyword] = useState('')
@@ -52,13 +53,13 @@ const Header = ({ history }) => {
             }}
           />
           <button className='button_search' onClick={submitSearch}>
-            Search
+            <SearchIcon />
           </button>
         </div>
       </div>
       <div className='navbar_rightSide'>
         {userInfo ? (
-          <Link className='text-link'>
+          <div className='text-link'>
             <DropMenu
               name={userInfo.name}
               items={[
@@ -66,7 +67,7 @@ const Header = ({ history }) => {
                 ['Logout', '/login'],
               ]}
             />
-          </Link>
+          </div>
         ) : (
           <Link className='text-link' to='/login'>
             login
@@ -74,7 +75,7 @@ const Header = ({ history }) => {
         )}
 
         {userInfo && userInfo.isAdmin ? (
-          <Link className='text-link'>
+          <div className='text-link'>
             <DropMenu
               name='Admin'
               items={[
@@ -83,7 +84,7 @@ const Header = ({ history }) => {
                 ['Order Screen', '/admin/orders'],
               ]}
             />
-          </Link>
+          </div>
         ) : (
           ''
         )}

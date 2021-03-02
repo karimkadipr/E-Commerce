@@ -24,7 +24,7 @@ const SignUpScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      window.history.back()
+      history.goBack()
     }
   }, [history, dispatch, success, userInfo])
 

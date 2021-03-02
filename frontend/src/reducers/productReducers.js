@@ -49,7 +49,7 @@ export const getProductDetailReducer = (
 ) => {
   switch (action.type) {
     case PRODUCT_DETAIL_REQUEST:
-      return { loading: true, product: { reviews: [] } }
+      return { ...state, loading: true }
     case PRODUCT_DETAIL_SUCCESS:
       return { loading: false, success: true, product: action.payload }
     case PRODUCT_DETAIL_FAIL:

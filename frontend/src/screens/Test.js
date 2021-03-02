@@ -11,10 +11,10 @@ const Test = () => {
   const getTopProductsValues = useSelector((state) => state.getTopProducts)
   const { success } = getTopProductsValues
 
-  const swiper = new Swiper('.swiper-container', {
+  new Swiper('.swiper-container', {
     // Optional parameters
     autoplay: {
-      delay: 3000,
+      delay: 5000,
     },
     // If we need pagination
     pagination: {
@@ -56,14 +56,14 @@ const Test = () => {
   ]
   return (
     <div>
-      <div class='swiper-container'>
-        <div class='swiper-wrapper'>
+      <div className='swiper-container'>
+        <div className='swiper-wrapper'>
           {success &&
             arr.map((img) => {
               return (
-                <div key={img.src} class='swiper-slide'>
+                <div key={img.src} className='swiper-slide'>
                   <img
-                    class='swiper-slide'
+                    className='swiper-slide'
                     src={img.src}
                     alt='Nothing loaded'
                   />
@@ -72,10 +72,10 @@ const Test = () => {
             })}
         </div>
 
-        <div class='swiper-pagination'></div>
-        <div class='swiper-button-prev'></div>
-        <div class='swiper-button-next'></div>
-        <div class='swiper-scrollbar'></div>
+        <div className='swiper-pagination'></div>
+        <div className='swiper-button-prev'></div>
+        <div className='swiper-button-next'></div>
+        <div className='swiper-scrollbar'></div>
       </div>
     </div>
   )

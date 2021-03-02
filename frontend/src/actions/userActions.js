@@ -60,13 +60,12 @@ const userLogin = (email, password) => async (dispatch) => {
 }
 
 const userLogout = () => async (dispatch) => {
+  dispatch({ type: USER_LOGOUT })
+  dispatch({ type: RESET_MY_ORDERS })
   localStorage.removeItem('userInfo')
   localStorage.removeItem('cartItems')
   localStorage.removeItem('userAddress')
   localStorage.removeItem('paymentMethod')
-  dispatch({ type: USER_LOGOUT })
-
-  dispatch({ type: RESET_MY_ORDERS })
 }
 
 const registerUser = (email, password, name) => async (dispatch) => {

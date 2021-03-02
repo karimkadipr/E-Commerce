@@ -16,7 +16,7 @@ const ShippingScreen = ({ history }) => {
   const { cartItems } = cart
 
   const length = cartItems.length
-  console.log(length)
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch({

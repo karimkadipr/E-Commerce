@@ -6,6 +6,11 @@ a {
 
 .div_ref {
   color: #dadce1;
+
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
 }
 
 .DropMenu {
@@ -15,7 +20,7 @@ a {
   border: 1px solid #474a4d;
   width: 250px;
   border-radius: 8px;
-  transform: translateX(-10%);
+  transform: translateX(-20%);
   overflow: hidden;
   z-index: 999;
 }
@@ -40,5 +45,4 @@ a {
 
 .div_ref {
   cursor: pointer;
-  padding: 30px;
 }

@@ -31,19 +31,18 @@ function DropMenu({ name, items }) {
 
   function DropItem(props) {
     return (
-      <a href='#' className='menu-item'>
+      <p className='menu-item'>
         <span className='icon-button'>{props.iconLeft}</span>
         {props.children}
         <span>{props.iconRight}</span>
-      </a>
+      </p>
     )
   }
 
   return (
     <div ref={DropRef}>
-      <a
+      <p
         className='div_ref'
-        href='#'
         onClick={() => {
           setOpen((open) => !open)
         }}
@@ -51,20 +50,21 @@ function DropMenu({ name, items }) {
         /*  onMouseLeave={()=> setTimeout(()=> setOpen(false), 300)} */
       >
         {name}
-      </a>
+      </p>
       {open && (
         <div className='DropMenu'>
           <div>
             {items.map((item) => {
               if (item[0] === 'Logout') {
                 return (
-                  <Link to={item[1]} onClick={handleLogout}>
+                  <Link key={item[0]} to={item[1]} onClick={handleLogout}>
                     <DropItem>{item[0]} </DropItem>
                   </Link>
                 )
               } else {
                 return (
                   <Link
+                    key={item[0]}
                     to={item[1]}
                     onClick={() => {
                       setOpen((open) => !open)

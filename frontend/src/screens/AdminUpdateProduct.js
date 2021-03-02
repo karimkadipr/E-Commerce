@@ -5,7 +5,6 @@ import { updateProduct, getProductDetails } from '../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../constants/productConstants'
 import { Input, FormControl, InputLabel } from '@material-ui/core'
 import './styles/adminUpdateProduct.css'
-import { CREATE_PRODUCT_RESET } from '../constants/productConstants'
 
 const AdminUpdateProduct = ({ match, history }) => {
   const productId = match.params.id
@@ -22,7 +21,7 @@ const AdminUpdateProduct = ({ match, history }) => {
   const dispatch = useDispatch()
 
   const getProductDetail = useSelector((state) => state.getProductDetail)
-  const { product } = getProductDetail
+  const { product, success: getProductDetailSuccess } = getProductDetail
 
   const updateProductValues = useSelector((state) => state.updateProduct)
   const { success: successUpdate } = updateProductValues
@@ -33,11 +32,9 @@ const AdminUpdateProduct = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: UPDATE_PRODUCT_RESET })
-      dispatch({ type: CREATE_PRODUCT_RESET })
-
       history.push('/admin/products')
     } else {
-      if (!product.name || product._id !== productId) {
+      if (!getProductDetailSuccess || product._id !== productId) {
         dispatch(getProductDetails(productId))
       } else {
         setName(product.name)
@@ -49,11 +46,17 @@ const AdminUpdateProduct = ({ match, history }) => {
         setDescription(product.description)
       }
     }
-  }, [dispatch, history, product._id, productId, successUpdate])
+  }, [
+    dispatch,
+    history,
+    product,
+    productId,
+    successUpdate,
+    getProductDetailSuccess,
+  ])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
     dispatch(
       updateProduct(match.params.id, {
         name,
