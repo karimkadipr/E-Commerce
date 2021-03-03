@@ -1,29 +1,34 @@
+.background_navbar {
+  background-color: #131a22;
+}
+
 .navbar_container {
   display: flex;
   align-items: center;
-  height: 70px;
-  background-color: #131a22;
+  height: 80px;
   font-weight: 700;
+  width: 80%;
+  margin: auto;
 }
 
 .navbar_leftSide {
   flex-grow: 50;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.Logo_navbar {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
 }
 
 .search_bar {
   display: flex;
-  flex-grow: 7;
+  flex: 53%;
   align-items: center;
-  justify-content: space-evenly;
-  min-width: 100px;
-}
-
-.search_bar > input {
-  width: 100%;
-  height: 20px;
-  min-width: 400px;
+  justify-content: flex-start;
 }
 
 .navbar_rightSide {
@@ -68,8 +73,8 @@
 }
 
 .button_search {
-  margin-left: 3px;
-  padding: 11px 11px;
+  padding: 7px;
+  margin-left: 2px;
   border: none;
   background: white;
   font-size: 20px;

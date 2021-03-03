@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from '../actions/userActions.js'
+import { useLastLocation } from 'react-router-last-location'
 import { Link } from 'react-router-dom'
 import { Input } from '@material-ui/core'
 import './styles/loginScreen.css'
@@ -9,10 +10,12 @@ import IconButton from '@material-ui/core/IconButton'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = ({ history, location }) => {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const lastLocation = useLastLocation()
 
   const dispatch = useDispatch()
 
@@ -21,10 +24,20 @@ const LoginScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo || success) {
-      history.goBack()
-      console.log('go back')
+      if (lastLocation) {
+        if (
+          lastLocation.pathname === '/login' ||
+          lastLocation.pathname === '/signup'
+        ) {
+          history.push('/')
+        } else {
+          history.goBack()
+        }
+      } else {
+        history.push('/')
+      }
     }
-  }, [history, dispatch, success, userInfo])
+  }, [history, dispatch, success, userInfo, lastLocation])
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
