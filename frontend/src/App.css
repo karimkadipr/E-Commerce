@@ -33,3 +33,13 @@ footer {
   bottom: 0;
   position: relative;
 }
+@media (min-width: 700px) {
+  .body_content_padding_top {
+    padding-top: 80px;
+  }
+}
+@media (max-width: 700px) {
+  .body_content_padding_top {
+    padding-top: 120px;
+  }
+}

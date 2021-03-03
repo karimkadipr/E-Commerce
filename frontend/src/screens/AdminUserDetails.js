@@ -28,7 +28,7 @@ const AdminUserDetails = ({ match, history }) => {
       dispatch({ type: UPDATE_USER_BY_ID_RESET })
       history.push('/admin/users')
     } else {
-      if (!user) {
+      if (!user || user._id !== userID) {
         dispatch(adminGetUserDetails(userID))
       } else {
         setName(user.name)
@@ -50,7 +50,6 @@ const AdminUserDetails = ({ match, history }) => {
       )
     )
   }
-
   return (
     <div>
       {user && <div></div>}

@@ -42,34 +42,36 @@ const CartPage = ({ history }) => {
             {cartItems.map((item) => (
               <div key={item._id} className='product_container'>
                 <img src={item.image} alt={item.name} />
-                <p>{item.name}</p>
-                <p>
-                  <strong>$ {item.price}</strong>
-                </p>
-                <FormControl className='select_quantity'>
-                  <InputLabel id='demo-simple-select-label'>
-                    Quantity
-                  </InputLabel>
-                  <Select
-                    defaultValue=''
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    value={item.qty}
-                    onChange={(e) =>
-                      dispatch(addToCart(item._id, e.target.value))
-                    }>
-                    {Array.from(
-                      { length: item.countInStock },
-                      (_, index) => index + 1
-                    ).map((x) => {
-                      return (
-                        <MenuItem key={x + 1} value={x}>
-                          {x}
-                        </MenuItem>
-                      )
-                    })}
-                  </Select>
-                </FormControl>
+                <div className='product_name'>{item.name}</div>
+                <div className='price_plus_quantity'>
+                  <p className='product_price'>
+                    <strong>$ {item.price}</strong>
+                  </p>
+                  <FormControl className='select_quantity'>
+                    <InputLabel id='demo-simple-select-label'>
+                      Quantity
+                    </InputLabel>
+                    <Select
+                      defaultValue=''
+                      labelId='demo-simple-select-label'
+                      id='demo-simple-select'
+                      value={item.qty}
+                      onChange={(e) =>
+                        dispatch(addToCart(item._id, e.target.value))
+                      }>
+                      {Array.from(
+                        { length: item.countInStock },
+                        (_, index) => index + 1
+                      ).map((x) => {
+                        return (
+                          <MenuItem key={x + 1} value={x}>
+                            {x}
+                          </MenuItem>
+                        )
+                      })}
+                    </Select>
+                  </FormControl>
+                </div>
                 <button
                   className='select_qty_button'
                   onClick={() => handleClickDelete(item._id)}>
@@ -83,7 +85,7 @@ const CartPage = ({ history }) => {
             <div>
               Your Cart is empty ! <Link to='/'>Home Page</Link>
             </div>
-            <EmptyCartSvg style={{ maxWidth: 500, height: 'auto' }} />
+            <EmptyCartSvg className='cart_svg' />
           </div>
         )}
 

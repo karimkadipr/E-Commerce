@@ -70,7 +70,7 @@ const OrderDetails = ({ match, history }) => {
       ) : (
         <div className='order_container'>
           <div className='order_left_side_container'>
-            <h1>ORDER ID : {order._id}</h1>
+            <h1 style={{ display: 'block' }}>ORDER ID : {order._id}</h1>
             <h2>Shipping</h2>
             <p>Name : {userInfo.name}</p>
             <p>Email : {userInfo.email}</p>

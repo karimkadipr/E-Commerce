@@ -1,12 +1,17 @@
 .background_navbar {
   background-color: #131a22;
+  border-bottom: 1px solid rgb(59, 59, 59);
+  box-shadow: 0 3px 8px rgb(0 0 0 / 24%);
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 }
 
 .navbar_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
   font-weight: 700;
   width: 90%;
   margin: auto;
@@ -14,10 +19,13 @@
 }
 
 @media (min-width: 1000px) {
+  .navbar_container {
+    height: 80px;
+  }
   .search_bar {
     flex: 30%;
     max-width: 30%;
-    min-width: 300px;
+    min-width: 350px;
   }
   .navbar_leftSide {
     min-width: 150px;
@@ -40,10 +48,13 @@
 }
 
 @media (min-width: 700px) and (max-width: 1000px) {
+  .navbar_container {
+    height: 80px;
+  }
   .search_bar {
     flex: 20%;
     max-width: 20%;
-    min-width: 220px;
+    min-width: 250px;
   }
   .navbar_leftSide {
     flex: 5%;
@@ -63,6 +74,7 @@
   .logo {
     height: 70px;
     width: auto;
+    margin-left: 2rem;
   }
 }
 
@@ -98,7 +110,7 @@
     min-width: 25px;
   }
   .text-link {
-    font-size: 13px;
+    font-size: 15px;
   }
   .logo {
     height: 40px;
@@ -130,6 +142,7 @@
   text-decoration: inherit;
   border-radius: 5px;
   border: 2px solid #131a22;
+  text-align: center;
 }
 
 .text-link:hover {

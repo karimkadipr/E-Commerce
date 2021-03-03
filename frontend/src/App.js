@@ -30,50 +30,56 @@ function App() {
           <LastLocationProvider>
             <ScrollToTop />
             <Route path='/' component={Header} />
-            <Route path='/' component={HomePage} exact />
-            <Route
-              path='/search/:keyword'
-              component={HomePageWithoutCarousel}
-              exact
-            />
-            <Route
-              path='/page/:pageNumber'
-              component={HomePageWithoutCarousel}
-              exact
-            />
-            <Route
-              path='/search/:keyword/page/:pageNumber'
-              component={HomePageWithoutCarousel}
-              exact
-            />
-            <Route path='/order/:id' component={ProductDetail} exact />
-            <Route path='/cart' component={CartPage} exact />
-            <Route path='/login' component={LoginScreen} exact />
-            <Route path='/signup' component={SignUpScreen} exact />
-            <Route path='/profile' component={ProfileScreen} exact />
-            <Route path='/details' component={UserDetails} exact />
-            <Route path='/shipping' component={ShippingScreen} exact />
-            <Route path='/payment' component={PaymentScreen} exact />
-            <Route path='/order' component={OrderScreen} exact />
-            <Route path='/orderDetails/:id' component={OrderDetails} exact />
-            <Route path='/admin/users' component={AdminUsersScreen} exact />
-            <Route path='/admin/users/:id' component={AdminUserDetails} exact />
-            <Route
-              path='/admin/products'
-              component={AdminProductsScreen}
-              exact
-            />
-            <Route
-              path='/admin/products/:pageNumber'
-              component={AdminProductsScreen}
-              exact
-            />
-            <Route path='/admin/orders' component={AdminOrdersScreen} exact />
-            <Route
-              path='/admin/products/editproduct/:id'
-              component={AdminUpdateProduct}
-              exact
-            />
+            <div className='body_content_padding_top'>
+              <Route path='/' component={HomePage} exact />
+              <Route
+                path='/search/:keyword'
+                component={HomePageWithoutCarousel}
+                exact
+              />
+              <Route
+                path='/page/:pageNumber'
+                component={HomePageWithoutCarousel}
+                exact
+              />
+              <Route
+                path='/search/:keyword/page/:pageNumber'
+                component={HomePageWithoutCarousel}
+                exact
+              />
+              <Route path='/order/:id' component={ProductDetail} exact />
+              <Route path='/cart' component={CartPage} exact />
+              <Route path='/login' component={LoginScreen} exact />
+              <Route path='/signup' component={SignUpScreen} exact />
+              <Route path='/profile' component={ProfileScreen} exact />
+              <Route path='/details' component={UserDetails} exact />
+              <Route path='/shipping' component={ShippingScreen} exact />
+              <Route path='/payment' component={PaymentScreen} exact />
+              <Route path='/order' component={OrderScreen} exact />
+              <Route path='/orderDetails/:id' component={OrderDetails} exact />
+              <Route path='/admin/users' component={AdminUsersScreen} exact />
+              <Route
+                path='/admin/users/:id'
+                component={AdminUserDetails}
+                exact
+              />
+              <Route
+                path='/admin/products'
+                component={AdminProductsScreen}
+                exact
+              />
+              <Route
+                path='/admin/products/:pageNumber'
+                component={AdminProductsScreen}
+                exact
+              />
+              <Route path='/admin/orders' component={AdminOrdersScreen} exact />
+              <Route
+                path='/admin/products/editproduct/:id'
+                component={AdminUpdateProduct}
+                exact
+              />
+            </div>
           </LastLocationProvider>
         </Router>
       </div>
