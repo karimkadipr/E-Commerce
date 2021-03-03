@@ -18,6 +18,7 @@
   width: 80%;
   margin: auto;
   margin-top: 50px;
+  min-width: 400px;
 }
 
 .users_container > h1 {

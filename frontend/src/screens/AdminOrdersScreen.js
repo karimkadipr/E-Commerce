@@ -136,7 +136,7 @@ const AdminOrdersScreen = ({ history }) => {
                     </TableRow>
                     <TableRow>
                       <TableCell variant='head'>Date</TableCell>
-                      <TableCell>{order.createdAt}</TableCell>
+                      <TableCell>{order.createdAt.substring(0, 10)}</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell variant='head'>Total</TableCell>

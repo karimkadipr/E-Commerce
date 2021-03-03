@@ -10,6 +10,7 @@
   }
   .small_table_orders {
     margin: 1rem 0;
+    min-width: 400px;
   }
 }
 
@@ -21,6 +22,7 @@
   width: 80%;
   margin: auto;
   margin-top: 50px;
+  min-width: 400px;
 }
 
 .orders_list_buttons {
