@@ -136,72 +136,127 @@ const ProfileScreen = ({ history }) => {
           Update
         </button>
       </form>
-      <div>
-        <div className='table_order_profile'>
-          <h3> Your orders : </h3>
-          <TableContainer component={Paper}>
-            <Table aria-label='simple table'>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Order ID</TableCell>
-                  <TableCell align='center'>Date</TableCell>
-                  <TableCell align='center'>Total</TableCell>
-                  <TableCell align='center'>Paid</TableCell>
-                  <TableCell align='center'>Delivered</TableCell>
-                  <TableCell align='center'>Details</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {orders &&
-                  orders.map((order) => (
-                    <TableRow key={order._id}>
-                      <TableCell component='th' scope='row'>
-                        {order._id}
-                      </TableCell>
+
+      <div className='table_order_profile'>
+        <h3> Your orders : </h3>
+        <TableContainer className='large_table' component={Paper}>
+          <Table aria-label='simple table'>
+            <TableHead>
+              <TableRow>
+                <TableCell>Order ID</TableCell>
+                <TableCell align='center'>Date</TableCell>
+                <TableCell align='center'>Total</TableCell>
+                <TableCell align='center'>Paid</TableCell>
+                <TableCell align='center'>Delivered</TableCell>
+                <TableCell align='center'>Details</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {orders &&
+                orders.map((order) => (
+                  <TableRow key={order._id}>
+                    <TableCell component='th' scope='row'>
+                      {order._id}
+                    </TableCell>
+                    <TableCell align='center'>
+                      {order.createdAt.substring(0, 10)}
+                    </TableCell>
+                    <TableCell align='center'>
+                      ${order.totalPrice.toFixed(2)}
+                    </TableCell>
+                    {order.isPaid ? (
                       <TableCell align='center'>
-                        {order.createdAt.substring(0, 10)}
+                        {order.paidAt.substring(0, 10)}
                       </TableCell>
+                    ) : (
+                      <TableCell align='center'>Not Paid</TableCell>
+                    )}
+                    {order.isDelivered ? (
                       <TableCell align='center'>
-                        ${order.totalPrice.toFixed(2)}
+                        {order.deliveredAt.substring(0, 10)}
                       </TableCell>
-                      {order.isPaid ? (
-                        <TableCell align='center'>
-                          {order.paidAt.substring(0, 10)}
-                        </TableCell>
-                      ) : (
-                        <TableCell align='center'>Not Paid</TableCell>
-                      )}
-                      {order.isDelivered ? (
-                        <TableCell align='center'>
-                          {order.deliveredAt.substring(0, 10)}
-                        </TableCell>
-                      ) : (
-                        <TableCell align='center'>Not Delivered</TableCell>
-                      )}
-                      <TableCell align='center'>
-                        <button
-                          className='edit_orders_button'
-                          onClick={() =>
-                            history.push(`/orderDetails/${order._id}`)
-                          }>
-                          <EditIcon />
-                        </button>{' '}
-                        <button
-                          className='delete_orders_button'
-                          onClick={() => handleDeleteOrder(order._id)}>
-                          <DeleteIcon />{' '}
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <button className='delete_orders_button' onClick={resetOrders}>
-            {' '}
-            Delete All
-          </button>
-        </div>
+                    ) : (
+                      <TableCell align='center'>Not Delivered</TableCell>
+                    )}
+                    <TableCell align='center'>
+                      <button
+                        className='edit_orders_button'
+                        onClick={() =>
+                          history.push(`/orderDetails/${order._id}`)
+                        }>
+                        <EditIcon />
+                      </button>{' '}
+                      <button
+                        className='delete_orders_button'
+                        onClick={() => handleDeleteOrder(order._id)}>
+                        <DeleteIcon />{' '}
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {orders &&
+          orders.map((order) => (
+            <TableContainer
+              className='small_table'
+              key={order._id}
+              component={Paper}>
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCell variant='head'>Order ID</TableCell>
+                    <TableCell>{order._id}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Date</TableCell>
+                    <TableCell>{order.createdAt}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Total</TableCell>
+                    <TableCell>${order.totalPrice}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Paid</TableCell>
+                    {order.isPaid ? (
+                      <TableCell>Paid</TableCell>
+                    ) : (
+                      <TableCell>Not Paid</TableCell>
+                    )}
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Paid</TableCell>
+                    {order.isDelivered ? (
+                      <TableCell>Delivered</TableCell>
+                    ) : (
+                      <TableCell>Not Delivered</TableCell>
+                    )}
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Details</TableCell>
+                    <TableCell>
+                      <button
+                        className='edit_orders_button'
+                        onClick={() =>
+                          history.push(`/orderDetails/${order._id}`)
+                        }>
+                        <EditIcon />
+                      </button>{' '}
+                      <button
+                        className='delete_orders_button'
+                        onClick={() => handleDeleteOrder(order._id)}>
+                        <DeleteIcon />{' '}
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ))}
+        <button className='delete_orders_button' onClick={resetOrders}>
+          Delete All
+        </button>
       </div>
     </div>
   )

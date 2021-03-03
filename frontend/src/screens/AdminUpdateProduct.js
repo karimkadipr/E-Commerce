@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProduct, getProductDetails } from '../actions/productActions'
-import { UPDATE_PRODUCT_RESET } from '../constants/productConstants'
+import {
+  CREATE_PRODUCT_RESET,
+  UPDATE_PRODUCT_RESET,
+} from '../constants/productConstants'
 import { Input, FormControl, InputLabel } from '@material-ui/core'
 import './styles/adminUpdateProduct.css'
 
@@ -32,6 +35,7 @@ const AdminUpdateProduct = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: UPDATE_PRODUCT_RESET })
+      dispatch({ type: CREATE_PRODUCT_RESET })
       history.push('/admin/products')
     } else {
       if (!getProductDetailSuccess || product._id !== productId) {
