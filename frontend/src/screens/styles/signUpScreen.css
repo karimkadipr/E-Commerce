@@ -13,6 +13,17 @@
   padding: 25px;
 }
 
+@media (min-width: 500px) {
+  .sign_up_screen_container {
+    width: 400px;
+  }
+}
+@media (max-width: 500px) {
+  .sign_up_screen_container {
+    width: 300px;
+  }
+}
+
 .form_sign_up {
   width: 85%;
   height: 400px;

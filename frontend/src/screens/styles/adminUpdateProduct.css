@@ -12,6 +12,17 @@
   padding: 25px;
 }
 
+@media (min-width: 500px) {
+  .update_product_container {
+    width: 400px;
+  }
+}
+@media (max-width: 500px) {
+  .update_product_container {
+    width: 300px;
+  }
+}
+
 .input_update_product_container {
   padding: 12px 0;
 }

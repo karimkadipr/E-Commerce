@@ -32,7 +32,7 @@ const Header = ({ history }) => {
       <nav className='navbar_container'>
         <div className='navbar_leftSide'>
           <Link to='/'>
-            <LogoSvg style={{ width: 'auto', height: 70 }} />
+            <LogoSvg className='logo' />
           </Link>
         </div>
         <div className='search_bar'>
@@ -48,7 +48,7 @@ const Header = ({ history }) => {
                 background: 'white',
                 overflow: 'hidden',
                 borderRadius: 5,
-                height: 5,
+                height: 3,
               },
             }}
           />

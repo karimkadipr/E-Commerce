@@ -3,8 +3,14 @@
   justify-content: space-evenly;
   width: 80%;
   margin: auto;
+  flex-wrap: wrap;
 }
 
+@media (min-width: 1000px) {
+  .table_order_profile {
+    min-width: 600px;
+  }
+}
 .form_update_Profile {
   display: flex;
   flex-direction: column;
@@ -25,7 +31,7 @@
 
 .table_order_profile {
   margin-top: 50px;
-  min-width: 600px;
+
   flex: 0.5;
   padding-bottom: 25px;
   border-bottom: 1px solid grey;

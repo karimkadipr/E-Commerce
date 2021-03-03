@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.409fa9e9.chunk.css",
-    "main.js": "/static/js/main.ca21fb3a.chunk.js",
-    "main.js.map": "/static/js/main.ca21fb3a.chunk.js.map",
+    "main.css": "/static/css/main.e7386931.chunk.css",
+    "main.js": "/static/js/main.3f3d6067.chunk.js",
+    "main.js.map": "/static/js/main.3f3d6067.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c60b7f5c.js",
     "runtime-main.js.map": "/static/js/runtime-main.c60b7f5c.js.map",
     "static/css/2.8bae3570.chunk.css": "/static/css/2.8bae3570.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.8853036a.chunk.js.map": "/static/js/2.8853036a.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.8bae3570.chunk.css.map": "/static/css/2.8bae3570.chunk.css.map",
-    "static/css/main.409fa9e9.chunk.css.map": "/static/css/main.409fa9e9.chunk.css.map",
+    "static/css/main.e7386931.chunk.css.map": "/static/css/main.e7386931.chunk.css.map",
     "static/js/2.8853036a.chunk.js.LICENSE.txt": "/static/js/2.8853036a.chunk.js.LICENSE.txt",
     "static/media/philadelphia-eagles-2.32792a9d.svg": "/static/media/philadelphia-eagles-2.32792a9d.svg",
     "static/media/undraw_empty_cart_co35.5b74bcc7.svg": "/static/media/undraw_empty_cart_co35.5b74bcc7.svg",
@@ -20,7 +20,7 @@
     "static/js/runtime-main.c60b7f5c.js",
     "static/css/2.8bae3570.chunk.css",
     "static/js/2.8853036a.chunk.js",
-    "static/css/main.409fa9e9.chunk.css",
-    "static/js/main.ca21fb3a.chunk.js"
+    "static/css/main.e7386931.chunk.css",
+    "static/js/main.3f3d6067.chunk.js"
   ]
 }

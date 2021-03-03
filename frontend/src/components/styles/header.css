@@ -5,50 +5,121 @@
 .navbar_container {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: 80px;
   font-weight: 700;
   width: 90%;
   margin: auto;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1000px) {
+  .search_bar {
+    flex: 30%;
+    max-width: 30%;
+    min-width: 300px;
+  }
+  .navbar_leftSide {
+    min-width: 150px;
+    flex: 20%;
+    max-width: 20%;
+  }
+  .navbar_rightSide {
+    flex: 20%;
+    max-width: 20%;
+  }
+  .navbar_rightSide > a,
+  .navbar_rightSide > div > div > p {
+    padding: 1rem;
+    min-width: 50px;
+  }
+  .logo {
+    height: 70px;
+    width: auto;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1000px) {
+  .search_bar {
+    flex: 20%;
+    max-width: 20%;
+    min-width: 220px;
+  }
+  .navbar_leftSide {
+    flex: 5%;
+    max-width: 5%;
+  }
+
+  .navbar_rightSide {
+    margin-right: 8%;
+    flex: 20%;
+    max-width: 20%;
+  }
+  .navbar_rightSide > a,
+  .navbar_rightSide > div > div > p {
+    padding: 1rem;
+    min-width: 50px;
+  }
+  .logo {
+    height: 70px;
+    width: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar_container {
+    height: 120px;
+  }
+
+  .search_bar {
+    flex: 100%;
+    min-width: 100%;
+    align-self: flex-end;
+    order: 3;
+    padding-bottom: 1.25rem;
+  }
+  .navbar_leftSide {
+    padding-top: 0.5rem;
+    order: 1;
+    padding-left: 1rem;
+    max-width: 50px;
+    align-self: flex-start;
+  }
+
+  .navbar_rightSide {
+    order: 2;
+    padding-top: 0.5rem;
+    min-width: 40%;
+    align-self: flex-start;
+  }
+  .navbar_rightSide > a,
+  .navbar_rightSide > div > div > p {
+    padding: 0.5rem;
+    min-width: 25px;
+  }
+  .text-link {
+    font-size: 13px;
+  }
+  .logo {
+    height: 40px;
+    width: auto;
+  }
 }
 
 .navbar_leftSide {
-  flex: 20%;
-  max-width: 20%;
   display: flex;
   justify-content: center;
-  min-width: 150px;
 }
 
 .search_bar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex: 30%;
-  max-width: 30%;
-  min-width: 300px;
 }
 
 .navbar_rightSide {
   display: flex;
-  flex: 20%;
-  max-width: 20%;
   justify-content: space-evenly;
-}
-
-.navbar_rightSide > a,
-.navbar_rightSide > div > div > p {
-  padding: 1rem;
-  min-width: 50px;
-}
-
-/* .navbar_rightSide:last-child {
-  margin-right: 5px;
-} */
-
-.myshop_logo {
-  text-align: center;
-  flex-grow: 1;
 }
 
 .text-link {
@@ -57,14 +128,8 @@
   justify-content: center;
   color: white;
   text-decoration: inherit;
-
   border-radius: 5px;
   border: 2px solid #131a22;
-}
-
-@media (min-width: 600px) {
-  .text-link {
-  }
 }
 
 .text-link:hover {

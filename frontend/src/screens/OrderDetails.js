@@ -24,12 +24,6 @@ const OrderDetails = ({ match, history }) => {
   const { success: successPay } = payOrderValue
 
   useEffect(() => {
-    if (userInfo.id && order.user) {
-      if (userInfo.id !== order.user) {
-        history.push('/')
-      }
-    }
-
     const unListen = history.listen((newLocation, action) => {
       if (action === 'POP') {
         history.go(1)
