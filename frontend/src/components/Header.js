@@ -31,33 +31,33 @@ const Header = ({ history }) => {
     <div className='background_navbar'>
       <nav className='navbar_container'>
         <div className='navbar_leftSide'>
-          <Link to='/' className='Logo_navbar'>
+          <Link to='/'>
             <LogoSvg style={{ width: 'auto', height: 70 }} />
           </Link>
-
-          <div className='search_bar'>
-            <TextField
-              onKeyUp={handleKeypress}
-              placeholder='Search for a product'
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              variant='outlined'
-              inputProps={{
-                style: {
-                  background: 'white',
-                  overflow: 'hidden',
-                  borderRadius: 5,
-                  height: 5,
-                  width: 600,
-                },
-              }}
-            />
-
-            <button className='button_search' onClick={submitSearch}>
-              <SearchIcon />
-            </button>
-          </div>
         </div>
+        <div className='search_bar'>
+          <TextField
+            onKeyUp={handleKeypress}
+            fullWidth={true}
+            placeholder='Search for a product'
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            variant='outlined'
+            inputProps={{
+              style: {
+                background: 'white',
+                overflow: 'hidden',
+                borderRadius: 5,
+                height: 5,
+              },
+            }}
+          />
+
+          <button className='button_search' onClick={submitSearch}>
+            <SearchIcon />
+          </button>
+        </div>
+
         <div className='navbar_rightSide'>
           {userInfo ? (
             <div className='text-link'>

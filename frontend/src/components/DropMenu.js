@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import './styles/DropMenu.css'
 import { userLogout } from '../actions/userActions'
 import { useDispatch } from 'react-redux'
 
-function DropMenu({ name, items }) {
+function DropMenu({ name, items, history }) {
   const [open, setOpen] = useState(false)
   const DropRef = useRef()
 
@@ -27,6 +28,7 @@ function DropMenu({ name, items }) {
   const handleLogout = () => {
     dispatch(userLogout())
     setOpen((open) => !open)
+    history.push('/login')
   }
 
   function DropItem(props) {
@@ -81,4 +83,4 @@ function DropMenu({ name, items }) {
   )
 }
 
-export default DropMenu
+export default withRouter(DropMenu)

@@ -5,6 +5,7 @@ import {
   GET_ORDER_REQUEST,
   GET_ORDER_SUCCESS,
   GET_ORDER_FAIL,
+  GET_ORDER_RESET,
   PAY_ORDER_REQUEST,
   PAY_ORDER_SUCCESS,
   PAY_ORDER_FAIL,
@@ -54,6 +55,8 @@ export const getOrderReducer = (
       return { ...state, loading: false, success: true, order: action.payload }
     case GET_ORDER_FAIL:
       return { ...state, loading: false, error: action.payload }
+    case GET_ORDER_RESET:
+      return { order: { shippingAddress: {}, orderItems: [] } }
     default:
       return state
   }

@@ -23,24 +23,23 @@ const OrderDetails = ({ match, history }) => {
   const payOrderValue = useSelector((state) => state.payOrder)
   const { success: successPay } = payOrderValue
 
-  /*   useEffect(() => {
-    dispatch(getOrderById(orderId))
-  }, [orderId, dispatch])
- */
-  /*   useEffect(() => {
-    const addPaypalScript = async () => {
-      const { data: clientId } = await axios.get('/api/config/paypal')
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-      script.async = true
-      script.onload = () => {
-        setSdkReady(true)
+  useEffect(() => {
+    if (userInfo.id && order.user) {
+      if (userInfo.id !== order.user) {
+        history.push('/')
       }
-      document.body.appendChild(script)
     }
-    addPaypalScript()
-  }, []) */
+
+    const unListen = history.listen((newLocation, action) => {
+      if (action === 'POP') {
+        history.go(1)
+      }
+    })
+
+    return () => {
+      unListen()
+    }
+  }, [history, userInfo, order])
 
   useEffect(() => {
     const addPaypalScript = async () => {
@@ -58,17 +57,13 @@ const OrderDetails = ({ match, history }) => {
       dispatch({ type: PAY_ORDER_RESET })
       dispatch(getOrderById(orderId))
     } else if (!order.isPaid) {
-      if (!window.paypal && sdkReady) {
+      if (!window.paypal) {
         addPaypalScript()
       } else {
         setSdkReady(true)
       }
     }
   }, [orderId, dispatch, order, successPay, getOrderSuccess])
-
-  const handleClickGoBack = () => {
-    history.push('/')
-  }
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult))
@@ -138,21 +133,49 @@ const OrderDetails = ({ match, history }) => {
             <p>Tax Price : ${order.taxPrice}</p>
             <p>Total : ${order.totalPrice}</p>
             {order.isPaid ? (
-              <div style={{ textAlign: 'center' }}>
-                <button
-                  style={{ width: '100%', marginTop: '1rem' }}
-                  className='order_button'
-                  onClick={handleClickGoBack}>
-                  Go Home
-                </button>
+              <div>
+                <div style={{ textAlign: 'center' }}>
+                  <button
+                    style={{ width: '100%', marginTop: '1rem' }}
+                    className='order_button'
+                    onClick={() => history.push('/')}>
+                    Go Home
+                  </button>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <button
+                    style={{ width: '100%', marginTop: '1rem' }}
+                    className='order_button'
+                    onClick={() => history.push('/profile')}>
+                    My Orders
+                  </button>
+                </div>
               </div>
             ) : !sdkReady ? (
               <div>Loading PayPal Payment ...</div>
             ) : (
-              <PayPalButton
-                amount={order.totalPrice}
-                onSuccess={successPaymentHandler}
-              />
+              <div>
+                <PayPalButton
+                  amount={order.totalPrice}
+                  onSuccess={successPaymentHandler}
+                />
+                <div style={{ textAlign: 'center' }}>
+                  <button
+                    style={{ width: '100%', marginTop: '1rem' }}
+                    className='order_button'
+                    onClick={() => history.push('/')}>
+                    Go Home
+                  </button>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <button
+                    style={{ width: '100%', marginTop: '1rem' }}
+                    className='order_button'
+                    onClick={() => history.push('/profile')}>
+                    My Orders
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>

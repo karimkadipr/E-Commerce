@@ -11,11 +11,13 @@
 }
 
 .big {
-  padding-bottom: 50px;
+  background-color: #131a22;
+  padding-bottom: 45px;
   padding-top: 30px;
 }
 
 .big > p {
   padding-top: 20px;
   text-align: center;
+  color: white;
 }

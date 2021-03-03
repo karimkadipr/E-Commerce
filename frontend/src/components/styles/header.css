@@ -5,46 +5,46 @@
 .navbar_container {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   height: 80px;
   font-weight: 700;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 
 .navbar_leftSide {
-  flex-grow: 50;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.Logo_navbar {
   flex: 20%;
+  max-width: 20%;
   display: flex;
   justify-content: center;
+  min-width: 150px;
 }
 
 .search_bar {
   display: flex;
-  flex: 53%;
   align-items: center;
   justify-content: flex-start;
+  flex: 30%;
+  max-width: 30%;
+  min-width: 300px;
 }
 
 .navbar_rightSide {
   display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
+  flex: 20%;
+  max-width: 20%;
+  justify-content: space-evenly;
 }
 
 .navbar_rightSide > a,
 .navbar_rightSide > div > div > p {
-  padding: 1rem 2rem;
+  padding: 1rem;
+  min-width: 50px;
 }
 
-.navbar_rightSide:last-child {
+/* .navbar_rightSide:last-child {
   margin-right: 5px;
-}
+} */
 
 .myshop_logo {
   text-align: center;
@@ -57,7 +57,7 @@
   justify-content: center;
   color: white;
   text-decoration: inherit;
-  margin-left: 5px;
+
   border-radius: 5px;
   border: 2px solid #131a22;
 }
@@ -72,6 +72,7 @@
   border: 2px solid grey;
 }
 
+/* buttons Style */
 .button_search {
   padding: 7px;
   margin-left: 2px;
