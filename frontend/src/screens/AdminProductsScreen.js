@@ -95,7 +95,10 @@ const AdminProductsScreen = ({ history, match }) => {
             </button>
           </div>
         </div>
-        <TableContainer component={Paper}>
+        <TableContainer
+          style={{ marginTop: '1rem' }}
+          component={Paper}
+          className='large_table_products'>
           <Table aria-label='simple table'>
             <TableHead>
               <TableRow>
@@ -133,6 +136,49 @@ const AdminProductsScreen = ({ history, match }) => {
             </TableBody>
           </Table>
         </TableContainer>
+        {products &&
+          products.map((product) => (
+            <TableContainer
+              className='small_table_products'
+              key={product._id}
+              component={Paper}>
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCell variant='head'>Product ID</TableCell>
+                    <TableCell>{product._id}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Product Name</TableCell>
+                    <TableCell>{product.name}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Price</TableCell>
+                    <TableCell>${product.price}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Brand</TableCell>
+                    <TableCell>{product.brand}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Edit / Delete</TableCell>
+                    <TableCell>
+                      <button
+                        className='admin_products_edit_btn'
+                        onClick={() => handleEditProduct(product._id)}>
+                        <EditIcon />
+                      </button>{' '}
+                      <button
+                        className='admin_products_delete_btn'
+                        onClick={() => handleDelete(product._id)}>
+                        <DeleteIcon />
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ))}
 
         <Paginate isAdmin={true} pages={pages} page={page} />
       </div>

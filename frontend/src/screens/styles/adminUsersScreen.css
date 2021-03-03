@@ -1,3 +1,17 @@
+@media (min-width: 1001px) {
+  .small_table_users {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .large_table_users {
+    display: none;
+  }
+  .small_table_users {
+    margin: 1rem 0;
+  }
+}
 .users_container {
   display: flex;
   flex-direction: column;

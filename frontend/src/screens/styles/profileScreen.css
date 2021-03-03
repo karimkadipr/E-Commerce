@@ -6,11 +6,11 @@
   flex-wrap: wrap;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1001px) {
   .table_order_profile {
     min-width: 600px;
   }
-  .small_table {
+  .small_table_profile {
     display: none;
   }
 }
@@ -19,10 +19,10 @@
     width: 100%;
     min-width: 400px;
   }
-  .large_table {
+  .large_table_profile {
     display: none;
   }
-  .small_table {
+  .small_table_profile {
     margin: 1rem 0;
   }
 }

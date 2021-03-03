@@ -139,7 +139,7 @@ const ProfileScreen = ({ history }) => {
 
       <div className='table_order_profile'>
         <h3> Your orders : </h3>
-        <TableContainer className='large_table' component={Paper}>
+        <TableContainer className='large_table_profile' component={Paper}>
           <Table aria-label='simple table'>
             <TableHead>
               <TableRow>
@@ -200,7 +200,7 @@ const ProfileScreen = ({ history }) => {
         {orders &&
           orders.map((order) => (
             <TableContainer
-              className='small_table'
+              className='small_table_profile'
               key={order._id}
               component={Paper}>
               <Table>
@@ -226,7 +226,7 @@ const ProfileScreen = ({ history }) => {
                     )}
                   </TableRow>
                   <TableRow>
-                    <TableCell variant='head'>Paid</TableCell>
+                    <TableCell variant='head'>Delivered</TableCell>
                     {order.isDelivered ? (
                       <TableCell>Delivered</TableCell>
                     ) : (

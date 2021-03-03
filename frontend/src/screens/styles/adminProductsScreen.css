@@ -8,6 +8,21 @@
   margin-bottom: 15px;
 }
 
+@media (min-width: 851px) {
+  .small_table_products {
+    display: none;
+  }
+}
+
+@media (max-width: 850px) {
+  .large_table_products {
+    display: none;
+  }
+  .small_table_products {
+    margin: 1rem 0;
+  }
+}
+
 .admin_products_delete_btn {
   padding: 15px;
   border: none;

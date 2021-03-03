@@ -39,7 +39,6 @@ const PaymentScreen = ({ history }) => {
         <FormControl className='form_method_container' component='fieldset'>
           <FormLabel component='legend'>Payment Method</FormLabel>
           <RadioGroup
-            aria-label='paymentMethod'
             value={payment}
             onChange={(event) => setPayment(event.target.value)}>
             <FormControlLabel

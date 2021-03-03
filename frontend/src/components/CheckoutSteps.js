@@ -1,14 +1,9 @@
 import React from 'react'
+import './styles/checkoutSteps.css'
 
 const CheckoutSteps = ({ signin, shipping, payment, placeorder }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        fontSize: 25,
-        fontWeight: '700',
-      }}>
+    <div className='checkoutSteps_container'>
       {signin ? (
         <div>SignIn</div>
       ) : (

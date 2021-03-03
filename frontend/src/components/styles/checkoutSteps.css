@@ -1,0 +1,6 @@
+.checkoutSteps_container {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25;
+  font-weight: 700;
+}

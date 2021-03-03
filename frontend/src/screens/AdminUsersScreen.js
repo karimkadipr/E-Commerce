@@ -53,7 +53,7 @@ const AdminUsersScreen = ({ history }) => {
     <div>
       <div className='users_container'>
         <h1>Users : </h1>
-        <TableContainer component={Paper}>
+        <TableContainer className='large_table_users' component={Paper}>
           <Table aria-label='simple table'>
             <TableHead>
               <TableRow>
@@ -61,7 +61,7 @@ const AdminUsersScreen = ({ history }) => {
                 <TableCell align='center'>User Name</TableCell>
                 <TableCell align='center'>User Email</TableCell>
                 <TableCell align='center'>Admin</TableCell>
-                <TableCell align='center'>Delete User</TableCell>
+                <TableCell align='center'>Delete / Edit</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -96,6 +96,53 @@ const AdminUsersScreen = ({ history }) => {
             </TableBody>
           </Table>
         </TableContainer>
+        {users &&
+          users.map((user) => (
+            <TableContainer
+              className='small_table_users'
+              key={user._id}
+              component={Paper}>
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCell variant='head'>User ID</TableCell>
+                    <TableCell>{user._id}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>User Name</TableCell>
+                    <TableCell>{user.name}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>User Email</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Admin</TableCell>
+                    {user.isAdmin ? (
+                      <TableCell>Admin</TableCell>
+                    ) : (
+                      <TableCell>Not admin</TableCell>
+                    )}
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Delete / Edit</TableCell>
+                    <TableCell>
+                      <button
+                        className='admin_users_edit_btn'
+                        onClick={() => goToDetailsPage(user._id)}>
+                        <EditIcon />
+                      </button>{' '}
+                      <button
+                        className='admin_users_delete_btn'
+                        onClick={() => deleteUserHandler(user._id)}>
+                        <DeleteIcon />
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ))}
       </div>
     </div>
   )
