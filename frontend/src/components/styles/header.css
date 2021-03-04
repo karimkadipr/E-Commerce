@@ -152,7 +152,10 @@
 
 /* buttons Style */
 .button_search {
-  padding: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
   margin-left: 2px;
   border: none;
   background: white;
