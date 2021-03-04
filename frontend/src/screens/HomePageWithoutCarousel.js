@@ -17,7 +17,7 @@ const HomePage = ({ history, match }) => {
   const dispatch = useDispatch()
 
   const getProducts = useSelector((state) => state.getProducts)
-  const { error, loading, products, page, pages } = getProducts
+  const { error, products, page, pages } = getProducts
 
   useEffect(() => {
     dispatch(getListProducts(keyword, pageNumber))
@@ -35,7 +35,6 @@ const HomePage = ({ history, match }) => {
           <div className='container_global_homepage'>
             <h1>Products</h1>
             <div className='homepage_Container'>
-              {loading ? <Message color='green'> Loading ...</Message> : ''}
               {error ? (
                 <Message color='red'>{error}</Message>
               ) : products.length === 0 ? (

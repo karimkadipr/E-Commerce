@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import './styles/orderScreen.css'
 import { createOrder } from '../actions/orderActions'
 import { CREATE_ORDER_RESET } from '../constants/orderConstants'
+import { CART_RESET_PRODUCTS } from '../constants/cartConstants'
 
 const OrderScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -41,6 +42,7 @@ const OrderScreen = ({ history }) => {
 
   useEffect(() => {
     if (success) {
+      dispatch({ type: CART_RESET_PRODUCTS })
       dispatch({ type: CREATE_ORDER_RESET })
       history.push(`/orderDetails/${order._id}`)
     }

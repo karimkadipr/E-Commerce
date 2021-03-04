@@ -15,7 +15,7 @@ import './styles/productDetail.css'
 import Meta from '../components/Meta'
 
 const ProductDetail = ({ match, history }) => {
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState('')
   const [comment, setComment] = useState('')
   const [title, setTitle] = useState('')
   const [qty, setQty] = useState(1)
@@ -45,6 +45,9 @@ const ProductDetail = ({ match, history }) => {
   const handleSubmitReview = (e) => {
     e.preventDefault()
     dispatch(addReview({ rating, comment, title }, match.params.id))
+    setRating('')
+    setComment('')
+    setTitle('')
   }
 
   let arr = []
@@ -52,15 +55,74 @@ const ProductDetail = ({ match, history }) => {
     arr.push(i)
   }
   return (
-    <div className='product_Item_Container'>
-      <div className='product_Image'>
-        <Link className='go_back_button' to='/'>
-          Go Back
-        </Link>
-        <div className='img_container_product'>
-          <img src={product.image} alt={product.name} />
+    <div className='product_details_container'>
+      <div className='product_Item_Container'>
+        <div className='product_Image'>
+          <Link className='go_back_button' to='/'>
+            Go Back
+          </Link>
+          <div className='img_container_product'>
+            <img src={product.image} alt={product.name} />
+          </div>
         </div>
+        <div className='name_price_container'>
+          <p>
+            <strong>{product.name}</strong>
+          </p>
+          <div style={{ display: 'flex' }}>
+            <RatingComponent rating={product.rating} />
+            <span>
+              {' '}
+              - {product.numReviews}{' '}
+              {product.numReviews === 1 ? 'Review' : 'Reviews'}
+            </span>
+          </div>
 
+          <p>Price : ${product.price}</p>
+          <span style={{ paddingTop: 10 }}>Description :</span>
+          <p>{product.description}</p>
+        </div>
+        <div className='add_to_cart_container'>
+          <div className='add_to_cart_container_item'>
+            <p>Price : $ {product.price}</p>
+          </div>
+          <div className='add_to_cart_container_item'>
+            <p>
+              status :{' '}
+              {product.countInStock === 0 ? (
+                <strong>Not Available</strong>
+              ) : (
+                <strong>In Stock</strong>
+              )}
+            </p>
+          </div>
+          {product.countInStock !== 0 ? (
+            <div style={{ paddingTop: 20 }}>
+              <FormControl className='select_quantity'>
+                <InputLabel id='demo-simple-select-label'>Quantity</InputLabel>
+                <Select
+                  defaultValue={qty}
+                  labelId='demo-simple-select-label'
+                  id='demo-simple-select'
+                  onChange={(e) => setQty(e.target.value)}>
+                  {arr.map((item) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+          ) : (
+            ''
+          )}
+
+          <button className='add_to_cart_button' onClick={submitHandler}>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+      <div className='reviews_product_container'>
         <h1>Reviews : </h1>
 
         {product.numReviews === 0 ? (
@@ -135,62 +197,6 @@ const ProductDetail = ({ match, history }) => {
             </button>
           </form>
         </div>
-      </div>
-      <div className='name_price_container'>
-        <p>
-          <strong>{product.name}</strong>
-        </p>
-        <div style={{ display: 'flex' }}>
-          <RatingComponent rating={product.rating} />
-          <span>
-            {' '}
-            - {product.numReviews}{' '}
-            {product.numReviews === 1 ? 'Review' : 'Reviews'}
-          </span>
-        </div>
-
-        <p>Price : ${product.price}</p>
-        <span style={{ paddingTop: 10 }}>Description :</span>
-        <p>{product.description}</p>
-      </div>
-      <div className='add_to_cart_container'>
-        <div className='add_to_cart_container_item'>
-          <p>Price : $ {product.price}</p>
-        </div>
-        <div className='add_to_cart_container_item'>
-          <p>
-            status :{' '}
-            {product.countInStock === 0 ? (
-              <strong>Not Available</strong>
-            ) : (
-              <strong>In Stock</strong>
-            )}
-          </p>
-        </div>
-        {product.countInStock !== 0 ? (
-          <div style={{ paddingTop: 20 }}>
-            <FormControl className='select_quantity'>
-              <InputLabel id='demo-simple-select-label'>Quantity</InputLabel>
-              <Select
-                defaultValue={qty}
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
-                onChange={(e) => setQty(e.target.value)}>
-                {arr.map((item) => (
-                  <MenuItem key={item} value={item}>
-                    {item}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-        ) : (
-          ''
-        )}
-
-        <button className='add_to_cart_button' onClick={submitHandler}>
-          Add to Cart
-        </button>
       </div>
     </div>
   )

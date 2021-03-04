@@ -4,6 +4,8 @@ import { getTopProducts } from '../actions/productActions'
 import './styles/Test.css'
 import Swiper from 'swiper/bundle'
 import 'swiper/swiper-bundle.css'
+import ArrowRightIcon from '@material-ui/icons/ArrowRight'
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft'
 
 const Test = () => {
   const dispatch = useDispatch()
@@ -74,8 +76,13 @@ const Test = () => {
         </div>
 
         <div className='swiper-pagination'></div>
-        <div className='swiper-button-prev'></div>
-        <div className='swiper-button-next'></div>
+        <div className='swiper-button-prev'>
+          {' '}
+          <ArrowLeftIcon style={{ height: 50, width: 'auto' }} />{' '}
+        </div>
+        <div className='swiper-button-next'>
+          <ArrowRightIcon style={{ height: 50, width: 'auto' }} />
+        </div>
         <div className='swiper-scrollbar'></div>
       </div>
     </div>

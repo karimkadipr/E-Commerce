@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { CART_RESET_PRODUCTS } from '../constants/cartConstants'
 import { GET_ORDER_RESET, RESET_MY_ORDERS } from '../constants/orderConstants'
 import {
   USER_LOGIN_REQUEST,
@@ -63,6 +64,7 @@ const userLogout = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT })
   dispatch({ type: RESET_MY_ORDERS })
   dispatch({ type: GET_ORDER_RESET })
+  dispatch({ type: CART_RESET_PRODUCTS })
   localStorage.removeItem('userInfo')
   localStorage.removeItem('cartItems')
   localStorage.removeItem('userAddress')
