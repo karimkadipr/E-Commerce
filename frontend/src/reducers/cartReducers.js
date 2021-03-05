@@ -44,7 +44,7 @@ export const cartReducer = (
       }
     // fallsthrough
     case CART_RESET_PRODUCTS:
-      return { ...state, cartItems: [], shippingAddress: {}, paymentMethod: {} }
+      return { ...state, cartItems: [] }
     case CART_SAVE_SHIPPING_ADDRESS:
       return { ...state, shippingAddress: action.payload }
 

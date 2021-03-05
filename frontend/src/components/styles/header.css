@@ -79,10 +79,6 @@
 }
 
 @media (max-width: 700px) {
-  .navbar_container {
-    height: 120px;
-  }
-
   .search_bar {
     flex: 100%;
     min-width: 100%;
@@ -115,6 +111,18 @@
   .logo {
     height: 40px;
     width: auto;
+  }
+}
+
+@media (min-width: 318px) and (max-width: 700px) {
+  .navbar_container {
+    height: 120px;
+  }
+}
+
+@media (max-width: 318px) {
+  .navbar_container {
+    height: 160px;
   }
 }
 
