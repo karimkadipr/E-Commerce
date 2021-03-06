@@ -80,7 +80,7 @@ export const payOrderReducer = (state = {}, action) => {
 export const getMyOrdersReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case GET_MY_ORDERS_REQUEST:
-      return { loading: true, orders: [] }
+      return { ...state, loading: true }
     case GET_MY_ORDERS_SUCCESS:
       return { loading: false, orders: action.payload }
     case GET_MY_ORDERS_FAIL:
@@ -95,7 +95,7 @@ export const getMyOrdersReducer = (state = { orders: [] }, action) => {
 export const getAllOrdersReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case GET_ALL_ORDERS_REQUEST:
-      return { loading: true, orders: [] }
+      return { ...state, loading: true }
     case GET_ALL_ORDERS_SUCCESS:
       return { loading: false, success: true, orders: action.payload }
     case GET_ALL_ORDERS_FAIL:

@@ -6,7 +6,6 @@ import './styles/orderScreen.css'
 import { getOrderById, payOrder } from '../actions/orderActions'
 import DeliveredPaid from '../components/DeliveredPaid'
 import { PAY_ORDER_RESET } from '../constants/orderConstants'
-import { CART_RESET_PRODUCTS } from '../constants/cartConstants'
 
 const OrderDetails = ({ match, history }) => {
   const orderId = match.params.id
