@@ -62,6 +62,7 @@
   height: 260px;
   max-width: 500px;
   max-height: 500px;
+  object-fit: cover;
 }
 
 .product_item_container > p {
@@ -168,9 +169,10 @@
   border: 1px solid white;
   cursor: pointer;
   background: white;
+  transition: all 0.5s;
 }
 
-.btn_add_cart_home_screen:active {
+.btn_add_cart_home_screen:hover {
   border: 1px solid;
   transform: scale(1.2);
 }

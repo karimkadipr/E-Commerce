@@ -32,7 +32,6 @@ const HomePage = ({ history, match }) => {
       <Meta />
       <div className='body_with_footer'>
         <div className='body_without_footer'>
-          <Carousel />
           <div className='container_global_homepage'>
             <h1>Products</h1>
             <div className='homepage_Container'>

@@ -138,7 +138,7 @@ const AdminUpdateProduct = ({ match, history }) => {
             id='img'
             name='img'
             onChange={uploadFileHandler}
-            className='upload_button_product_img'
+            className='custom-file-input'
           />
 
           {uploading && <div>Uploading ...</div>}

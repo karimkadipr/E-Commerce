@@ -59,3 +59,47 @@
     background-position: right;
   }
 }
+
+.custom-file-input::-webkit-file-upload-button {
+  display: none;
+}
+.custom-file-input {
+  width: 100%;
+}
+.custom-file-input::before {
+  content: 'Upload image';
+  display: inline-block;
+  background: linear-gradient(to right, #191654, #43c6ac);
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  margin: 5px 5px 0 0;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 0.5rem;
+  outline: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background-size: 200%;
+  background-position: left;
+}
+.custom-file-input:active {
+  border: none;
+  outline: none;
+}
+.custom-file-input:focus {
+  border: none;
+  outline: none;
+}
+
+.custom-file-input:hover::before {
+  border: none;
+}
+.custom-file-input:active::before {
+  border: none;
+  outline: none;
+}
+
+.buttons_container_create_profile {
+  display: flex;
+  justify-content: space-between;
+}
