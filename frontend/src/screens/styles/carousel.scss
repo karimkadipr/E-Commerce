@@ -1,0 +1,96 @@
+/* .h1-carousel {
+  font-size: 2.5rem;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+  padding: 20px 0 5px 0;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid;
+}
+.swiper-wrapper {
+  width: 60vw;
+  background: white;
+  margin: auto;
+}
+.swiper-container {
+  position: relative;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  box-shadow: 0px 0px 15px -10px #000000;
+  overflow: hidden;
+  background: white;
+  margin-bottom: 1rem;
+}
+.swiper-slide {
+  display: flex;
+  width: 300px;
+  height: 100%;
+}
+.image_carousel {
+  position: relative;
+  right: 8rem;
+  object-fit: cover;
+  width: 25vw;
+  height: 50%;
+  transition: all 0.5s;
+  background: black;
+}
+.image_carousel:hover {
+  opacity: 0.8;
+  transform: scale(1.25);
+}
+.carousel_info {
+  position: relative;
+  font-size: 1.5rem;
+}
+.carousel_wrapper {
+  z-index: 1;
+}
+.MuiSvgIcon-root {
+  height: 2rem;
+  width: 2rem;
+}
+.prev {
+  position: absolute;
+  z-index: 999;
+  height: 2rem;
+  width: 2rem;
+}
+.next {
+  position: absolute;
+  z-index: 999;
+  right: 0;
+}
+ */
+
+.swiper-home-page {
+  .swiper-wrapper {
+    width: 75vw;
+  }
+  .swiper-container {
+    width: 75vw;
+  }
+  .swiper-slider {
+  }
+}
+
+.image_carousel {
+  width: 80vw;
+
+  height: 600px;
+}
+
+.carousel_info {
+  position: absolute;
+  left: 20%;
+  p {
+    padding: 0.25rem 0;
+  }
+  a {
+    display: inline-block;
+    background: black;
+    padding: 1rem 2rem;
+  }
+}

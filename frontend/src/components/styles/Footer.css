@@ -4,6 +4,7 @@
   align-items: center;
   width: 30%;
   margin: auto;
+  z-index: 999;
 }
 @media (min-width: 1000px) {
   .Footer {
@@ -27,7 +28,7 @@
 }
 
 .big {
-  background-color: #131a22;
+  background-color: #292929;
   padding-bottom: 45px;
   padding-top: 30px;
 }

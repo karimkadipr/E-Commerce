@@ -2,7 +2,7 @@ import Product from '../models/productModel.js'
 import asyncHandler from 'express-async-handler'
 
 const getAllProducts = asyncHandler(async (req, res) => {
-  const pageSize = 8
+  const pageSize = 20
   const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword
@@ -139,9 +139,20 @@ const addReview = asyncHandler(async (req, res) => {
 })
 
 const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+  const products = await Product.find({}).sort({ rating: -1 }).limit(6)
   if (products) {
     res.json(products)
+  }
+})
+
+const getProductsByCategory = asyncHandler(async (req, res) => {
+  const category = req.params.category
+  const products = await Product.find({ category })
+  if (products) {
+    res.status(200).json(products)
+  } else {
+    res.status(404)
+    throw new Error('Products of this category does not exist')
   }
 })
 
@@ -153,4 +164,5 @@ export {
   updateProduct,
   addReview,
   getTopProducts,
+  getProductsByCategory,
 }

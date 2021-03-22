@@ -8,7 +8,7 @@ import RatingComponent from '../components/RatingComponent'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import Message from '../components/DeliveredPaid'
 import { ReactComponent as EmptyStoreSvg } from './images/undraw_social_update_puv0.svg'
-import './styles/homepage.css'
+import './styles/homepage.scss'
 import Meta from '../components/Meta'
 
 const HomePage = ({ history, match }) => {

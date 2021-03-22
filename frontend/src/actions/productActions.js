@@ -21,6 +21,9 @@ import {
   TOP_PRODUCT_REQUEST,
   TOP_PRODUCT_SUCCESS,
   TOP_PRODUCT_FAIL,
+  GET_PRODUCTS_CATEGORY_REQUEST,
+  GET_PRODUCTS_CATEGORY_SUCCESS,
+  GET_PRODUCTS_CATEGORY_FAIL,
 } from '../constants/productConstants.js'
 
 const getListProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
@@ -199,10 +202,29 @@ const addReview = (review, id) => async (dispatch, getState) => {
 const getTopProducts = () => async (dispatch) => {
   try {
     dispatch({
-      type: TOP_PRODUCT_REQUEST,
+      type: GET_PRODUCTS_CATEGORY_REQUEST,
     })
 
     const { data } = await axios.get('/api/products/top')
+
+    dispatch({
+      type: GET_PRODUCTS_CATEGORY_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCTS_CATEGORY_FAIL,
+    })
+  }
+}
+
+const getProductsByCategory = (category) => async (dispatch) => {
+  try {
+    dispatch({
+      type: TOP_PRODUCT_REQUEST,
+    })
+
+    const { data } = await axios.get(`/api/products/category/${category}`)
 
     dispatch({
       type: TOP_PRODUCT_SUCCESS,
@@ -214,6 +236,7 @@ const getTopProducts = () => async (dispatch) => {
     })
   }
 }
+
 export {
   getListProducts,
   getProductDetails,
@@ -222,4 +245,5 @@ export {
   updateProduct,
   addReview,
   getTopProducts,
+  getProductsByCategory,
 }

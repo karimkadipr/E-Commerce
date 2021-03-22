@@ -10,17 +10,7 @@
 body {
   /* font-family: 'Montserrat', sans-serif; */
 
-  background: #ece9e6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #ffffff,
-    #ece9e6
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #ffffff,
-    #ece9e6
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: white;
 }
 
 button:focus,
@@ -28,10 +18,11 @@ button:active {
   outline: none;
 }
 
-footer {
+.footer {
   margin-top: 50px;
   bottom: 0;
   position: relative;
+  z-index: 999;
 }
 @media (min-width: 700px) {
   .body_content_padding_top {

@@ -1,6 +1,8 @@
 import express from 'express'
 import multer from 'multer'
 import path from 'path'
+import sharp from 'sharp'
+import fs from 'fs'
 const router = express.Router()
 
 const storage = multer.diskStorage({
@@ -34,7 +36,9 @@ const upload = multer({
   },
 })
 
-router.post('/', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
+  const image = await sharp(`${req.file.path}`).resize(671, 671).toBuffer()
+  fs.writeFileSync(`${req.file.path}`, image)
   res.send(`/${req.file.path}`)
 })
 

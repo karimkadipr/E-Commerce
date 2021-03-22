@@ -1,0 +1,160 @@
+.products_container_with_grid {
+  display: flex;
+  gap: 1em;
+  margin-top: 5rem;
+  overflow: hidden;
+  max-height: 671px;
+}
+.products_container_with_grid > * {
+  flex-basis: 100%;
+}
+
+//LEFT CONTAINER
+
+.big_products {
+  position: relative;
+  overflow: hidden;
+  max-width: 671px;
+  background: black;
+  border-radius: 15px;
+  button {
+    position: relative;
+    left: 43%;
+    transition: all 0.5s;
+    opacity: 0;
+  }
+
+  &:hover {
+    button {
+      position: relative;
+      transform: translateY(-5rem);
+      left: 43%;
+      opacity: 1;
+      &:nth-child(2) {
+        transition-delay: 0.5s;
+      }
+    }
+  }
+  span {
+    text-align: center;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    opacity: 0;
+    transition: all 0.5s;
+    color: white;
+    width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &:hover {
+    span {
+      opacity: 1;
+    }
+  }
+}
+
+.image_big_product {
+  transition: all 0.5s;
+  height: 100%;
+  width: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+//right CONTAINER
+
+.products_grid {
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  max-width: 671px;
+}
+
+.products_grid > * {
+  flex: 1 1 46%;
+}
+
+.image_products_grid {
+  position: relative;
+  height: 49%;
+  overflow: hidden;
+  border-radius: 15px;
+  background: black;
+  border-radius: 15px;
+
+  span {
+    text-align: center;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    opacity: 0;
+    transition: all 0.5s;
+    color: white;
+    width: 70%;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &:hover {
+    span {
+      opacity: 1;
+    }
+  }
+}
+
+.image_products_grid {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s;
+    overflow: hidden;
+
+    &:hover {
+      transform: scale(1.05);
+      opacity: 0.4;
+    }
+  }
+  button {
+    position: relative;
+    left: 33%;
+    transition: all 0.5s;
+    opacity: 0;
+  }
+
+  &:hover {
+    button {
+      position: relative;
+      left: 33%;
+      transform: translateY(-5rem);
+      opacity: 1;
+    }
+  }
+}
+
+.btn_add_to_cart_home {
+  border: 0;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  &:hover {
+    background: rgb(29, 29, 29);
+  }
+}

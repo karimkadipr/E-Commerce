@@ -1,5 +1,5 @@
 .background_navbar {
-  background-color: #131a22;
+  background-color: #292929;
   border-bottom: 1px solid rgb(59, 59, 59);
   box-shadow: 0 3px 8px rgb(0 0 0 / 24%);
   top: 0;
@@ -149,7 +149,7 @@
   color: white;
   text-decoration: inherit;
   border-radius: 5px;
-  border: 2px solid #131a22;
+  border: 2px solid #292929;
   text-align: center;
 }
 
