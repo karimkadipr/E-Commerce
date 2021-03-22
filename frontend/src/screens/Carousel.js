@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTopProducts } from '../actions/productActions'
+import React from 'react'
 import './styles/Test.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper/core'
 import 'swiper/swiper-bundle.css'
 import './styles/carousel.scss'
 import 'swiper/swiper.scss'
-import ArrowRightIcon from '@material-ui/icons/ArrowRight'
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft'
 import { Link } from 'react-router-dom'
 
 const Carousel = ({ products }) => {

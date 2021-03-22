@@ -192,17 +192,39 @@
 }
 
 .featured_products {
-  width: 90%;
+  width: 75%;
   margin: auto;
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1%;
 }
 
 .featured_product {
+  margin-bottom: 3rem;
+  width: 24.25%;
+  overflow: hidden;
   img {
     width: 100%;
-    height: auto;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 15px;
+
+    transition: transform 0.5s;
   }
-  width: 23%;
+  .image_holder_home_page {
+    overflow: hidden;
+  }
+  p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    margin: 0;
+    margin-top: 0.25rem;
+  }
+  .p_product_card {
+    font-size: 0.8rem;
+    color: grey;
+  }
 }

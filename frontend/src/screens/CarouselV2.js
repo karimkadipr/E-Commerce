@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTopProducts } from '../actions/productActions'
+import React from 'react'
 import './styles/Test.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper/core'

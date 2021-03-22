@@ -7,6 +7,7 @@ import Paginate from '../components/Paginate'
 import Carousel from './Carousel'
 import Message from '../components/DeliveredPaid'
 import CarouselV2 from './CarouselV2'
+import { Link } from 'react-router-dom'
 import './styles/homepage.scss'
 
 const HomePage = ({ history, match }) => {
@@ -42,13 +43,22 @@ const HomePage = ({ history, match }) => {
                   products={products}
                   handleAddToCart={handleAddToCart}
                 />
-                {/*  <div className='featured_products'>
-                  {products.map((product) => (
+                <h1>Featured Products</h1>
+                <div className='featured_products'>
+                  {products.slice(5, 17).map((product) => (
                     <div className='featured_product'>
-                      <img src={product.image} alt={product.name} />
+                      <Link
+                        to={`/order/${product._id}`}
+                        className='image_holder_home_page'>
+                        <img src={product.image} alt={product.name} />
+                      </Link>
+                      <p className='p_product_card'>{product.brand}</p>
+                      <p>{product.name}</p>
+                      <p>{product.category}</p>
+                      <p className='p_product_card'>${product.price}</p>
                     </div>
                   ))}
-                </div> */}
+                </div>
                 <Paginate
                   className='pagination_container'
                   pages={pages}
