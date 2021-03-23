@@ -8,6 +8,7 @@ import {
   addReview,
   getTopProducts,
   getProductsByCategory,
+  getLastAddedProducts,
 } from '../controllers/productControllers.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
@@ -16,6 +17,7 @@ const router = express.Router()
 router.route('/').get(getAllProducts)
 router.get('/top', getTopProducts)
 router.get('/category/:category', getProductsByCategory)
+router.get('/lastadded', getLastAddedProducts)
 router.route('/addProduct').post(protect, admin, createProduct)
 router.route('/updateProduct/:id').put(protect, admin, updateProduct)
 router.route('/reviews/:id').post(protect, addReview)

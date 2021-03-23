@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Bebas Neue', cursive;
   font-weight: 600;
+  letter-spacing: 0.1em;
+}
+p {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0;
 }
 
 body {
@@ -19,10 +24,10 @@ button:active {
 }
 
 .footer {
-  margin-top: 50px;
   bottom: 0;
   position: relative;
   z-index: 999;
+  background-color: #292929;
 }
 @media (min-width: 700px) {
   .body_content_padding_top {

@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Meta from '../components/Meta'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { getListProducts } from '../actions/productActions'
+import { getListProducts, getLastProducts } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
 import Paginate from '../components/Paginate'
 import Carousel from './Carousel'
 import Message from '../components/DeliveredPaid'
 import CarouselV2 from './CarouselV2'
 import { Link } from 'react-router-dom'
+import { OutlinedInput } from '@material-ui/core'
+import { ReactComponent as DeliverySvg } from './images/Untitled2.svg'
+import { ReactComponent as SupportSvg } from './images/support 1.svg'
+import { ReactComponent as GuaranteeSvg } from './images/guarantee1.svg'
+import imageNews from './images/bkg_newsletter.jpg'
 import './styles/homepage.scss'
 
 const HomePage = ({ history, match }) => {
+  const [showMore, setShowMore] = useState(false)
   const keyword = match.params.keyword
   const pageNumber = match.params.pageNumber || 1
   const dispatch = useDispatch()
@@ -18,8 +26,16 @@ const HomePage = ({ history, match }) => {
   const getProducts = useSelector((state) => state.getProducts)
   const { error, products, page, pages } = getProducts
 
+  const getLastProductsValues = useSelector((state) => state.getLastProducts)
+  const { products: lastProducts } = getLastProductsValues
+
+  useEffect(() => {
+    Aos.init({})
+  }, [])
+
   useEffect(() => {
     dispatch(getListProducts(keyword, pageNumber))
+    dispatch(getLastProducts())
   }, [dispatch, keyword, pageNumber])
 
   const handleAddToCart = (id) => {
@@ -29,13 +45,20 @@ const HomePage = ({ history, match }) => {
   return (
     <>
       <Meta />
-      {products.length !== 0 && <Carousel products={products} />}
+      {products && products.length !== 0 && <Carousel products={products} />}
       <div className='body_with_footer'>
         <div className='body_without_footer'>
           <div className='container_global_homepage'>
             <h1>Trending categories</h1>
-
-            {error && products.length !== 0 ? (
+            <p
+              style={{
+                fontWeight: '200',
+                maxWidth: '100ch',
+                textAlign: 'center',
+              }}>
+              The most searched and viewed categories of our store.
+            </p>
+            {error && products && products.length !== 0 ? (
               <Message color='red'>{error}</Message>
             ) : (
               <>
@@ -43,10 +66,26 @@ const HomePage = ({ history, match }) => {
                   products={products}
                   handleAddToCart={handleAddToCart}
                 />
-                <h1>Featured Products</h1>
+                <h1 style={{ marginTop: '4rem' }}>New Arrivals</h1>
+                <p
+                  style={{
+                    fontWeight: '200',
+                    maxWidth: '100ch',
+                    textAlign: 'center',
+                    marginBottom: '2rem',
+                  }}>
+                  Discover the newest products of our stores. All the products
+                  are listed weekly in store, helping customers capture new
+                  collections.
+                </p>
                 <div className='featured_products'>
-                  {products.slice(5, 17).map((product) => (
-                    <div className='featured_product'>
+                  {lastProducts.map((product) => (
+                    <div
+                      data-aos-once='true'
+                      data-aos='zoom-in'
+                      data-aos-duration='500'
+                      key={product._id}
+                      className='featured_product'>
                       <Link
                         to={`/order/${product._id}`}
                         className='image_holder_home_page'>
@@ -54,10 +93,126 @@ const HomePage = ({ history, match }) => {
                       </Link>
                       <p className='p_product_card'>{product.brand}</p>
                       <p>{product.name}</p>
-                      <p>{product.category}</p>
-                      <p className='p_product_card'>${product.price}</p>
+                      <p className='p_product_card'>{product.category}</p>
+                      <p className='p_product_card_price'>${product.price}</p>
                     </div>
                   ))}
+                </div>
+                <h1>Best Selling Products</h1>
+                <p
+                  style={{
+                    fontWeight: '200',
+                    maxWidth: '100ch',
+                    textAlign: 'center',
+                  }}>
+                  Discover the best selling products of our stores. All the
+                  products are listed weekly in store, helping customers capture
+                  products are best sellers.
+                </p>
+                <div className='featured_products'>
+                  {showMore ? (
+                    <>
+                      {products.slice(5, 17).map((product) => (
+                        <div
+                          data-aos-once='true'
+                          data-aos='zoom-in'
+                          data-aos-duration='500'
+                          key={product._id}
+                          className='featured_product'>
+                          <Link
+                            to={`/order/${product._id}`}
+                            className='image_holder_home_page'>
+                            <img src={product.image} alt={product.name} />
+                          </Link>
+                          <p className='p_product_card'>{product.brand}</p>
+                          <p>{product.name}</p>
+                          <p className='p_product_card'>{product.category}</p>
+                          <p className='p_product_card_price'>
+                            ${product.price}
+                          </p>
+                        </div>
+                      ))}
+                      <button
+                        className='show_more_less_button'
+                        onClick={() => setShowMore(false)}>
+                        Show Less
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {products.slice(5, 13).map((product) => (
+                        <div
+                          data-aos-once='true'
+                          data-aos='zoom-in'
+                          data-aos-duration='500'
+                          key={product._id}
+                          className='featured_product'>
+                          <Link
+                            to={`/order/${product._id}`}
+                            className='image_holder_home_page'>
+                            <img src={product.image} alt={product.name} />
+                          </Link>
+                          <p className='p_product_card'>{product.brand}</p>
+                          <p>{product.name}</p>
+                          <p className='p_product_card'>{product.category}</p>
+                          <p className='p_product_card_price'>
+                            ${product.price}
+                          </p>
+                        </div>
+                      ))}
+                      <div className='button_container_show_less'>
+                        <button
+                          className='show_more_less_button'
+                          onClick={() => setShowMore(true)}>
+                          Show More
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className='support_delivery_guarantee'>
+                  <div>
+                    <DeliverySvg
+                      style={{ height: '2rem', margin: 8, width: '2rem' }}
+                    />
+                    Fast Delivery
+                  </div>
+                  <div>
+                    <SupportSvg
+                      style={{ height: '2rem', margin: 8, width: '2rem' }}
+                    />
+                    Support 24/7
+                  </div>
+                  <div>
+                    <GuaranteeSvg
+                      style={{ height: '2rem', margin: 8, width: '2rem' }}
+                    />
+                    Guaranteed Product
+                  </div>
+                </div>
+                <div className='newsletter_container'>
+                  <img src={imageNews} alt='newsletter image' />
+                  <div className='newsletter_content'>
+                    <h4>Our News</h4>
+                    <h1>NEWSLETTER SIGNUP</h1>
+                    <p>
+                      Subscribe to our email list and stay up-to-date with all
+                      our awesome releases and latest updates.
+                    </p>
+                    <div>
+                      <OutlinedInput
+                        type='text'
+                        placeholder='Enter your email'
+                        fullWidth={true}
+                      />
+
+                      <button
+                        style={{ marginTop: '0.5rem' }}
+                        className='show_more_less_button'>
+                        Submit
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <Paginate
                   className='pagination_container'

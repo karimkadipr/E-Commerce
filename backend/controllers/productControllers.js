@@ -156,7 +156,18 @@ const getProductsByCategory = asyncHandler(async (req, res) => {
   }
 })
 
+const getLastAddedProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ createdAt: -1 }).limit(4)
+  if (products) {
+    res.json(products)
+  } else {
+    res.status(404)
+    throw new Error('Not found')
+  }
+})
+
 export {
+  getLastAddedProducts,
   getAllProducts,
   getProductDetail,
   deleteProduct,

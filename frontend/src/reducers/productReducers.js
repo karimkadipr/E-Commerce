@@ -26,6 +26,9 @@ import {
   GET_PRODUCTS_CATEGORY_REQUEST,
   GET_PRODUCTS_CATEGORY_SUCCESS,
   GET_PRODUCTS_CATEGORY_FAIL,
+  GET_PRODUCTS_LAST_REQUEST,
+  GET_PRODUCTS_LAST_SUCCESS,
+  GET_PRODUCTS_LAST_FAIL,
 } from '../constants/productConstants.js'
 
 export const getProductsReducer = (state = { products: [] }, action) => {
@@ -147,6 +150,19 @@ export const getProductsByCategoryReducer = (
         productsByCategory: action.payload,
       }
     case GET_PRODUCTS_CATEGORY_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const getLastProductsReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case GET_PRODUCTS_LAST_REQUEST:
+      return { ...state, loading: true }
+    case GET_PRODUCTS_LAST_SUCCESS:
+      return { loading: false, success: true, products: action.payload }
+    case GET_PRODUCTS_LAST_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

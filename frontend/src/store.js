@@ -10,6 +10,7 @@ import {
   addReviewReducer,
   getTopProductsReducer,
   getProductsByCategoryReducer,
+  getLastProductsReducer,
 } from './reducers/productReducers.js'
 
 import { cartReducer } from './reducers/cartReducers.js'
@@ -58,6 +59,7 @@ const reducer = combineReducers({
   adminUpdateUser: adminUpdateUserReducer,
   adminGetUser: adminGetUserReducer,
   getProductsByCategory: getProductsByCategoryReducer,
+  getLastProducts: getLastProductsReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

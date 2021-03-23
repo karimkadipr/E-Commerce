@@ -5,6 +5,7 @@
   width: 30%;
   margin: auto;
   z-index: 999;
+  background-color: #292929;
 }
 @media (min-width: 1000px) {
   .Footer {
@@ -29,8 +30,7 @@
 
 .big {
   background-color: #292929;
-  padding-bottom: 45px;
-  padding-top: 30px;
+  padding: 3rem 0;
 }
 
 .big > p {

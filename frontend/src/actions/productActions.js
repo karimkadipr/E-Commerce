@@ -24,6 +24,9 @@ import {
   GET_PRODUCTS_CATEGORY_REQUEST,
   GET_PRODUCTS_CATEGORY_SUCCESS,
   GET_PRODUCTS_CATEGORY_FAIL,
+  GET_PRODUCTS_LAST_REQUEST,
+  GET_PRODUCTS_LAST_SUCCESS,
+  GET_PRODUCTS_LAST_FAIL,
 } from '../constants/productConstants.js'
 
 const getListProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
@@ -237,7 +240,27 @@ const getProductsByCategory = (category) => async (dispatch) => {
   }
 }
 
+const getLastProducts = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_PRODUCTS_LAST_REQUEST,
+    })
+
+    const { data } = await axios.get(`/api/products/lastadded`)
+
+    dispatch({
+      type: GET_PRODUCTS_LAST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCTS_LAST_FAIL,
+    })
+  }
+}
+
 export {
+  getLastProducts,
   getListProducts,
   getProductDetails,
   deleteProduct,

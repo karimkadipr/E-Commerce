@@ -22,7 +22,7 @@ function Footer() {
           <GitHubIcon />
         </a>
       </div>
-      <p>Designed by karim</p>
+      <p>Designed by Karim</p>
     </div>
   )
 }

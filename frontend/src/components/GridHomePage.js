@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+
 import './styles/gridHomePage.scss'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import SearchIcon from '@material-ui/icons/Search'
@@ -18,7 +19,7 @@ const GridHomePage = ({ products, handleAddToCart, history }) => {
           <SearchIcon />
         </button>
         <button
-          style={{ transitionDelay: '0.5s' }}
+          style={{ transitionDelay: '0.25s' }}
           onClick={() => handleAddToCart(products[0]._id)}
           className='btn_add_to_cart_home'>
           <ShoppingCartIcon />
@@ -36,7 +37,7 @@ const GridHomePage = ({ products, handleAddToCart, history }) => {
               <SearchIcon />
             </button>
             <button
-              style={{ transitionDelay: '0.5s' }}
+              style={{ transitionDelay: '0.25s' }}
               onClick={() => handleAddToCart(product._id)}
               className='btn_add_to_cart_home'>
               <ShoppingCartIcon />
