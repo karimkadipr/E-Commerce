@@ -93,7 +93,7 @@ const CartPage = ({ history }) => {
           <p>Total Quantity : {globalQty} </p>
           <p> Total Price : ${GlobalPrice}</p>
           <button
-            className='select_qty_button'
+            className='show_more_less_button'
             onClick={handleProceedToCheckout}>
             Proceed to checkout
           </button>

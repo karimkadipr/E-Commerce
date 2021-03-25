@@ -89,6 +89,7 @@ const Header = ({ history }) => {
           ) : (
             ''
           )}
+
           <Link className='text-link' to='/cart'>
             <ShoppingCartIcon />
           </Link>

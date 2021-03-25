@@ -122,3 +122,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.image_table_products {
+  width: 75px;
+  height: 75px;
+}

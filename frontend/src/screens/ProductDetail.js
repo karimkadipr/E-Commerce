@@ -137,31 +137,33 @@ const ProductDetail = ({ match, history }) => {
             {product.description}
           </p>
           <div className='add_to_cart_container'>
-            {product.countInStock !== 0 ? (
-              <div style={{ paddingRight: '2rem' }}>
-                <FormControl className='select_quantity'>
-                  <InputLabel id='demo-simple-select-label'>
-                    Quantity
-                  </InputLabel>
-                  <Select
-                    defaultValue={qty}
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    onChange={(e) => setQty(e.target.value)}>
-                    {arr.map((item) => (
-                      <MenuItem key={item} value={item}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-            ) : (
-              ''
+            {product.countInStock !== 0 && (
+              <>
+                <div style={{ paddingRight: '2rem' }}>
+                  <FormControl className='select_quantity'>
+                    <InputLabel id='demo-simple-select-label'>
+                      Quantity
+                    </InputLabel>
+                    <Select
+                      defaultValue={qty}
+                      labelId='demo-simple-select-label'
+                      id='demo-simple-select'
+                      onChange={(e) => setQty(e.target.value)}>
+                      {arr.map((item) => (
+                        <MenuItem key={item} value={item}>
+                          {item}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+                <button
+                  className='show_more_less_button'
+                  onClick={submitHandler}>
+                  Add to Cart
+                </button>
+              </>
             )}
-            <button className='show_more_less_button' onClick={submitHandler}>
-              Add to Cart
-            </button>
           </div>
         </div>
       </div>

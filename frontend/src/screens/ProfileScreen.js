@@ -132,7 +132,7 @@ const ProfileScreen = ({ history }) => {
             }
           />
         </div>
-        <button className='submit_update_button' type='submit'>
+        <button className='show_more_less_button' type='submit'>
           Update
         </button>
       </form>

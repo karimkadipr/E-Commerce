@@ -80,7 +80,7 @@ const ShippingScreen = ({ history }) => {
               required={true}
             />
           </div>
-          <button className='shipping_button' type='submit'>
+          <button className='show_more_less_button' type='submit'>
             Continue
           </button>
         </form>

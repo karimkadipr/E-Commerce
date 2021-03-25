@@ -205,18 +205,18 @@ const addReview = (review, id) => async (dispatch, getState) => {
 const getTopProducts = () => async (dispatch) => {
   try {
     dispatch({
-      type: GET_PRODUCTS_CATEGORY_REQUEST,
+      type: TOP_PRODUCT_REQUEST,
     })
 
     const { data } = await axios.get('/api/products/top')
 
     dispatch({
-      type: GET_PRODUCTS_CATEGORY_SUCCESS,
+      type: TOP_PRODUCT_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: GET_PRODUCTS_CATEGORY_FAIL,
+      type: TOP_PRODUCT_FAIL,
     })
   }
 }

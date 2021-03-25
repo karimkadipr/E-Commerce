@@ -97,7 +97,7 @@ const OrderScreen = ({ history }) => {
         <p>shipping Price : ${shippingPrice}</p>
         <p>tax Price : ${taxPrice}</p>
         <p>Total Price : ${totalPrice}</p>
-        <button className='order_button' onClick={handleCreateOrder}>
+        <button className='show_more_less_button' onClick={handleCreateOrder}>
           Order
         </button>
       </div>

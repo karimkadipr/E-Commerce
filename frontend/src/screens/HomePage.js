@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Meta from '../components/Meta'
-
 import { useSelector, useDispatch } from 'react-redux'
 import { getListProducts, getLastProducts } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
@@ -8,7 +7,6 @@ import Paginate from '../components/Paginate'
 import Carousel from './Carousel'
 import Message from '../components/DeliveredPaid'
 import CarouselV2 from './CarouselV2'
-
 import { OutlinedInput } from '@material-ui/core'
 import ProductCard from '../components/ProductCard'
 import { ReactComponent as DeliverySvg } from './images/Untitled2.svg'
@@ -141,7 +139,7 @@ const HomePage = ({ history, match }) => {
                   </div>
                 </div>
                 <div className='newsletter_container'>
-                  <img src={imageNews} alt='newsletter image' />
+                  <img src={imageNews} alt='newsletter' />
                   <div className='newsletter_content'>
                     <h4>Our News</h4>
                     <h1>NEWSLETTER SIGNUP</h1>

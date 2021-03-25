@@ -156,7 +156,7 @@ const OrderDetails = ({ match, history }) => {
                 <div style={{ textAlign: 'center' }}>
                   <button
                     style={{ width: '100%', marginTop: '1rem' }}
-                    className='order_button'
+                    className='show_more_less_button'
                     onClick={() => history.push('/')}>
                     Go Home
                   </button>
@@ -164,7 +164,7 @@ const OrderDetails = ({ match, history }) => {
                 <div style={{ textAlign: 'center' }}>
                   <button
                     style={{ width: '100%', marginTop: '1rem' }}
-                    className='order_button'
+                    className='show_more_less_button'
                     onClick={() => history.push('/profile')}>
                     My Orders
                   </button>

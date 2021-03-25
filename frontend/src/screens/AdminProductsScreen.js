@@ -5,6 +5,7 @@ import './styles/adminProductsScreen.css'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import AddIcon from '@material-ui/icons/Add'
+import { Link } from 'react-router-dom'
 import { deleteProduct, createProduct } from '../actions/productActions'
 import {
   UPDATE_PRODUCT_RESET,
@@ -88,10 +89,15 @@ const AdminProductsScreen = ({ history, match }) => {
           <h1> Products : </h1>
           <div className='product_Btn'>
             <button
-              className='admin_add_products_btn'
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              className='show_more_less_button'
               onClick={handleCreateProduct}>
-              <AddIcon />
-              <p>New Product</p>
+              <AddIcon style={{ marginRight: '0.5rem' }} />
+              New Product
             </button>
           </div>
         </div>
@@ -106,6 +112,7 @@ const AdminProductsScreen = ({ history, match }) => {
             <TableHead>
               <TableRow>
                 <TableCell>Product ID</TableCell>
+                <TableCell align='center'>Product Image</TableCell>
                 <TableCell align='center'>Product Name</TableCell>
                 <TableCell align='center'>Price</TableCell>
                 <TableCell align='center'>Brand</TableCell>
@@ -118,6 +125,15 @@ const AdminProductsScreen = ({ history, match }) => {
                   <TableRow key={product._id}>
                     <TableCell component='th' scope='row'>
                       {product._id}
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Link to={`/order/${product._id}`}>
+                        <img
+                          className='image_table_products'
+                          src={product.image}
+                          alt={product.name}
+                        />
+                      </Link>
                     </TableCell>
                     <TableCell align='center'>{product.name}</TableCell>
                     <TableCell align='center'>${product.price}</TableCell>
@@ -151,6 +167,19 @@ const AdminProductsScreen = ({ history, match }) => {
                     <TableCell variant='head'>Product ID</TableCell>
                     <TableCell>{product._id}</TableCell>
                   </TableRow>
+                  <TableRow>
+                    <TableCell variant='head'>Product Image</TableCell>
+                    <TableCell>
+                      <Link to={`/order/${product._id}`}>
+                        <img
+                          className='image_table_products'
+                          src={product.image}
+                          alt={product.name}
+                        />
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+
                   <TableRow>
                     <TableCell variant='head'>Product Name</TableCell>
                     <TableCell>{product.name}</TableCell>

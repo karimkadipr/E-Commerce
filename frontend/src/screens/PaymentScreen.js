@@ -36,21 +36,24 @@ const PaymentScreen = ({ history }) => {
     <div className='payment_container'>
       <CheckoutSteps signin shipping payment />
       <div className='method_container'>
-        <FormControl className='form_method_container' component='fieldset'>
+        <FormControl
+          className='form_method_container'
+          component='fieldset'
+          required>
           <FormLabel component='legend'>Payment Method</FormLabel>
           <RadioGroup
             value={payment}
             onChange={(event) => setPayment(event.target.value)}>
             <FormControlLabel
               value='PayPal'
-              control={<Radio />}
+              control={<Radio required={true} />}
               label='PayPal'
               required={true}
             />
           </RadioGroup>
           <button
             onClick={handleSubmit}
-            className='payment_button'
+            className='show_more_less_button'
             type='submit'>
             Submit
           </button>

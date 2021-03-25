@@ -106,7 +106,7 @@ const AdminOrdersScreen = ({ history }) => {
                     ) : (
                       <TableCell align='center'>
                         <button
-                          className='orders_list_buttons'
+                          className='show_more_less_button'
                           onClick={() => markAsDeliveredById(order._id)}>
                           Mark as delivered
                         </button>
