@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Meta from '../components/Meta'
-import Aos from 'aos'
-import 'aos/dist/aos.css'
+
 import { useSelector, useDispatch } from 'react-redux'
 import { getListProducts, getLastProducts } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
@@ -9,8 +8,9 @@ import Paginate from '../components/Paginate'
 import Carousel from './Carousel'
 import Message from '../components/DeliveredPaid'
 import CarouselV2 from './CarouselV2'
-import { Link } from 'react-router-dom'
+
 import { OutlinedInput } from '@material-ui/core'
+import ProductCard from '../components/ProductCard'
 import { ReactComponent as DeliverySvg } from './images/Untitled2.svg'
 import { ReactComponent as SupportSvg } from './images/support 1.svg'
 import { ReactComponent as GuaranteeSvg } from './images/guarantee1.svg'
@@ -30,10 +30,6 @@ const HomePage = ({ history, match }) => {
   const { products: lastProducts } = getLastProductsValues
 
   useEffect(() => {
-    Aos.init({})
-  }, [])
-
-  useEffect(() => {
     dispatch(getListProducts(keyword, pageNumber))
     dispatch(getLastProducts())
   }, [dispatch, keyword, pageNumber])
@@ -49,12 +45,15 @@ const HomePage = ({ history, match }) => {
       <div className='body_with_footer'>
         <div className='body_without_footer'>
           <div className='container_global_homepage'>
-            <h1>Trending categories</h1>
+            <h1 style={{ textAlign: 'center', margin: '0 0.25rem' }}>
+              Trending categories
+            </h1>
             <p
               style={{
                 fontWeight: '200',
                 maxWidth: '100ch',
                 textAlign: 'center',
+                margin: '0 0.45rem',
               }}>
               The most searched and viewed categories of our store.
             </p>
@@ -73,6 +72,7 @@ const HomePage = ({ history, match }) => {
                     maxWidth: '100ch',
                     textAlign: 'center',
                     marginBottom: '2rem',
+                    margin: '0 0.45rem',
                   }}>
                   Discover the newest products of our stores. All the products
                   are listed weekly in store, helping customers capture new
@@ -80,30 +80,18 @@ const HomePage = ({ history, match }) => {
                 </p>
                 <div className='featured_products'>
                   {lastProducts.map((product) => (
-                    <div
-                      data-aos-once='true'
-                      data-aos='zoom-in'
-                      data-aos-duration='500'
-                      key={product._id}
-                      className='featured_product'>
-                      <Link
-                        to={`/order/${product._id}`}
-                        className='image_holder_home_page'>
-                        <img src={product.image} alt={product.name} />
-                      </Link>
-                      <p className='p_product_card'>{product.brand}</p>
-                      <p>{product.name}</p>
-                      <p className='p_product_card'>{product.category}</p>
-                      <p className='p_product_card_price'>${product.price}</p>
-                    </div>
+                    <ProductCard product={product} key={product._id} />
                   ))}
                 </div>
-                <h1>Best Selling Products</h1>
+                <h1 style={{ textAlign: 'center', margin: '0 0.45rem' }}>
+                  Best Selling Products
+                </h1>
                 <p
                   style={{
                     fontWeight: '200',
                     maxWidth: '100ch',
                     textAlign: 'center',
+                    margin: '0 0.45rem',
                   }}>
                   Discover the best selling products of our stores. All the
                   products are listed weekly in store, helping customers capture
@@ -113,79 +101,41 @@ const HomePage = ({ history, match }) => {
                   {showMore ? (
                     <>
                       {products.slice(5, 17).map((product) => (
-                        <div
-                          data-aos-once='true'
-                          data-aos='zoom-in'
-                          data-aos-duration='500'
-                          key={product._id}
-                          className='featured_product'>
-                          <Link
-                            to={`/order/${product._id}`}
-                            className='image_holder_home_page'>
-                            <img src={product.image} alt={product.name} />
-                          </Link>
-                          <p className='p_product_card'>{product.brand}</p>
-                          <p>{product.name}</p>
-                          <p className='p_product_card'>{product.category}</p>
-                          <p className='p_product_card_price'>
-                            ${product.price}
-                          </p>
-                        </div>
+                        <ProductCard product={product} key={product._id} />
                       ))}
-                      <button
-                        className='show_more_less_button'
-                        onClick={() => setShowMore(false)}>
-                        Show Less
-                      </button>
                     </>
                   ) : (
                     <>
                       {products.slice(5, 13).map((product) => (
-                        <div
-                          data-aos-once='true'
-                          data-aos='zoom-in'
-                          data-aos-duration='500'
-                          key={product._id}
-                          className='featured_product'>
-                          <Link
-                            to={`/order/${product._id}`}
-                            className='image_holder_home_page'>
-                            <img src={product.image} alt={product.name} />
-                          </Link>
-                          <p className='p_product_card'>{product.brand}</p>
-                          <p>{product.name}</p>
-                          <p className='p_product_card'>{product.category}</p>
-                          <p className='p_product_card_price'>
-                            ${product.price}
-                          </p>
-                        </div>
+                        <ProductCard product={product} key={product._id} />
                       ))}
-                      <div className='button_container_show_less'>
-                        <button
-                          className='show_more_less_button'
-                          onClick={() => setShowMore(true)}>
-                          Show More
-                        </button>
-                      </div>
                     </>
                   )}
                 </div>
+                <div className='button_container_show_less'>
+                  <button
+                    className='show_more_less_button'
+                    onClick={() => setShowMore(!showMore)}>
+                    {showMore ? 'Show Less' : 'Show More'}
+                  </button>
+                </div>
+
                 <div className='support_delivery_guarantee'>
                   <div>
                     <DeliverySvg
-                      style={{ height: '2rem', margin: 8, width: '2rem' }}
+                      style={{ height: '2rem', margin: 8, minWidth: '2rem' }}
                     />
                     Fast Delivery
                   </div>
                   <div>
                     <SupportSvg
-                      style={{ height: '2rem', margin: 8, width: '2rem' }}
+                      style={{ height: '2rem', margin: 8, minWidth: '2rem' }}
                     />
                     Support 24/7
                   </div>
                   <div>
                     <GuaranteeSvg
-                      style={{ height: '2rem', margin: 8, width: '2rem' }}
+                      style={{ height: '2rem', margin: 8, minWidth: '2rem' }}
                     />
                     Guaranteed Product
                   </div>

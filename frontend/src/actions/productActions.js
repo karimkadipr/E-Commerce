@@ -224,18 +224,18 @@ const getTopProducts = () => async (dispatch) => {
 const getProductsByCategory = (category) => async (dispatch) => {
   try {
     dispatch({
-      type: TOP_PRODUCT_REQUEST,
+      type: GET_PRODUCTS_CATEGORY_REQUEST,
     })
 
     const { data } = await axios.get(`/api/products/category/${category}`)
 
     dispatch({
-      type: TOP_PRODUCT_SUCCESS,
+      type: GET_PRODUCTS_CATEGORY_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: TOP_PRODUCT_FAIL,
+      type: GET_PRODUCTS_CATEGORY_FAIL,
     })
   }
 }

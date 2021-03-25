@@ -139,7 +139,13 @@ const ProfileScreen = ({ history }) => {
 
       <div className='table_order_profile'>
         <h3> Your orders : </h3>
-        <TableContainer className='large_table_profile' component={Paper}>
+        <TableContainer
+          className='large_table_profile'
+          component={Paper}
+          style={{
+            margin: '1rem 0 1rem 0',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+          }}>
           <Table aria-label='simple table'>
             <TableHead>
               <TableRow>

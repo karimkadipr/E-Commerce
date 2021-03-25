@@ -67,7 +67,12 @@
 
 .swiper-home-page {
   .swiper-wrapper {
-    margin-top: 1rem;
+    @media (max-width: 1200px) {
+    }
+    @media (min-width: 1200px) {
+      margin-top: 1rem;
+    }
+
     width: 75vw;
   }
   .swiper-container {
@@ -78,20 +83,53 @@
 }
 
 .image_carousel {
-  width: 80vw;
-
-  height: 600px;
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+  @media (min-width: 1200px) {
+    width: 80vw;
+    height: 600px;
+  }
 }
 
 .carousel_info {
+  @media screen and (max-width: 500px) {
+    font-size: 0.7rem;
+    left: 10%;
+
+    a {
+      padding: 0.5rem 1rem;
+      font-size: 0.5rem;
+    }
+  }
+
+  @media (max-width: 750px) and (min-width: 500px) {
+    font-size: 0.75rem;
+    left: 10%;
+    a {
+      padding: 0.5rem 1rem;
+    }
+  }
+  @media (max-width: 900px) and (min-width: 750px) {
+    left: 15%;
+    a {
+      padding: 1rem 2rem;
+    }
+  }
+  @media (min-width: 900px) {
+    left: 20%;
+    a {
+      padding: 1rem 2rem;
+    }
+  }
   position: absolute;
-  left: 20%;
+
+  width: 20%;
   p {
     padding: 0.25rem 0;
   }
   a {
     display: inline-block;
     background: black;
-    padding: 1rem 2rem;
   }
 }

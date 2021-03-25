@@ -61,7 +61,7 @@ export const getProductDetailReducer = (
     case PRODUCT_DETAIL_FAIL:
       return { loading: false, error: action.payload }
     case PRODUCT_DETAIL_RESET:
-      return { ...state, success: false }
+      return { product: { reviews: [] } }
     default:
       return state
   }

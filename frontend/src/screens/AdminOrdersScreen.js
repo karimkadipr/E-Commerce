@@ -59,7 +59,13 @@ const AdminOrdersScreen = ({ history }) => {
       <h1>Orders :</h1>
 
       <div>
-        <TableContainer className='large_table_orders' component={Paper}>
+        <TableContainer
+          className='large_table_orders'
+          component={Paper}
+          style={{
+            margin: '1rem 0 2rem 0',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+          }}>
           <Table aria-label='simple table'>
             <TableHead>
               <TableRow>

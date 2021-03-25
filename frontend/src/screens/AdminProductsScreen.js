@@ -96,7 +96,10 @@ const AdminProductsScreen = ({ history, match }) => {
           </div>
         </div>
         <TableContainer
-          style={{ marginTop: '1rem' }}
+          style={{
+            margin: '1rem 0 2rem 0',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+          }}
           component={Paper}
           className='large_table_products'>
           <Table aria-label='simple table'>

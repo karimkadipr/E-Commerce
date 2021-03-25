@@ -12,7 +12,7 @@ const GridHomePage = ({ products, handleAddToCart, history }) => {
         <div className='image_big_product'>
           {products.length !== 0 && <img src={products[0].image} />}
         </div>
-        <span>{products.length !== 0 && products[0].name}</span>{' '}
+        <span>{products.length !== 0 && products[0].name}</span>
         <button
           onClick={() => history.push(`/order/${products[0]._id}`)}
           className='btn_add_to_cart_home'>
