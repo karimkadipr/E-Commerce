@@ -35,19 +35,19 @@ const GridHomePage = ({ products, handleAddToCart, history }) => {
               {products.length !== 0 && (
                 <img src={products[0].image} alt={products[0].name} />
               )}
+              <span>{products.length !== 0 && products[0].name}</span>
+              <button
+                onClick={() => handlePushToProductDetails(products[0]._id)}
+                className='btn_add_to_cart_home'>
+                <SearchIcon />
+              </button>
+              <button
+                style={{ transitionDelay: '0.25s' }}
+                onClick={() => handleAddToCart(products[0]._id)}
+                className='btn_add_to_cart_home'>
+                <ShoppingCartIcon />
+              </button>{' '}
             </div>
-            <span>{products.length !== 0 && products[0].name}</span>
-            <button
-              onClick={() => handlePushToProductDetails(products[0]._id)}
-              className='btn_add_to_cart_home'>
-              <SearchIcon />
-            </button>
-            <button
-              style={{ transitionDelay: '0.25s' }}
-              onClick={() => handleAddToCart(products[0]._id)}
-              className='btn_add_to_cart_home'>
-              <ShoppingCartIcon />
-            </button>
           </div>
           <div className='products_grid'>
             {products.slice(1, 5).map((product) => (
