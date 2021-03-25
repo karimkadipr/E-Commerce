@@ -63,7 +63,7 @@ const HomePage = ({ history, match }) => {
                   products={products}
                   handleAddToCart={handleAddToCart}
                 />
-                <h1 style={{ marginTop: '4rem' }}>New Arrivals</h1>
+                <h1 style={{ marginTop: '2rem' }}>New Arrivals</h1>
                 <p
                   style={{
                     fontWeight: '200',

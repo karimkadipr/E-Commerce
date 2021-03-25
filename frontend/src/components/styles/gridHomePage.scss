@@ -1,14 +1,16 @@
 .products_container_with_grid {
   display: flex;
   gap: 1em;
-  margin: 5rem 1em 0 1em;
+
   overflow: hidden;
 
   @media (min-width: 1366px) {
     max-height: 671px;
+    margin: 5rem 1em 2rem 1em;
   }
   @media (max-width: 1366px) {
     flex-direction: column;
+    margin: 5rem 1em 0 1em;
   }
 }
 .products_container_with_grid > * {
