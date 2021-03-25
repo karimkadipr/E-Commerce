@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
       <p className='p_product_card'>{product.brand}</p>
       <p style={{ letterSpacing: '0.15em' }}>{product.name}</p>
       <p className='p_product_card'>{product.category}</p>
-      <p className='p_product_card_price'>${product.price}</p>
+      <p className='p_product_card_price'>${product.price} </p>
     </div>
   )
 }
