@@ -1,7 +1,7 @@
 .products_container_with_grid {
   display: flex;
   gap: 1em;
-  margin-top: 5rem;
+  margin: 5rem 1em 0 1em;
   overflow: hidden;
 
   @media (min-width: 1366px) {
@@ -29,7 +29,7 @@
   border-radius: 15px;
 
   button {
-    position: absolute;
+    position: relative;
     left: 40%;
     transition: all 0.5s;
     opacity: 0;
@@ -37,7 +37,7 @@
 
   &:hover {
     button {
-      position: absolute;
+      position: relative;
       transform: translateY(-5rem);
       left: 40%;
       opacity: 1;
@@ -122,7 +122,6 @@
   height: 49%;
   overflow: hidden;
   border-radius: 15px;
-
   border-radius: 15px;
 
   span {
@@ -133,15 +132,15 @@
     left: 15%;
     opacity: 0;
     transition: all 0.5s;
-    color: white;
+    color: black;
     width: 70%;
-
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
   &:hover {
     span {
+      color: white;
       opacity: 1;
     }
   }
@@ -176,17 +175,31 @@
     }
   }
   button {
+    @media (min-width: 1366px) {
+      left: 33%;
+    }
+    @media (max-width: 1366px) {
+      top: 400px;
+      left: 100px;
+    }
     position: relative;
-    left: 33%;
+
     transition: all 0.5s;
     opacity: 0;
   }
 
   &:hover {
     button {
+      @media (min-width: 1366px) {
+        left: 33%;
+        transform: translateY(-5rem);
+      }
+      @media (max-width: 1366px) {
+        top: 315px;
+        left: 100px;
+      }
       position: relative;
-      left: 33%;
-      transform: translateY(-5rem);
+
       opacity: 1;
     }
   }
