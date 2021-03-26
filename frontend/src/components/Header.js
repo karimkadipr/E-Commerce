@@ -83,6 +83,7 @@ const Header = ({ history }) => {
                   ['Users Screen', '/admin/users'],
                   ['Product Screen', '/admin/products'],
                   ['Order Screen', '/admin/orders'],
+                  ['Carousel Screen', '/admin/carousel'],
                 ]}
               />
             </div>

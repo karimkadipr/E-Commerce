@@ -35,6 +35,14 @@ import {
   deleteOrderByIdReducer,
 } from './reducers/orderReducers.js'
 
+import {
+  addItemCarouselReducer,
+  getItemCarouselReducer,
+  updateItemCarouselReducer,
+  deleteItemCarouselReducer,
+  getOneItemCarouselReducer,
+} from './reducers/carouselReducers'
+
 const reducer = combineReducers({
   getProducts: getProductsReducer,
   getProductDetail: getProductDetailReducer,
@@ -60,6 +68,11 @@ const reducer = combineReducers({
   adminGetUser: adminGetUserReducer,
   getProductsByCategory: getProductsByCategoryReducer,
   getLastProducts: getLastProductsReducer,
+  addItemCarousel: addItemCarouselReducer,
+  getItemCarousel: getItemCarouselReducer,
+  updateItemCarousel: updateItemCarouselReducer,
+  deleteItemCarousel: deleteItemCarouselReducer,
+  getOneItemCarousel: getOneItemCarouselReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

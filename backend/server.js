@@ -4,9 +4,11 @@ import dotenv from 'dotenv'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import carouselRoutes from './routes/carouselRoutes.js'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorHandling.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+import uploadRoutesCarousel from './routes/uploadRoutesCarousel.js'
 
 dotenv.config()
 connectDB()
@@ -17,7 +19,9 @@ app.use(express.json())
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/carousel', carouselRoutes)
 app.use('/api/upload', uploadRoutes)
+app.use('/api/upload/carousel', uploadRoutesCarousel)
 
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)

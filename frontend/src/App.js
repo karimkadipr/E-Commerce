@@ -19,6 +19,8 @@ import AdminUserDetails from './screens/AdminUserDetails'
 import AdminProductsScreen from './screens/AdminProductsScreen'
 import AdminUpdateProduct from './screens/AdminUpdateProduct'
 import AdminOrdersScreen from './screens/AdminOrdersScreen'
+import AdminCarouselScreen from './screens/AdminCarouselScreen'
+import AdminUpdateCarousel from './screens/AdminUpdateCarousel'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollOnTop'
 
@@ -69,11 +71,21 @@ function App() {
                 exact
               />
               <Route
+                path='/admin/carousel'
+                component={AdminCarouselScreen}
+                exact
+              />
+              <Route
                 path='/admin/products/:pageNumber'
                 component={AdminProductsScreen}
                 exact
               />
               <Route path='/admin/orders' component={AdminOrdersScreen} exact />
+              <Route
+                path='/admin/editcarousel/:id'
+                component={AdminUpdateCarousel}
+                exact
+              />
               <Route
                 path='/admin/products/editproduct/:id'
                 component={AdminUpdateProduct}

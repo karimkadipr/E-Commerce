@@ -2,6 +2,11 @@
   display: flex;
   gap: 1em;
   overflow: hidden;
+  p,
+  span {
+    color: white;
+    mix-blend-mode: difference;
+  }
 
   @media (min-width: 1366px) {
     max-height: 671px;
@@ -34,7 +39,7 @@
   }
   @media (max-width: 1366px) {
   }
-  background: black;
+
   position: relative;
   overflow: hidden;
   max-width: 671px;
@@ -42,7 +47,7 @@
 
   button {
     position: relative;
-    left: 40%;
+    left: 42%;
     transition: all 0.5s;
     opacity: 0;
   }
@@ -50,8 +55,8 @@
   &:hover {
     button {
       position: relative;
-      transform: translateY(-5rem);
-      left: 40%;
+      transform: translateY(-6rem);
+      left: 42%;
       opacity: 1;
       &:nth-child(2) {
         transition-delay: 0.5s;
@@ -66,7 +71,7 @@
     left: 15%;
     opacity: 0;
     transition: all 0.5s;
-    color: white;
+
     width: 70%;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -110,7 +115,6 @@
   }
 
   &:hover {
-    opacity: 0.7;
     transform: scale(1.05);
   }
 }
@@ -129,7 +133,6 @@
 }
 
 .image_products_grid {
-  background: black;
   position: relative;
   height: 49%;
   overflow: hidden;
@@ -144,7 +147,6 @@
     left: 15%;
     opacity: 0;
     transition: all 0.5s;
-    color: black;
     width: 70%;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -152,7 +154,6 @@
 
   &:hover {
     span {
-      color: white;
       opacity: 1;
     }
   }
@@ -183,7 +184,6 @@
 
     &:hover {
       transform: scale(1.05);
-      opacity: 0.4;
     }
   }
   button {
