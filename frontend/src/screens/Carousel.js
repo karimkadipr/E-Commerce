@@ -9,7 +9,7 @@ import './styles/carousel.scss'
 import 'swiper/swiper.scss'
 import { Link } from 'react-router-dom'
 
-const Carousel = ({ products }) => {
+const Carousel = () => {
   const dispatch = useDispatch()
 
   const getItemCarouselValue = useSelector((state) => state.getItemCarousel)
@@ -25,19 +25,21 @@ const Carousel = ({ products }) => {
       className='swiper-home-page'
       slidesPerView={1}
       pagination={{ clickable: true }}>
-      {carouselItems.map((product) => (
-        <SwiperSlide key={product._id}>
-          <div className='carousel_info'>
-            <p>{product.title}</p>
-            <Link to={`/category/${product.category}`}>Shop Category</Link>
-          </div>
-          <img
-            src={product.image}
-            alt={product.title}
-            className='image_carousel'
-          />
-        </SwiperSlide>
-      ))}
+      {carouselItems &&
+        carouselItems.length !== 0 &&
+        carouselItems.map((product) => (
+          <SwiperSlide key={product._id}>
+            <div className='carousel_info'>
+              <p>{product.title}</p>
+              <Link to={`/category/${product.category}`}>Shop Category</Link>
+            </div>
+            <img
+              src={product.image}
+              alt={product.title}
+              className='image_carousel'
+            />
+          </SwiperSlide>
+        ))}
     </Swiper>
   )
 }

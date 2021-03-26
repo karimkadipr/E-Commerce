@@ -51,7 +51,7 @@ const AdminProductsScreen = ({ history, match }) => {
       history.push('/')
     }
     if (
-      carouselItems.length === 0 ||
+      (carouselItems && carouselItems.length === 0) ||
       successAdd ||
       successDelete ||
       successUpdate
