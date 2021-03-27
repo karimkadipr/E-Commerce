@@ -135,7 +135,7 @@ const AdminUpdateProduct = ({ match, history }) => {
           </FormControl>
         </div>
 
-        <button className='submit_update_product_button' type='submit'>
+        <button className='show_more_less_button' type='submit'>
           UPDATE
         </button>
       </form>

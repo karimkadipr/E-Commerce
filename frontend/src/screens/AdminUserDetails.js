@@ -99,7 +99,7 @@ const AdminUserDetails = ({ match, history }) => {
               />
             </FormControl>
           </div>
-          <button className='submit_user_button' type='submit'>
+          <button className='show_more_less_button' type='submit'>
             UPDATE
           </button>
         </form>

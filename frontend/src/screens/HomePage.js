@@ -9,6 +9,8 @@ import Message from '../components/DeliveredPaid'
 import CarouselV2 from './CarouselV2'
 import { OutlinedInput } from '@material-ui/core'
 import ProductCard from '../components/ProductCard'
+import SideMenuCart from '../components/SideMenuCart'
+import { openSideMenuRight } from '../actions/uiActions'
 import { ReactComponent as DeliverySvg } from './images/Untitled2.svg'
 import { ReactComponent as SupportSvg } from './images/support 1.svg'
 import { ReactComponent as GuaranteeSvg } from './images/guarantee1.svg'
@@ -24,6 +26,9 @@ const HomePage = ({ history, match }) => {
   const getProducts = useSelector((state) => state.getProducts)
   const { error, products, page, pages } = getProducts
 
+  const toggleSideBar = useSelector((state) => state.toggleSideBar)
+  const { showSideBar } = toggleSideBar
+
   const getLastProductsValues = useSelector((state) => state.getLastProducts)
   const { products: lastProducts } = getLastProductsValues
 
@@ -34,12 +39,14 @@ const HomePage = ({ history, match }) => {
 
   const handleAddToCart = (id) => {
     dispatch(addToCart(id, 1))
-    history.push('/cart')
+    dispatch(openSideMenuRight())
   }
+
   return (
     <>
       <Meta />
       {products && products.length !== 0 && <Carousel products={products} />}
+      {showSideBar && <SideMenuCart />}
       <div className='body_with_footer'>
         <div className='body_without_footer'>
           <div className='container_global_homepage'>

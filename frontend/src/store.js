@@ -43,6 +43,8 @@ import {
   getOneItemCarouselReducer,
 } from './reducers/carouselReducers'
 
+import { toggleSideBarReducer } from './reducers/uiReducer'
+
 const reducer = combineReducers({
   getProducts: getProductsReducer,
   getProductDetail: getProductDetailReducer,
@@ -73,6 +75,7 @@ const reducer = combineReducers({
   updateItemCarousel: updateItemCarouselReducer,
   deleteItemCarousel: deleteItemCarouselReducer,
   getOneItemCarousel: getOneItemCarouselReducer,
+  toggleSideBar: toggleSideBarReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

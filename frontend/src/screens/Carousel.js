@@ -18,12 +18,17 @@ const Carousel = () => {
   useEffect(() => {
     dispatch(getItemCarousel())
   }, [])
+
   SwiperCore.use([Navigation, Pagination, Scrollbar])
 
   return (
     <Swiper
       className='swiper-home-page'
       slidesPerView={1}
+      navigation={{
+        prevEl: '.prev',
+        nextEl: '.next',
+      }}
       pagination={{ clickable: true }}>
       {carouselItems &&
         carouselItems.length !== 0 &&

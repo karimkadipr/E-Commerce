@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { saveShippingAddress } from '../actions/cartActions'
 import { useDispatch, useSelector } from 'react-redux'
+import { closeSideMenuRight } from '../actions/uiActions'
 import './styles/shippingScreen.css'
 import { Input } from '@material-ui/core'
 import { CREATE_ORDER_RESET } from '../constants/orderConstants'
@@ -18,6 +19,11 @@ const ShippingScreen = ({ history }) => {
   const length = cartItems.length
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(closeSideMenuRight())
+  }, [])
+
   useEffect(() => {
     dispatch({
       type: CREATE_ORDER_RESET,
@@ -26,6 +32,7 @@ const ShippingScreen = ({ history }) => {
       history.push('/cart')
     }
   }, [dispatch, length, history])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(

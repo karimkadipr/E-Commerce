@@ -8,6 +8,8 @@ import {
   getProductDetails,
   getProductsByCategory,
 } from '../actions/productActions'
+import { openSideMenuRight } from '../actions/uiActions'
+import SideMenuCart from '../components/SideMenuCart'
 import RatingComponent from '../components/RatingComponent'
 import { addToCart } from '../actions/cartActions'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -25,7 +27,7 @@ import {
 } from '@material-ui/core'
 import './styles/productDetail.scss'
 
-const ProductDetail = ({ match, history }) => {
+const ProductDetail = ({ match }) => {
   const [rating, setRating] = useState('')
   const [comment, setComment] = useState('')
   const [title, setTitle] = useState('')
@@ -50,6 +52,9 @@ const ProductDetail = ({ match, history }) => {
   const addReviewValues = useSelector((state) => state.addReview)
   const { success: successAddReview } = addReviewValues
 
+  const toggleSideBar = useSelector((state) => state.toggleSideBar)
+  const { showSideBar } = toggleSideBar
+
   useEffect(() => {
     Aos.init({})
   }, [])
@@ -66,7 +71,7 @@ const ProductDetail = ({ match, history }) => {
   const submitHandler = () => {
     if (countInStock !== 0) {
       dispatch(addToCart(match.params.id, qty))
-      history.push(`/cart`)
+      dispatch(openSideMenuRight())
     }
   }
 
@@ -84,6 +89,7 @@ const ProductDetail = ({ match, history }) => {
   }
   return (
     <div className='product_details_container'>
+      {showSideBar && <SideMenuCart />}
       <div className='product_Item_Container'>
         {/*       <Link className='go_back_button' to='/'>
             Go Back

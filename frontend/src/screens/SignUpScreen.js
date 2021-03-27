@@ -100,7 +100,7 @@ const SignUpScreen = ({ history }) => {
             }
           />
         </div>
-        <button className='submit_sign_up_button' type='submit'>
+        <button className='show_more_less_button' type='submit'>
           submit
         </button>
       </form>

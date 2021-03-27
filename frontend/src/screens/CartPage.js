@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { closeSideMenuRight } from '../actions/uiActions'
 import { MenuItem, InputLabel, FormControl, Select } from '@material-ui/core'
 import { addToCart, deleteFromCart } from '../actions/cartActions'
 import { ReactComponent as EmptyCartSvg } from './images/undraw_empty_cart_co35.svg'
@@ -15,6 +16,9 @@ const CartPage = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  useEffect(() => {
+    dispatch(closeSideMenuRight())
+  }, [])
   const globalQty = cartItems.reduce((acc, item) => acc + Number(item.qty), 0)
 
   const GlobalPrice = cartItems

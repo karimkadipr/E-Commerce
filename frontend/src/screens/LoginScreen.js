@@ -80,7 +80,7 @@ const LoginScreen = ({ history, location }) => {
             }
           />
         </div>
-        <button className='submit_button' type='submit'>
+        <button className='show_more_less_button' type='submit'>
           Submit
         </button>
       </form>

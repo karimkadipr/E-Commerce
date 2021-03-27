@@ -11,6 +11,7 @@ import GridHomePage from '../components/GridHomePage'
 const CarouselV2 = ({ products, handleAddToCart }) => {
   SwiperCore.use([Navigation, Pagination, Scrollbar])
   let menu = ['Shoes', 'Fashion', 'Electronics']
+
   return (
     <Swiper
       className='swiper-grid'
@@ -28,19 +29,25 @@ const CarouselV2 = ({ products, handleAddToCart }) => {
       }}>
       <SwiperSlide>
         <GridHomePage
-          products={products.slice(5, 10)}
+          products={products
+            .filter((product) => product.category === 'Shoes')
+            .slice(0, 5)}
           handleAddToCart={handleAddToCart}
         />
       </SwiperSlide>
       <SwiperSlide>
         <GridHomePage
-          products={products.slice(10, 15)}
+          products={products
+            .filter((product) => product.category === 'Fashion')
+            .slice(0, 5)}
           handleAddToCart={handleAddToCart}
         />
       </SwiperSlide>
       <SwiperSlide>
         <GridHomePage
-          products={products.slice(15, 20)}
+          products={products
+            .filter((product) => product.category === 'Electronics')
+            .slice(0, 5)}
           handleAddToCart={handleAddToCart}
         />
       </SwiperSlide>
