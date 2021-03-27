@@ -328,7 +328,11 @@ const ProductDetail = ({ match }) => {
               .filter((item) => item._id !== product._id)
               .slice(0, 4)
               .map((product) => (
-                <ProductCard product={product} key={product._id} />
+                <ProductCard
+                  cardType='standard'
+                  product={product}
+                  key={product._id}
+                />
               ))}
           </div>
         )}

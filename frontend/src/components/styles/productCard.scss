@@ -15,7 +15,7 @@
 
   width: 23.5%;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 8px;
   &:hover {
     img {
       transform: scale(1.03);
@@ -25,7 +25,60 @@
     width: 100%;
     overflow: hidden;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 8px;
+    transition: all 0.5s;
+    max-height: 100%;
+    line-height: 0;
+  }
+
+  .image_holder_home_page {
+    display: block;
+    overflow: hidden;
+    object-fit: fill;
+  }
+  p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .p_product_card {
+    font-size: 0.6rem;
+    color: grey;
+  }
+  .p_product_card_price {
+    font-size: 1rem;
+    color: grey;
+  }
+}
+
+.featured_product_category {
+  @media screen and (max-width: 500px) {
+  }
+  @media (max-width: 1200px) and (min-width: 500px) {
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 1200px) {
+    width: 32%;
+  }
+
+  padding-bottom: 1rem;
+
+  width: 23.5%;
+  overflow: hidden;
+  border-radius: 8px;
+  &:hover {
+    img {
+      transform: scale(1.03);
+    }
+  }
+  img {
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 8px;
     transition: all 0.5s;
     max-height: 100%;
     line-height: 0;

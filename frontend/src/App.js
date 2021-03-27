@@ -21,6 +21,7 @@ import AdminUpdateProduct from './screens/AdminUpdateProduct'
 import AdminOrdersScreen from './screens/AdminOrdersScreen'
 import AdminCarouselScreen from './screens/AdminCarouselScreen'
 import AdminUpdateCarousel from './screens/AdminUpdateCarousel'
+import CategoryPage from './screens/CategoryPage'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollOnTop'
 
@@ -60,6 +61,11 @@ function App() {
               <Route path='/order' component={OrderScreen} exact />
               <Route path='/orderDetails/:id' component={OrderDetails} exact />
               <Route path='/admin/users' component={AdminUsersScreen} exact />
+              <Route
+                path='/category/:category'
+                component={CategoryPage}
+                exact
+              />
               <Route
                 path='/admin/users/:id'
                 component={AdminUserDetails}

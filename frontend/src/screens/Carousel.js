@@ -3,7 +3,12 @@ import './styles/Test.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { getItemCarousel } from '../actions/carouselActions'
-import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper/core'
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  Autoplay,
+} from 'swiper/core'
 import 'swiper/swiper-bundle.css'
 import './styles/carousel.scss'
 import 'swiper/swiper.scss'
@@ -19,7 +24,7 @@ const Carousel = () => {
     dispatch(getItemCarousel())
   }, [])
 
-  SwiperCore.use([Navigation, Pagination, Scrollbar])
+  SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay])
 
   return (
     <Swiper
@@ -29,6 +34,8 @@ const Carousel = () => {
         prevEl: '.prev',
         nextEl: '.next',
       }}
+      loop={true}
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
       pagination={{ clickable: true }}>
       {carouselItems &&
         carouselItems.length !== 0 &&

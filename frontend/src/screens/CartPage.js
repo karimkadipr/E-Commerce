@@ -5,7 +5,7 @@ import { closeSideMenuRight } from '../actions/uiActions'
 import { MenuItem, InputLabel, FormControl, Select } from '@material-ui/core'
 import { addToCart, deleteFromCart } from '../actions/cartActions'
 import { ReactComponent as EmptyCartSvg } from './images/undraw_empty_cart_co35.svg'
-import './styles/cartPage.css'
+import './styles/cartPage.scss'
 
 const CartPage = ({ history }) => {
   const dispatch = useDispatch()
@@ -77,7 +77,7 @@ const CartPage = ({ history }) => {
                   </FormControl>
                 </div>
                 <button
-                  className='select_qty_button'
+                  className='show_more_less_button'
                   onClick={() => handleClickDelete(item._id)}>
                   Delete
                 </button>

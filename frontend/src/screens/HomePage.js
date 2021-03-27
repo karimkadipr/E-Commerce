@@ -85,7 +85,11 @@ const HomePage = ({ history, match }) => {
                 </p>
                 <div className='featured_products'>
                   {lastProducts.map((product) => (
-                    <ProductCard product={product} key={product._id} />
+                    <ProductCard
+                      cardType='standard'
+                      product={product}
+                      key={product._id}
+                    />
                   ))}
                 </div>
                 <h1 style={{ textAlign: 'center', margin: '0 0.45rem' }}>
@@ -106,13 +110,21 @@ const HomePage = ({ history, match }) => {
                   {showMore ? (
                     <>
                       {products.slice(5, 17).map((product) => (
-                        <ProductCard product={product} key={product._id} />
+                        <ProductCard
+                          cardType='standard'
+                          product={product}
+                          key={product._id}
+                        />
                       ))}
                     </>
                   ) : (
                     <>
                       {products.slice(5, 13).map((product) => (
-                        <ProductCard product={product} key={product._id} />
+                        <ProductCard
+                          cardType='standard'
+                          product={product}
+                          key={product._id}
+                        />
                       ))}
                     </>
                   )}
