@@ -92,7 +92,7 @@ const SideMenuCart = ({ history }) => {
       </button>
       <button
         className='show_more_less_button'
-        style={{ width: '100%' }}
+        style={{ width: '100%', marginBottom: '3rem' }}
         onClick={handleProceedToCheckout}>
         Proceed to checkout
       </button>

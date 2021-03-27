@@ -13,10 +13,11 @@
   top: 0;
   right: 0;
   z-index: 999;
-
+  overflow-y: auto;
   background: white;
-  height: 100vh;
+  height: 100%;
   padding: 1rem;
+  padding-bottom: 3rem;
   img {
     width: 20%;
     padding-right: 1rem;
