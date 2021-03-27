@@ -1,6 +1,7 @@
 .category_page_container {
   display: flex;
   width: 60%;
+
   margin: 1rem auto;
   position: relative;
   & > * {
@@ -10,6 +11,10 @@
     flex: 1 1 20%;
     border: 1px solid #eaeaea;
     padding: 1em;
+    a {
+      color: black;
+      display: block;
+    }
   }
   .main_content_category_page {
     flex: 1 1 80%;
@@ -18,9 +23,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 1rem 0;
     margin-left: 1rem;
+    min-height: 500px;
   }
   .category_option_container {
     padding: 1rem;
@@ -30,5 +36,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    span {
+      cursor: pointer;
+      margin: 0 0.25rem 0 0;
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+  }
+  .page_number_container {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    height: 30px;
+    border: 1px solid #eaeaea;
+    margin-left: 1rem;
+    span {
+      padding: 0.5rem 0.75rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
   }
 }

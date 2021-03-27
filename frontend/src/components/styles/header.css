@@ -177,17 +177,9 @@
 
 .button_search {
   border-radius: 5px;
-  background: linear-gradient(to right, #191654, #43c6ac);
-  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  background: black;
   color: white;
   font-size: 15px;
   background-size: 200%;
   background-position: left;
-}
-
-.button_search:hover {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-image: linear-gradient(to right, #191654, #43c6ac);
-  background-position: right;
-  animation: bg-animation 1.5s;
 }

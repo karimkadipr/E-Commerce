@@ -26,6 +26,7 @@ import {
   GET_PRODUCTS_CATEGORY_REQUEST,
   GET_PRODUCTS_CATEGORY_SUCCESS,
   GET_PRODUCTS_CATEGORY_FAIL,
+  GET_PRODUCTS_CATEGORY_RESET,
   GET_PRODUCTS_LAST_REQUEST,
   GET_PRODUCTS_LAST_SUCCESS,
   GET_PRODUCTS_LAST_FAIL,
@@ -151,6 +152,8 @@ export const getProductsByCategoryReducer = (
       }
     case GET_PRODUCTS_CATEGORY_FAIL:
       return { loading: false, error: action.payload }
+    case GET_PRODUCTS_CATEGORY_RESET:
+      return { productsByCategory: [] }
     default:
       return state
   }
