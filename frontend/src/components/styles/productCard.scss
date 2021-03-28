@@ -55,13 +55,16 @@
 }
 
 .featured_product_category {
-  @media screen and (max-width: 500px) {
-  }
-  @media (max-width: 1200px) and (min-width: 500px) {
-    margin-bottom: 1rem;
-  }
   @media (min-width: 1200px) {
     width: 32%;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 1200px) and (min-width: 750px) {
+    min-width: 220px;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 750px) {
+    width: 80%;
     margin-bottom: 1rem;
   }
 

@@ -1,0 +1,26 @@
+.container_side_bar_ad {
+  border: 1px solid #eaeaea;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  @media screen and (max-width: 750px) {
+    text-align: center;
+  }
+}
+.sideBar_link_container {
+  padding-bottom: 0.5rem;
+}
+
+.sideBarAd_item {
+  display: flex;
+
+  align-items: center;
+  img {
+    width: 40%;
+    height: 40%;
+    padding-right: 0.3rem;
+  }
+  p {
+    font-size: 0.85rem;
+    padding: 0;
+  }
+}

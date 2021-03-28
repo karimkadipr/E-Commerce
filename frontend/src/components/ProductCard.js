@@ -45,8 +45,10 @@ const ProductCard = ({ product, cardType }) => {
           <Link to={`/order/${product._id}`} className='image_holder_home_page'>
             <img src={product.image} alt={product.name} />
           </Link>
-          <p className='p_product_card'>{product.brand}</p>
-          <p>{product.name}</p>
+          <p className='p_product_card'>{product.brand} </p>
+          <Link to={`/order/${product._id}`} style={{ color: 'black' }}>
+            <p>{product.name}</p>
+          </Link>
           <p className='p_product_card'>{product.category}</p>
           <p className='p_product_card_price'>${product.price} </p>
         </div>

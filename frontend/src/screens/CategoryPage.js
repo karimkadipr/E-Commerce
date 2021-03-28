@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../components/ProductCard'
 import { Link } from 'react-router-dom'
+import { getListProducts } from '../actions/productActions'
 import { getProductsByCategory } from '../actions/productActions'
-import { GET_PRODUCTS_CATEGORY_RESET } from '../constants/productConstants'
 import './styles/categoryPage.scss'
 import AppsIcon from '@material-ui/icons/Apps'
 import ListIcon from '@material-ui/icons/List'
+import Slider from '@material-ui/core/Slider'
+import SideBarAd from '../components/SideBarAd'
+import { ReactComponent as NotFoundSvg } from './images/undraw_void_3ggu.svg'
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
 
 const CategoryPage = ({ match }) => {
@@ -14,84 +17,155 @@ const CategoryPage = ({ match }) => {
   const [pageNumber, setPageNumber] = useState(1)
   const [productLayout, setProductLayout] = useState('grid')
   const [sortCriteria, setSortCriteria] = useState('price')
-  const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(10000)
+  const [price, setPrice] = useState([0, 1000])
+  const [priceHolder, setPriceHolder] = useState([0, 1000])
+
   const categoryId = match.params.category
   const dispatch = useDispatch()
 
   const getProductsByCategoryValues = useSelector(
     (state) => state.getProductsByCategory
   )
-  const { productsByCategory } = getProductsByCategoryValues
+  const { productsByCategory, success } = getProductsByCategoryValues
+
+  const getProducts = useSelector((state) => state.getProducts)
+  const { products } = getProducts
+
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+  })
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        width: window.innerWidth,
+      })
+    }
+    window.addEventListener('resize', handleResize)
+    return (_) => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+  useEffect(() => {
+    dispatch(getListProducts())
+  }, [])
 
   useEffect(() => {
-    if (productsByCategory && productsByCategory.length === 0) {
+    if (productsByCategory && productsByCategory.length === 0 && !success) {
       dispatch(getProductsByCategory(categoryId))
     }
-  }, [dispatch, productsByCategory])
+    if (productsByCategory && productsByCategory.length !== 0) {
+      const min = productsByCategory.sort((a, b) => a.price - b.price)[0].price
+      const max = productsByCategory.sort((b, a) => a.price - b.price)[0].price
+      setPrice([min, max])
+      setPriceHolder([min, max])
+    }
+  }, [dispatch, productsByCategory, success])
 
   const Arr = [3, 5, 7, 12, 24, 36]
+
+  const valueText = (value) => {
+    return `${value}°C`
+  }
+
+  const handleChange = (event, newValue) => {
+    setPrice(newValue)
+  }
+
   return (
     <div className='category_page_container'>
-      <div className='sidebar_category_page'>
-        <div>
-          <h1>Categories</h1>
-          <Link
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_CATEGORY_RESET })
-            }}
-            to='/category/Shoes'>
-            Shoes
-          </Link>
-          <Link
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_CATEGORY_RESET })
-            }}
-            to='/category/Fashion'>
-            Fashion
-          </Link>
-          <Link
-            onClick={() => {
-              dispatch({ type: GET_PRODUCTS_CATEGORY_RESET })
-            }}
-            to='/category/Electronics'>
-            Electronics
-          </Link>
+      <div className='sidebar_container'>
+        <div className='sidebar_category_page'>
+          <div>
+            <h1>Categories :</h1>
+            <Link
+              onClick={() => {
+                dispatch(getProductsByCategory('Shoes'))
+              }}
+              to='/category/Shoes'>
+              Shoes
+            </Link>
+            <Link
+              onClick={() => {
+                dispatch(getProductsByCategory('Fashion'))
+              }}
+              to='/category/Fashion'>
+              Fashion
+            </Link>
+            <Link
+              onClick={() => {
+                dispatch(getProductsByCategory('Electronics'))
+              }}
+              to='/category/Electronics'>
+              Electronics
+            </Link>
+          </div>
+          <div>
+            <h1>Price Range:</h1>
+            <p
+              onClick={() =>
+                setPrice([
+                  Math.ceil(priceHolder[0]),
+                  Math.ceil(priceHolder[1] * 0.25),
+                ])
+              }>
+              ${Math.ceil(priceHolder[0])} - ${Math.ceil(priceHolder[1] * 0.25)}
+            </p>
+            <p
+              onClick={() =>
+                setPrice([
+                  Math.ceil(priceHolder[1] * 0.25),
+                  Math.ceil(priceHolder[1] * 0.5),
+                ])
+              }>
+              ${Math.ceil(priceHolder[1] * 0.25)} - $
+              {Math.ceil(priceHolder[1] * 0.5)}
+            </p>
+            <p
+              onClick={() =>
+                setPrice([
+                  Math.ceil(priceHolder[1] * 0.5),
+                  Math.ceil(priceHolder[1]),
+                ])
+              }>
+              ${Math.ceil(priceHolder[1] * 0.5)} - ${Math.ceil(priceHolder[1])}
+            </p>
+            {productsByCategory && productsByCategory !== 0 && (
+              <Slider
+                value={price}
+                min={Math.ceil(priceHolder[0])}
+                max={Math.ceil(priceHolder[1])}
+                onChange={handleChange}
+                valueLabelDisplay='auto'
+                aria-labelledby='range-slider'
+                getAriaValueText={valueText}
+              />
+            )}
+            <p onClick={() => setPrice([priceHolder[0], price[1]])}>
+              Minimum : ${price[0]}
+            </p>
+            <p onClick={() => setPrice([price[0], priceHolder[1]])}>
+              Maximum : ${price[1]}
+            </p>
+          </div>
         </div>
-        <div>
-          <h1>Price Range :</h1>
-          <p
-            onClick={() => {
-              setMinPrice(0)
-              setMaxPrice(50)
-            }}>
-            0$ - 50$
-          </p>
-          <p
-            onClick={() => {
-              setMinPrice(50)
-              setMaxPrice(100)
-            }}>
-            50$ - 100$
-          </p>
-          <p
-            onClick={() => {
-              setMinPrice(100)
-              setMaxPrice(150)
-            }}>
-            100$ - 150$
-          </p>
-          <p>
-            <input
-              type='number'
-              onChange={(e) => setMinPrice(e.target.value)}
+        {products.length !== 0 && (
+          <>
+            <SideBarAd
+              products={products
+                .sort((a, b) => a.createdAt - b.createdAt)
+                .reverse()
+                .slice(0, 3)}
+              title='New Arrivals'
             />
-            <input
-              type='number'
-              onChange={(e) => setMaxPrice(e.target.value)}
+            <SideBarAd
+              products={products
+                .sort((a, b) => a.rating - b.rating)
+                .reverse()
+                .slice(0, 3)}
+              title='Top Rated'
             />
-          </p>
-        </div>
+          </>
+        )}
       </div>
       <div className='main_content_category_page'>
         <div className='category_option_container'>
@@ -130,8 +204,8 @@ const CategoryPage = ({ match }) => {
                 id='demo-simple-select'
                 value={sortCriteria}
                 onChange={(e) => setSortCriteria(e.target.value)}>
-                <MenuItem value={'name'}>name</MenuItem>
-                <MenuItem value={'price'}>price</MenuItem>
+                <MenuItem value={'name'}>Alphabetical </MenuItem>
+                <MenuItem value={'price'}>Price</MenuItem>
                 <MenuItem value={'createdAt'}>Most Recent</MenuItem>
               </Select>
             </FormControl>
@@ -139,18 +213,19 @@ const CategoryPage = ({ match }) => {
         </div>
         {productLayout === 'grid' && (
           <>
-            <div className='content_category_page'>
+            <div className='content_category_page_grid'>
               {productsByCategory &&
-                productsByCategory !== 0 &&
+                productsByCategory.length !== 0 &&
                 productsByCategory
+                  .filter(
+                    (product) =>
+                      product.price >= price[0] && product.price <= price[1]
+                  )
                   .slice(
                     productsNumber * (pageNumber - 1),
                     productsNumber * pageNumber
                   )
-                  .filter(
-                    (product) =>
-                      product.price >= minPrice && product.price <= maxPrice
-                  )
+
                   .sort(function (b, a) {
                     if (a[sortCriteria] > b[sortCriteria]) {
                       if (sortCriteria === 'createdAt') {
@@ -175,12 +250,27 @@ const CategoryPage = ({ match }) => {
                       key={product._id}
                     />
                   ))}
+              {productsByCategory &&
+                productsByCategory.filter(
+                  (product) =>
+                    product.price >= price[0] && product.price <= price[1]
+                ).length === 0 && (
+                  <div className='No_products_found_categories'>
+                    <h1>No Products Found</h1>
+                    <NotFoundSvg />
+                  </div>
+                )}
             </div>
             {productsByCategory.length > productsNumber && (
               <div className='page_number_container'>
                 {[
                   ...Array(
-                    Math.ceil(productsByCategory.length / productsNumber)
+                    Math.ceil(
+                      productsByCategory.filter(
+                        (product) =>
+                          product.price >= price[0] && product.price <= price[1]
+                      ).length / productsNumber
+                    )
                   ).keys(),
                 ].map((item) => (
                   <span
@@ -195,11 +285,29 @@ const CategoryPage = ({ match }) => {
                 ))}
               </div>
             )}
+            {products.length !== 0 && dimensions.width < 750 && (
+              <>
+                <SideBarAd
+                  products={products
+                    .sort((a, b) => a.createdAt - b.createdAt)
+                    .reverse()
+                    .slice(0, 3)}
+                  title='New Arrivals'
+                />
+                <SideBarAd
+                  products={products
+                    .sort((a, b) => a.rating - b.rating)
+                    .reverse()
+                    .slice(0, 3)}
+                  title='Top Rated'
+                />
+              </>
+            )}
           </>
         )}
 
         {productLayout === 'list' && (
-          <div className='content_category_page'>
+          <div className='content_category_page_grid'>
             {productsByCategory &&
               productsByCategory !== 0 &&
               productsByCategory
