@@ -56,7 +56,7 @@ const CategoryPage = ({ match }) => {
     if (productsByCategory && productsByCategory.length !== 0) {
       const min = productsByCategory.sort((a, b) => a.price - b.price)[0].price
       const max = productsByCategory.sort((b, a) => a.price - b.price)[0].price
-      setPrice([min, max])
+      setPrice([Math.ceil(min), Math.ceil(max)])
       setPriceHolder([min, max])
     }
   }, [dispatch, productsByCategory, success])
@@ -69,6 +69,7 @@ const CategoryPage = ({ match }) => {
 
   const handleChange = (event, newValue) => {
     setPrice(newValue)
+    setPageNumber(1)
   }
 
   return (
@@ -148,7 +149,7 @@ const CategoryPage = ({ match }) => {
             </p>
           </div>
         </div>
-        {products.length !== 0 && (
+        {products.length !== 0 && dimensions.width > 700 && (
           <>
             <SideBarAd
               products={products
@@ -284,24 +285,6 @@ const CategoryPage = ({ match }) => {
                   </span>
                 ))}
               </div>
-            )}
-            {products.length !== 0 && dimensions.width < 750 && (
-              <>
-                <SideBarAd
-                  products={products
-                    .sort((a, b) => a.createdAt - b.createdAt)
-                    .reverse()
-                    .slice(0, 3)}
-                  title='New Arrivals'
-                />
-                <SideBarAd
-                  products={products
-                    .sort((a, b) => a.rating - b.rating)
-                    .reverse()
-                    .slice(0, 3)}
-                  title='Top Rated'
-                />
-              </>
             )}
           </>
         )}

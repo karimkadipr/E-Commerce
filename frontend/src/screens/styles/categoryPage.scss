@@ -20,6 +20,9 @@
     flex-basis: 100%;
   }
   .sidebar_container {
+    @media screen and (max-width: 750px) {
+      width: 100%;
+    }
     flex: 1 1 25%;
     a {
       color: black;
