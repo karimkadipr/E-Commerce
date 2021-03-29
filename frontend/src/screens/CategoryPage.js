@@ -9,13 +9,15 @@ import AppsIcon from '@material-ui/icons/Apps'
 import ListIcon from '@material-ui/icons/List'
 import Slider from '@material-ui/core/Slider'
 import SideBarAd from '../components/SideBarAd'
+import ProductCardList from '../components/ProductCardList'
 import { ReactComponent as NotFoundSvg } from './images/undraw_void_3ggu.svg'
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
+import SideMenuCart from '../components/SideMenuCart'
 
 const CategoryPage = ({ match }) => {
   const [productsNumber, setProductsNumber] = useState(12)
   const [pageNumber, setPageNumber] = useState(1)
-  const [productLayout, setProductLayout] = useState('grid')
+  const [productLayout, setProductLayout] = useState('list')
   const [sortCriteria, setSortCriteria] = useState('price')
   const [price, setPrice] = useState([0, 1000])
   const [priceHolder, setPriceHolder] = useState([0, 1000])
@@ -30,6 +32,9 @@ const CategoryPage = ({ match }) => {
 
   const getProducts = useSelector((state) => state.getProducts)
   const { products } = getProducts
+
+  const toggleSideBar = useSelector((state) => state.toggleSideBar)
+  const { showSideBar } = toggleSideBar
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -56,7 +61,7 @@ const CategoryPage = ({ match }) => {
     if (productsByCategory && productsByCategory.length !== 0) {
       const min = productsByCategory.sort((a, b) => a.price - b.price)[0].price
       const max = productsByCategory.sort((b, a) => a.price - b.price)[0].price
-      setPrice([Math.ceil(min), Math.ceil(max)])
+      setPrice([min, max])
       setPriceHolder([min, max])
     }
   }, [dispatch, productsByCategory, success])
@@ -64,7 +69,7 @@ const CategoryPage = ({ match }) => {
   const Arr = [3, 5, 7, 12, 24, 36]
 
   const valueText = (value) => {
-    return `${value}°C`
+    return `${Math.ceil(value)}`
   }
 
   const handleChange = (event, newValue) => {
@@ -74,6 +79,7 @@ const CategoryPage = ({ match }) => {
 
   return (
     <div className='category_page_container'>
+      {showSideBar && <SideMenuCart />}
       <div className='sidebar_container'>
         <div className='sidebar_category_page'>
           <div>
@@ -104,12 +110,9 @@ const CategoryPage = ({ match }) => {
             <h1>Price Range:</h1>
             <p
               onClick={() =>
-                setPrice([
-                  Math.ceil(priceHolder[0]),
-                  Math.ceil(priceHolder[1] * 0.25),
-                ])
+                setPrice([priceHolder[0], Math.ceil(priceHolder[1] * 0.25)])
               }>
-              ${Math.ceil(priceHolder[0])} - ${Math.ceil(priceHolder[1] * 0.25)}
+              ${priceHolder[0]} - ${Math.ceil(priceHolder[1] * 0.25)}
             </p>
             <p
               onClick={() =>
@@ -123,18 +126,15 @@ const CategoryPage = ({ match }) => {
             </p>
             <p
               onClick={() =>
-                setPrice([
-                  Math.ceil(priceHolder[1] * 0.5),
-                  Math.ceil(priceHolder[1]),
-                ])
+                setPrice([Math.ceil(priceHolder[1] * 0.5), priceHolder[1]])
               }>
-              ${Math.ceil(priceHolder[1] * 0.5)} - ${Math.ceil(priceHolder[1])}
+              ${Math.ceil(priceHolder[1] * 0.5)} - ${priceHolder[1]}
             </p>
             {productsByCategory && productsByCategory !== 0 && (
               <Slider
                 value={price}
-                min={Math.ceil(priceHolder[0])}
-                max={Math.ceil(priceHolder[1])}
+                min={priceHolder[0]}
+                max={priceHolder[1]}
                 onChange={handleChange}
                 valueLabelDisplay='auto'
                 aria-labelledby='range-slider'
@@ -171,11 +171,15 @@ const CategoryPage = ({ match }) => {
       <div className='main_content_category_page'>
         <div className='category_option_container'>
           <div>
-            <span onClick={() => setProductLayout('grid')}>
-              <AppsIcon />
-            </span>
             <span onClick={() => setProductLayout('list')}>
-              <ListIcon />
+              <ListIcon
+                style={productLayout === 'list' ? { color: '#388396' } : {}}
+              />
+            </span>
+            <span onClick={() => setProductLayout('grid')}>
+              <AppsIcon
+                style={productLayout === 'grid' ? { color: '#388396' } : {}}
+              />
             </span>
           </div>
           <div>
@@ -212,93 +216,86 @@ const CategoryPage = ({ match }) => {
             </FormControl>
           </div>
         </div>
-        {productLayout === 'grid' && (
-          <>
-            <div className='content_category_page_grid'>
-              {productsByCategory &&
-                productsByCategory.length !== 0 &&
-                productsByCategory
-                  .filter(
-                    (product) =>
-                      product.price >= price[0] && product.price <= price[1]
-                  )
-                  .slice(
-                    productsNumber * (pageNumber - 1),
-                    productsNumber * pageNumber
-                  )
 
-                  .sort(function (b, a) {
-                    if (a[sortCriteria] > b[sortCriteria]) {
-                      if (sortCriteria === 'createdAt') {
-                        return 1
-                      } else {
-                        return -1
-                      }
-                    }
-                    if (b[sortCriteria] > a[sortCriteria]) {
-                      if (sortCriteria === 'createdAt') {
-                        return -1
-                      } else {
-                        return 1
-                      }
-                    }
-                    return 0
-                  })
-                  .map((product) => (
+        <div className='content_category_page_grid'>
+          {productsByCategory &&
+            productsByCategory.length !== 0 &&
+            productsByCategory
+              .filter(
+                (product) =>
+                  product.price >= price[0] && product.price <= price[1]
+              )
+              .slice(
+                productsNumber * (pageNumber - 1),
+                productsNumber * pageNumber
+              )
+
+              .sort(function (b, a) {
+                if (a[sortCriteria] > b[sortCriteria]) {
+                  if (sortCriteria === 'createdAt') {
+                    return 1
+                  } else {
+                    return -1
+                  }
+                }
+                if (b[sortCriteria] > a[sortCriteria]) {
+                  if (sortCriteria === 'createdAt') {
+                    return -1
+                  } else {
+                    return 1
+                  }
+                }
+                return 0
+              })
+              .map((product) => (
+                <>
+                  {productLayout === 'grid' && (
                     <ProductCard
                       cardType='category'
                       product={product}
                       key={product._id}
                     />
-                  ))}
-              {productsByCategory &&
-                productsByCategory.filter(
-                  (product) =>
-                    product.price >= price[0] && product.price <= price[1]
-                ).length === 0 && (
-                  <div className='No_products_found_categories'>
-                    <h1>No Products Found</h1>
-                    <NotFoundSvg />
-                  </div>
-                )}
-            </div>
-            {productsByCategory.length > productsNumber && (
-              <div className='page_number_container'>
-                {[
-                  ...Array(
-                    Math.ceil(
-                      productsByCategory.filter(
-                        (product) =>
-                          product.price >= price[0] && product.price <= price[1]
-                      ).length / productsNumber
-                    )
-                  ).keys(),
-                ].map((item) => (
-                  <span
-                    style={
-                      pageNumber === item + 1
-                        ? { border: '1px solid ', borderRadius: 5 }
-                        : {}
-                    }
-                    onClick={() => setPageNumber(item + 1)}>
-                    {item + 1}
-                  </span>
-                ))}
+                  )}
+                  {productLayout === 'list' && (
+                    <ProductCardList product={product} key={product._id} />
+                  )}
+                </>
+              ))}
+          {productsByCategory &&
+            productsByCategory.filter(
+              (product) =>
+                product.price >= price[0] && product.price <= price[1]
+            ).length === 0 && (
+              <div className='No_products_found_categories'>
+                <h1>No Products Found</h1>
+                <NotFoundSvg />
               </div>
             )}
-          </>
-        )}
-
-        {productLayout === 'list' && (
-          <div className='content_category_page_grid'>
-            {productsByCategory &&
-              productsByCategory !== 0 &&
-              productsByCategory
-                .slice(
-                  productsNumber * (pageNumber - 1),
-                  productsNumber * pageNumber
+        </div>
+        {productsByCategory.filter(
+          (product) => product.price >= price[0] && product.price <= price[1]
+        ).length > productsNumber && (
+          <div className='page_number_container'>
+            {[
+              ...Array(
+                Math.ceil(
+                  productsByCategory.filter(
+                    (product) =>
+                      product.price >= price[0] && product.price <= price[1]
+                  ).length / productsNumber
                 )
-                .map((product) => <div></div>)}
+              ).keys(),
+            ].map((item) => (
+              <span
+                style={
+                  pageNumber === item + 1
+                    ? { border: '1px solid ', borderRadius: 5 }
+                    : {}
+                }
+                onClick={() => setPageNumber(item + 1)}>
+                {item + 1}
+              </span>
+            ))}
           </div>
         )}
       </div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import './styles/header.css'
+import './styles/header.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { ReactComponent as LogoSvg } from './images/philadelphia-eagles-2.svg'
+import { ReactComponent as LogoSvg } from './images/liquor-shop-seeklogo.com.svg'
 import DropMenu from './DropMenu'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import { TextField } from '@material-ui/core'
+import { OutlinedInput, InputAdornment, IconButton } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 
 const Header = ({ history }) => {
@@ -13,6 +13,9 @@ const Header = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
 
   const handleKeypress = (e) => {
     if (e.keyCode === 13) {
@@ -29,40 +32,54 @@ const Header = ({ history }) => {
   }
   return (
     <div className='background_navbar'>
-      <nav className='navbar_container'>
+      <div className='navbar_container'>
         <div className='navbar_leftSide'>
           <Link to='/'>
-            <LogoSvg className='logo' />
+            <LogoSvg className='logo' style={{ height: 40, width: 'auto' }} />
           </Link>
         </div>
         <div className='search_bar'>
-          <TextField
+          <OutlinedInput
+            startAdornment={
+              <InputAdornment position='start'>
+                <IconButton onClick={submitSearch}>
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            }
             onKeyUp={handleKeypress}
             fullWidth={true}
             placeholder='Search for a product'
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            variant='outlined'
             inputProps={{
               style: {
-                background: 'white',
-                overflow: 'hidden',
-                borderRadius: 5,
-                height: 3,
+                padding: '0.8rem 1rem',
               },
             }}
+            style={{
+              borderRadius: 25,
+              overflow: 'hidden',
+              boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+            }}
           />
-
-          <button className='button_search' onClick={submitSearch}>
-            <SearchIcon />
-          </button>
         </div>
 
         <div className='navbar_rightSide'>
+          <div className='text-link'>
+            <DropMenu
+              name='Category'
+              items={[
+                ['Fashion', '/category/Fashion'],
+                ['Shoes', '/category/Shoes'],
+                ['Electronics', '/category/Electronics'],
+              ]}
+            />
+          </div>
           {userInfo ? (
             <div className='text-link'>
               <DropMenu
-                name={userInfo.name}
+                name={`${userInfo.name}`}
                 items={[
                   ['Profile', '/profile'],
                   ['Logout', '/login'],
@@ -78,7 +95,7 @@ const Header = ({ history }) => {
           {userInfo && userInfo.isAdmin ? (
             <div className='text-link'>
               <DropMenu
-                name='Admin'
+                name='Admin User'
                 items={[
                   ['Users Screen', '/admin/users'],
                   ['Product Screen', '/admin/products'],
@@ -93,9 +110,10 @@ const Header = ({ history }) => {
 
           <Link className='text-link' to='/cart'>
             <ShoppingCartIcon />
+            {cartItems ? <span>{cartItems.length}</span> : <span>0</span>}
           </Link>
         </div>
-      </nav>
+      </div>
     </div>
   )
 }

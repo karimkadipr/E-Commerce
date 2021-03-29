@@ -54,6 +54,7 @@ const SideMenuCart = ({ history }) => {
       {cartItems !== 0 &&
         cartItems.map((item) => (
           <div
+            key={item._id}
             className='cart_side_bar_product'
             data-aos-once='true'
             data-aos='zoom-in'

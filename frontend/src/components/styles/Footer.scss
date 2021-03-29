@@ -6,6 +6,9 @@
   margin: auto;
   z-index: 999;
   background-color: #292929;
+  a {
+    color: white;
+  }
 }
 @media (min-width: 1000px) {
   .Footer {

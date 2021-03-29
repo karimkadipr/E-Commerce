@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import './styles/DropMenu.css'
+import './styles/DropMenu.scss'
 import { userLogout } from '../actions/userActions'
 import { useDispatch } from 'react-redux'
 
@@ -19,9 +19,10 @@ function DropMenu({ name, items, history }) {
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
-
+    document.addEventListener('mouseover', handleClickOutside)
     return function cleanup() {
       document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('mouseover', handleClickOutside)
     }
   }, [])
 
@@ -42,15 +43,15 @@ function DropMenu({ name, items, history }) {
   }
 
   return (
-    <div ref={DropRef}>
+    <div
+      ref={DropRef}
+      onMouseLeave={() => setOpen(false)}
+      onMouseOver={() => setOpen(true)}>
       <p
         className='div_ref'
         onClick={() => {
           setOpen((open) => !open)
-        }}
-
-        /*  onMouseLeave={()=> setTimeout(()=> setOpen(false), 300)} */
-      >
+        }}>
         {name}
       </p>
       {open && (

@@ -45,7 +45,11 @@ const HomePage = ({ match }) => {
                 </div>
               ) : (
                 products.map((product) => (
-                  <ProductCard product={product} key={product._id} />
+                  <ProductCard
+                    product={product}
+                    cardType='standard'
+                    key={product._id}
+                  />
                 ))
               )}
             </div>

@@ -3,7 +3,7 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import GitHubIcon from '@material-ui/icons/GitHub'
-import './styles/Footer.css'
+import './styles/Footer.scss'
 
 function Footer() {
   return (
