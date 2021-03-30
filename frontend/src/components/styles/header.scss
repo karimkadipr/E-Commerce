@@ -77,12 +77,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: black;
   text-decoration: inherit;
   border-radius: 5px;
   border: 2px solid white;
   text-align: center;
   margin-left: 0.1rem;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0;
 
   span {
     margin-left: 0.5rem;
@@ -94,7 +96,6 @@
 }
 
 .text-link:hover {
-  color: grey;
   border: 2px solid grey;
 }
 

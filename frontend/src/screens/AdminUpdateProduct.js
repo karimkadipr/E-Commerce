@@ -33,9 +33,9 @@ const AdminUpdateProduct = ({ match, history }) => {
   const { userInfo } = userLogin
 
   useEffect(() => {
+    dispatch({ type: CREATE_PRODUCT_RESET })
     if (successUpdate) {
       dispatch({ type: UPDATE_PRODUCT_RESET })
-      dispatch({ type: CREATE_PRODUCT_RESET })
       history.push('/admin/products')
     } else {
       if (!getProductDetailSuccess || product._id !== productId) {

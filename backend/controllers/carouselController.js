@@ -34,6 +34,7 @@ const updateProductCarousel = asyncHandler(async (req, res) => {
     res.json('item not found')
   }
 })
+
 const deleteProductCarousel = asyncHandler(async (req, res) => {
   const carouselItem = await Carousel.findById(req.params.id)
   if (carouselItem) {

@@ -1,19 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './styles/productCard.scss'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import { PRODUCT_DETAIL_RESET } from '../constants/productConstants'
 import { useDispatch } from 'react-redux'
 
 const ProductCard = ({ product, cardType }) => {
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    Aos.init({})
+  }, [])
   const handleResetProduct = () => {
     dispatch({ type: PRODUCT_DETAIL_RESET })
   }
   return (
     <>
       {cardType === 'standard' && (
-        <div onClick={handleResetProduct} className='featured_product'>
+        <div
+          onClick={handleResetProduct}
+          className='featured_product'
+          data-aos-once='true'
+          data-aos='zoom-in'
+          data-aos-duration='500'>
           <Link to={`/order/${product._id}`} className='image_holder_home_page'>
             <img src={product.image} alt={product.name} />
           </Link>

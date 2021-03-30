@@ -43,7 +43,7 @@ const SideMenuCart = ({ history }) => {
   const handleClickDelete = (id) => {
     dispatch(deleteFromCart(id))
   }
-  console.log(showSideBar)
+
   return (
     <CSSTransition
       in={showSideBar}

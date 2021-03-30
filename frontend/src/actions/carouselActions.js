@@ -47,24 +47,13 @@ const addItemCarousel = () => async (dispatch, getState) => {
   }
 }
 
-const getItemCarousel = () => async (dispatch, getState) => {
+const getItemCarousel = () => async (dispatch) => {
   try {
     dispatch({
       type: GET_ITEM_CAROUSEL_REQUEST,
     })
 
-    const {
-      userLogin: { userInfo },
-    } = getState()
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    }
-
-    const { data } = await axios.get('/api/carousel', config)
+    const { data } = await axios.get('/api/carousel')
 
     dispatch({
       type: GET_ITEM_CAROUSEL_SUCCESS,
@@ -78,24 +67,13 @@ const getItemCarousel = () => async (dispatch, getState) => {
   }
 }
 
-const getOneItemCarousel = (id) => async (dispatch, getState) => {
+const getOneItemCarousel = (id) => async (dispatch) => {
   try {
     dispatch({
       type: GET_ONE_ITEM_CAROUSEL_REQUEST,
     })
 
-    const {
-      userLogin: { userInfo },
-    } = getState()
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    }
-
-    const { data } = await axios.get(`/api/carousel/${id}`, config)
+    const { data } = await axios.get(`/api/carousel/${id}`)
 
     dispatch({
       type: GET_ONE_ITEM_CAROUSEL_SUCCESS,

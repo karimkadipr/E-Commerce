@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   getAllOrders,
@@ -17,10 +17,14 @@ import {
 } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const AdminOrdersScreen = ({ history }) => {
+  const [menuHeight, setMenuHeight] = useState(null)
   const dispatch = useDispatch()
-
+  const ref = useRef(null)
+  const cssRef = useRef(null)
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
@@ -54,6 +58,26 @@ const AdminOrdersScreen = ({ history }) => {
   const handleDeleteOrder = (id) => {
     dispatch(deleteOrderById(id))
   }
+
+  // height animation
+  function calcHeightEnter(el) {
+    setMenuHeight(ref.current.clientHeight)
+  }
+  function calcHeightExit(el) {
+    const height = el.offsetHeight
+    setMenuHeight(height * (orders.length - 1) + cssRef.current.clientHeight)
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setMenuHeight(ref.current.clientHeight)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+
   return (
     <div className='all_orders_container'>
       <h1>Orders :</h1>
@@ -63,11 +87,14 @@ const AdminOrdersScreen = ({ history }) => {
           className='large_table_orders'
           component={Paper}
           style={{
+            height: menuHeight,
+            transition: ' height 500ms ',
             margin: '1rem 0 2rem 0',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+            overflow: 'hidden',
           }}>
-          <Table aria-label='simple table'>
-            <TableHead>
+          <Table ref={ref} aria-label='simple table'>
+            <TableHead ref={cssRef}>
               <TableRow>
                 <TableCell>Order ID</TableCell>
                 <TableCell align='center'>USER</TableCell>
@@ -78,55 +105,62 @@ const AdminOrdersScreen = ({ history }) => {
                 <TableCell align='center'>DETAILS</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TransitionGroup component={TableBody}>
               {orders &&
                 orders.map((order) => (
-                  <TableRow key={order._id}>
-                    <TableCell component='th' scope='row'>
-                      {order._id}
-                    </TableCell>
-                    <TableCell align='center'>{order.user.name}</TableCell>
-                    <TableCell align='center'>
-                      {order.createdAt.substring(0, 10)}
-                    </TableCell>
-                    <TableCell align='center'>
-                      ${order.totalPrice.toFixed(2)}
-                    </TableCell>
-                    {order.isPaid ? (
-                      <TableCell align='center'>
-                        Paid At : {order.paidAt.substring(0, 10)}
+                  <CSSTransition
+                    key={order._id}
+                    classNames='item-list'
+                    timeout={500}
+                    onEnter={calcHeightEnter}
+                    onExit={calcHeightExit}>
+                    <TableRow>
+                      <TableCell component='th' scope='row'>
+                        {order._id}
                       </TableCell>
-                    ) : (
-                      <TableCell align='center'>Not Paid</TableCell>
-                    )}
-                    {order.isDelivered ? (
+                      <TableCell align='center'>{order.user.name}</TableCell>
                       <TableCell align='center'>
-                        Delivered At : {order.deliveredAt.substring(0, 10)}
+                        {order.createdAt.substring(0, 10)}
                       </TableCell>
-                    ) : (
+                      <TableCell align='center'>
+                        ${order.totalPrice.toFixed(2)}
+                      </TableCell>
+                      {order.isPaid ? (
+                        <TableCell align='center'>
+                          Paid At : {order.paidAt.substring(0, 10)}
+                        </TableCell>
+                      ) : (
+                        <TableCell align='center'>Not Paid</TableCell>
+                      )}
+                      {order.isDelivered ? (
+                        <TableCell align='center'>
+                          Delivered At : {order.deliveredAt.substring(0, 10)}
+                        </TableCell>
+                      ) : (
+                        <TableCell align='center'>
+                          <button
+                            className='show_more_less_button'
+                            onClick={() => markAsDeliveredById(order._id)}>
+                            Mark as delivered
+                          </button>
+                        </TableCell>
+                      )}
                       <TableCell align='center'>
                         <button
-                          className='show_more_less_button'
-                          onClick={() => markAsDeliveredById(order._id)}>
-                          Mark as delivered
+                          className='orders_list_buttons_edit'
+                          onClick={() => handleClick(order._id)}>
+                          <EditIcon />
+                        </button>{' '}
+                        <button
+                          className='orders_list_buttons_delete'
+                          onClick={() => handleDeleteOrder(order._id)}>
+                          <DeleteIcon />
                         </button>
                       </TableCell>
-                    )}
-                    <TableCell align='center'>
-                      <button
-                        className='orders_list_buttons_edit'
-                        onClick={() => handleClick(order._id)}>
-                        <EditIcon />
-                      </button>{' '}
-                      <button
-                        className='orders_list_buttons_delete'
-                        onClick={() => handleDeleteOrder(order._id)}>
-                        <DeleteIcon />
-                      </button>
-                    </TableCell>
-                  </TableRow>
+                    </TableRow>
+                  </CSSTransition>
                 ))}
-            </TableBody>
+            </TransitionGroup>
           </Table>
         </TableContainer>
         {orders &&

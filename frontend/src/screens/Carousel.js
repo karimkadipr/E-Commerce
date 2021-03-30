@@ -22,7 +22,7 @@ const Carousel = () => {
 
   useEffect(() => {
     dispatch(getItemCarousel())
-  }, [])
+  }, [carouselItems])
 
   SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay])
 

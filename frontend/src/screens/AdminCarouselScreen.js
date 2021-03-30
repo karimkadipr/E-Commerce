@@ -77,13 +77,15 @@ const AdminProductsScreen = ({ history, match }) => {
     history.push(`/admin/editcarousel/${id}`)
   }
 
+  // height animation
   function calcHeightEnter(el) {
-    const height = el.offsetHeight
     setMenuHeight(ref.current.clientHeight)
   }
   function calcHeightExit(el) {
     const height = el.offsetHeight
-    setMenuHeight(ref.current.clientHeight)
+    setMenuHeight(
+      height * (carouselItems.length - 1) + cssRef.current.clientHeight
+    )
   }
 
   useEffect(() => {
@@ -95,7 +97,7 @@ const AdminProductsScreen = ({ history, match }) => {
       window.removeEventListener('resize', handleResize)
     }
   })
-  console.log(menuHeight)
+
   return (
     <div>
       <div className='products_page_Container'>
@@ -126,7 +128,7 @@ const AdminProductsScreen = ({ history, match }) => {
             overflow: 'hidden',
           }}>
           <Table ref={ref} aria-label='simple table'>
-            <TableHead>
+            <TableHead ref={cssRef}>
               <TableRow>
                 <TableCell>Carousel ID</TableCell>
                 <TableCell align='center'>Carousel Image</TableCell>
@@ -144,7 +146,7 @@ const AdminProductsScreen = ({ history, match }) => {
                     timeout={500}
                     onEnter={calcHeightEnter}
                     onExit={calcHeightExit}>
-                    <TableRow ref={cssRef}>
+                    <TableRow>
                       <TableCell component='th' scope='row'>
                         {product._id}
                       </TableCell>

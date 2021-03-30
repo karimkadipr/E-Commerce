@@ -12,13 +12,13 @@ const router = express.Router()
 
 router
   .route('/')
+  .get(getProductCarousel)
   .post(protect, admin, addProductCarousel)
-  .get(protect, getProductCarousel)
 
 router
   .route('/:id')
+  .get(getOneProductCarousel)
   .put(protect, admin, updateProductCarousel)
   .delete(protect, admin, deleteProductCarousel)
-  .get(protect, getOneProductCarousel)
 
 export default router

@@ -34,6 +34,7 @@ const ProfileScreen = ({ history }) => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const ref = useRef(null)
+  const cssRef = useRef(null)
 
   const dispatch = useDispatch()
 
@@ -77,14 +78,24 @@ const ProfileScreen = ({ history }) => {
     dispatch(deleteOrderById(id))
   }
 
+  // height animation
   function calcHeightEnter(el) {
-    const height = el.offsetHeight
-    setMenuHeight(height * orders.length + ref.current.clientHeight)
+    setMenuHeight(ref.current.clientHeight)
   }
   function calcHeightExit(el) {
     const height = el.offsetHeight
-    setMenuHeight(height * (orders.length - 1) + ref.current.clientHeight)
+    setMenuHeight(height * (orders.length - 1) + cssRef.current.clientHeight)
   }
+
+  useEffect(() => {
+    function handleResize() {
+      setMenuHeight(ref.current.clientHeight)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
 
   return (
     <div className='profile_container'>
@@ -162,8 +173,8 @@ const ProfileScreen = ({ history }) => {
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
             overflow: 'hidden',
           }}>
-          <Table aria-label='simple table'>
-            <TableHead ref={ref}>
+          <Table ref={ref} aria-label='simple table'>
+            <TableHead ref={cssRef}>
               <TableRow>
                 <TableCell>Order ID</TableCell>
                 <TableCell align='center'>Date</TableCell>

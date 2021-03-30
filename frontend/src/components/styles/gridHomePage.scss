@@ -45,6 +45,9 @@
     left: 42%;
     transition: all 0.5s;
     opacity: 0;
+    @media screen and (max-width: 1366px) {
+      top: 600px;
+    }
   }
 
   &:hover {

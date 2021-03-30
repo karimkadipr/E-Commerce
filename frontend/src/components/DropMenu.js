@@ -5,7 +5,7 @@ import './styles/DropMenu.scss'
 import { userLogout } from '../actions/userActions'
 import { useDispatch } from 'react-redux'
 import Collapse from '@material-ui/core/Collapse'
-import { fade, Fade } from '@material-ui/core'
+import { Fade } from '@material-ui/core'
 
 function DropMenu({ name, items, history, handleClick }) {
   const [open, setOpen] = useState(false)
