@@ -6,6 +6,8 @@ import { MenuItem, InputLabel, FormControl, Select } from '@material-ui/core'
 import { addToCart, deleteFromCart } from '../actions/cartActions'
 import { ReactComponent as EmptyCartSvg } from './images/undraw_empty_cart_co35.svg'
 import './styles/cartPage.scss'
+import { TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const CartPage = ({ history }) => {
   const dispatch = useDispatch()
@@ -42,47 +44,54 @@ const CartPage = ({ history }) => {
       <h1>Your Cart</h1>
       <div className='cart_container'>
         {cartItems.length !== 0 ? (
-          <div className='products_container'>
-            {cartItems.map((item) => (
-              <div key={item._id} className='product_container'>
-                <img src={item.image} alt={item.name} />
-                <div className='product_name'>{item.name}</div>
-                <div className='price_plus_quantity'>
-                  <p className='product_price'>
-                    <strong>$ {item.price}</strong>
-                  </p>
-                  <FormControl className='select_quantity'>
-                    <InputLabel id='demo-simple-select-label'>
-                      Quantity
-                    </InputLabel>
-                    <Select
-                      defaultValue=''
-                      labelId='demo-simple-select-label'
-                      id='demo-simple-select'
-                      value={item.qty}
-                      onChange={(e) =>
-                        dispatch(addToCart(item._id, e.target.value))
-                      }>
-                      {Array.from(
-                        { length: item.countInStock },
-                        (_, index) => index + 1
-                      ).map((x) => {
-                        return (
-                          <MenuItem key={x + 1} value={x}>
-                            {x}
-                          </MenuItem>
-                        )
-                      })}
-                    </Select>
-                  </FormControl>
-                </div>
-                <button
-                  className='show_more_less_button'
-                  onClick={() => handleClickDelete(item._id)}>
-                  Delete
-                </button>
-              </div>
-            ))}
+          <div>
+            <TransitionGroup className='products_container'>
+              {cartItems.map((item) => (
+                <CSSTransition
+                  key={item._id}
+                  classNames='item-cart-page'
+                  timeout={500}>
+                  <div className='product_container'>
+                    <img src={item.image} alt={item.name} />
+                    <div className='product_name'>{item.name}</div>
+                    <div className='price_plus_quantity'>
+                      <p className='product_price'>
+                        <strong>$ {item.price}</strong>
+                      </p>
+                      <FormControl className='select_quantity'>
+                        <InputLabel id='demo-simple-select-label'>
+                          Quantity
+                        </InputLabel>
+                        <Select
+                          defaultValue=''
+                          labelId='demo-simple-select-label'
+                          id='demo-simple-select'
+                          value={item.qty}
+                          onChange={(e) =>
+                            dispatch(addToCart(item._id, e.target.value))
+                          }>
+                          {Array.from(
+                            { length: item.countInStock },
+                            (_, index) => index + 1
+                          ).map((x) => {
+                            return (
+                              <MenuItem key={x + 1} value={x}>
+                                {x}
+                              </MenuItem>
+                            )
+                          })}
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <button
+                      className='show_more_less_button'
+                      onClick={() => handleClickDelete(item._id)}>
+                      Delete
+                    </button>
+                  </div>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
           </div>
         ) : (
           <div className='empty_cart_container'>

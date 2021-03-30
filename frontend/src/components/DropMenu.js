@@ -4,8 +4,10 @@ import { withRouter } from 'react-router'
 import './styles/DropMenu.scss'
 import { userLogout } from '../actions/userActions'
 import { useDispatch } from 'react-redux'
+import Collapse from '@material-ui/core/Collapse'
+import { fade, Fade } from '@material-ui/core'
 
-function DropMenu({ name, items, history }) {
+function DropMenu({ name, items, history, handleClick }) {
   const [open, setOpen] = useState(false)
   const DropRef = useRef()
 
@@ -50,36 +52,44 @@ function DropMenu({ name, items, history }) {
       <p
         className='div_ref'
         onClick={() => {
-          setOpen((open) => !open)
+          setOpen(true)
         }}>
         {name}
       </p>
-      {open && (
-        <div className='DropMenu'>
-          <div>
-            {items.map((item) => {
-              if (item[0] === 'Logout') {
-                return (
-                  <Link key={item[0]} to={item[1]} onClick={handleLogout}>
-                    <DropItem>{item[0]} </DropItem>
-                  </Link>
-                )
-              } else {
-                return (
-                  <Link
-                    key={item[0]}
-                    to={item[1]}
-                    onClick={() => {
-                      setOpen((open) => !open)
-                    }}>
-                    <DropItem>{item[0]}</DropItem>
-                  </Link>
-                )
-              }
-            })}
-          </div>
+      <Fade in={open} timeout={500}>
+        <div>
+          <Collapse
+            in={open}
+            timeout={{ appear: 0, enter: 500, exit: 0 }}
+            className='DropMenu'>
+            <div>
+              {items.map((item) => {
+                if (item[0] === 'Logout') {
+                  return (
+                    <Link key={item[0]} to={item[1]} onClick={handleLogout}>
+                      <DropItem>{item[0]} </DropItem>
+                    </Link>
+                  )
+                } else {
+                  return (
+                    <Link
+                      key={item[0]}
+                      to={item[1]}
+                      onClick={() => {
+                        if (name === 'Category') {
+                          handleClick(item[0])
+                        }
+                        setOpen(false)
+                      }}>
+                      <DropItem>{item[0]}</DropItem>
+                    </Link>
+                  )
+                }
+              })}
+            </div>
+          </Collapse>
         </div>
-      )}
+      </Fade>
     </div>
   )
 }

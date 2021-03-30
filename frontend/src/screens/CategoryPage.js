@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../components/ProductCard'
 import { Link } from 'react-router-dom'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import { getListProducts } from '../actions/productActions'
 import { getProductsByCategory } from '../actions/productActions'
 import './styles/categoryPage.scss'
@@ -13,6 +15,8 @@ import ProductCardList from '../components/ProductCardList'
 import { ReactComponent as NotFoundSvg } from './images/undraw_void_3ggu.svg'
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
 import SideMenuCart from '../components/SideMenuCart'
+import { TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const CategoryPage = ({ match }) => {
   const [productsNumber, setProductsNumber] = useState(12)
@@ -50,8 +54,10 @@ const CategoryPage = ({ match }) => {
       window.removeEventListener('resize', handleResize)
     }
   })
+
   useEffect(() => {
     dispatch(getListProducts())
+    Aos.init({})
   }, [])
 
   useEffect(() => {
@@ -79,7 +85,7 @@ const CategoryPage = ({ match }) => {
 
   return (
     <div className='category_page_container'>
-      {showSideBar && <SideMenuCart />}
+      <SideMenuCart />
       <div className='sidebar_container'>
         <div className='sidebar_category_page'>
           <div>
@@ -216,51 +222,7 @@ const CategoryPage = ({ match }) => {
             </FormControl>
           </div>
         </div>
-
-        <div className='content_category_page_grid'>
-          {productsByCategory &&
-            productsByCategory.length !== 0 &&
-            productsByCategory
-              .filter(
-                (product) =>
-                  product.price >= price[0] && product.price <= price[1]
-              )
-              .slice(
-                productsNumber * (pageNumber - 1),
-                productsNumber * pageNumber
-              )
-
-              .sort(function (b, a) {
-                if (a[sortCriteria] > b[sortCriteria]) {
-                  if (sortCriteria === 'createdAt') {
-                    return 1
-                  } else {
-                    return -1
-                  }
-                }
-                if (b[sortCriteria] > a[sortCriteria]) {
-                  if (sortCriteria === 'createdAt') {
-                    return -1
-                  } else {
-                    return 1
-                  }
-                }
-                return 0
-              })
-              .map((product) => (
-                <>
-                  {productLayout === 'grid' && (
-                    <ProductCard
-                      cardType='category'
-                      product={product}
-                      key={product._id}
-                    />
-                  )}
-                  {productLayout === 'list' && (
-                    <ProductCardList product={product} key={product._id} />
-                  )}
-                </>
-              ))}
+        <div>
           {productsByCategory &&
             productsByCategory.filter(
               (product) =>
@@ -271,6 +233,51 @@ const CategoryPage = ({ match }) => {
                 <NotFoundSvg />
               </div>
             )}
+          <TransitionGroup className='content_category_page_grid'>
+            {productsByCategory &&
+              productsByCategory.length !== 0 &&
+              productsByCategory
+                .filter(
+                  (product) =>
+                    product.price >= price[0] && product.price <= price[1]
+                )
+                .slice(
+                  productsNumber * (pageNumber - 1),
+                  productsNumber * pageNumber
+                )
+                .sort(function (b, a) {
+                  if (a[sortCriteria] > b[sortCriteria]) {
+                    if (sortCriteria === 'createdAt') {
+                      return 1
+                    } else {
+                      return -1
+                    }
+                  }
+                  if (b[sortCriteria] > a[sortCriteria]) {
+                    if (sortCriteria === 'createdAt') {
+                      return -1
+                    } else {
+                      return 1
+                    }
+                  }
+                  return 0
+                })
+                .map((product) => (
+                  <CSSTransition
+                    key={product._id}
+                    timeout={500}
+                    classNames='item'>
+                    <>
+                      {productLayout === 'grid' && (
+                        <ProductCard cardType='category' product={product} />
+                      )}
+                      {productLayout === 'list' && (
+                        <ProductCardList product={product} key={product._id} />
+                      )}
+                    </>
+                  </CSSTransition>
+                ))}
+          </TransitionGroup>
         </div>
         {productsByCategory.filter(
           (product) => product.price >= price[0] && product.price <= price[1]

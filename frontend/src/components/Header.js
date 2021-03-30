@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import './styles/header.scss'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { ReactComponent as LogoSvg } from './images/liquor-shop-seeklogo.com.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { ReactComponent as LogoSvg } from './images/shop-seeklogo.com.svg'
 import DropMenu from './DropMenu'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import { OutlinedInput, InputAdornment, IconButton } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
+import { getProductsByCategory } from '../actions/productActions'
 
 const Header = ({ history }) => {
   const [keyword, setKeyword] = useState('')
+  const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -29,6 +31,10 @@ const Header = ({ history }) => {
     } else {
       history.push(`/search/${keyword}`)
     }
+  }
+
+  const handleClick = (category) => {
+    dispatch(getProductsByCategory(category))
   }
   return (
     <div className='background_navbar'>
@@ -74,6 +80,7 @@ const Header = ({ history }) => {
                 ['Shoes', '/category/Shoes'],
                 ['Electronics', '/category/Electronics'],
               ]}
+              handleClick={handleClick}
             />
           </div>
           {userInfo ? (

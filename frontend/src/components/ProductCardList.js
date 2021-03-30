@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Aos from 'aos'
-import 'aos/dist/aos.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import './styles/productCardList.scss'
 import { addToCart } from '../actions/cartActions'
 import { openSideMenuRight } from '../actions/uiActions'
@@ -13,10 +11,6 @@ import { MenuItem, InputLabel, FormControl, Select } from '@material-ui/core'
 const ProductCardList = ({ product }) => {
   const dispatch = useDispatch()
   const [qty, setQty] = useState(1)
-
-  useEffect(() => {
-    Aos.init({})
-  }, [])
 
   const submitHandler = (id) => {
     if (product.countInStock !== 0) {
@@ -31,11 +25,7 @@ const ProductCardList = ({ product }) => {
   }
 
   return (
-    <div
-      className='product_card_list_container'
-      data-aos-once='true'
-      data-aos='zoom-in'
-      data-aos-duration='500'>
+    <div className='product_card_list_container'>
       <Link to={`/order/${product._id}`} className='image_product_card_list'>
         <img src={product.image} alt={product.name} />
       </Link>

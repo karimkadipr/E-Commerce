@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   addItemCarousel,
@@ -19,8 +19,13 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core'
+import { TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const AdminProductsScreen = ({ history, match }) => {
+  const [menuHeight, setMenuHeight] = useState(null)
+  const ref = useRef(null)
+  const cssRef = useRef(null)
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -72,6 +77,25 @@ const AdminProductsScreen = ({ history, match }) => {
     history.push(`/admin/editcarousel/${id}`)
   }
 
+  function calcHeightEnter(el) {
+    const height = el.offsetHeight
+    setMenuHeight(ref.current.clientHeight)
+  }
+  function calcHeightExit(el) {
+    const height = el.offsetHeight
+    setMenuHeight(ref.current.clientHeight)
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setMenuHeight(ref.current.clientHeight)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+  console.log(menuHeight)
   return (
     <div>
       <div className='products_page_Container'>
@@ -92,13 +116,16 @@ const AdminProductsScreen = ({ history, match }) => {
           </div>
         </div>
         <TableContainer
+          component={Paper}
+          className='large_table_products'
           style={{
+            height: menuHeight,
+            transition: ' height 500ms ',
             margin: '1rem 0 2rem 0',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-          }}
-          component={Paper}
-          className='large_table_products'>
-          <Table aria-label='simple table'>
+            overflow: 'hidden',
+          }}>
+          <Table ref={ref} aria-label='simple table'>
             <TableHead>
               <TableRow>
                 <TableCell>Carousel ID</TableCell>
@@ -108,38 +135,45 @@ const AdminProductsScreen = ({ history, match }) => {
                 <TableCell align='center'>Edit / Delete</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TransitionGroup component={TableBody}>
               {carouselItems &&
                 carouselItems.map((product) => (
-                  <TableRow key={product._id}>
-                    <TableCell component='th' scope='row'>
-                      {product._id}
-                    </TableCell>
-                    <TableCell align='center'>
-                      <img
-                        className='image_table_products'
-                        src={product.image}
-                        alt={product.title}
-                      />
-                    </TableCell>
-                    <TableCell align='center'>{product.category}</TableCell>
-                    <TableCell align='center'>{product.title}</TableCell>
+                  <CSSTransition
+                    key={product._id}
+                    classNames='item-list'
+                    timeout={500}
+                    onEnter={calcHeightEnter}
+                    onExit={calcHeightExit}>
+                    <TableRow ref={cssRef}>
+                      <TableCell component='th' scope='row'>
+                        {product._id}
+                      </TableCell>
+                      <TableCell align='center'>
+                        <img
+                          className='image_table_products'
+                          src={product.image}
+                          alt={product.title}
+                        />
+                      </TableCell>
+                      <TableCell align='center'>{product.category}</TableCell>
+                      <TableCell align='center'>{product.title}</TableCell>
 
-                    <TableCell align='center'>
-                      <button
-                        className='admin_products_edit_btn'
-                        onClick={() => handleEditCarouselItem(product._id)}>
-                        <EditIcon />
-                      </button>{' '}
-                      <button
-                        className='admin_products_delete_btn'
-                        onClick={() => handleDelete(product._id)}>
-                        <DeleteIcon />
-                      </button>
-                    </TableCell>
-                  </TableRow>
+                      <TableCell align='center'>
+                        <button
+                          className='admin_products_edit_btn'
+                          onClick={() => handleEditCarouselItem(product._id)}>
+                          <EditIcon />
+                        </button>{' '}
+                        <button
+                          className='admin_products_delete_btn'
+                          onClick={() => handleDelete(product._id)}>
+                          <DeleteIcon />
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  </CSSTransition>
                 ))}
-            </TableBody>
+            </TransitionGroup>
           </Table>
         </TableContainer>
         {carouselItems &&

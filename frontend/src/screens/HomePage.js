@@ -45,8 +45,8 @@ const HomePage = ({ history, match }) => {
   return (
     <>
       <Meta />
-      {products && products.length !== 0 && <Carousel products={products} />}
-      {showSideBar && <SideMenuCart />}
+      <Carousel />
+      <SideMenuCart />
       <div className='body_with_footer'>
         <div className='body_without_footer'>
           <div className='container_global_homepage'>

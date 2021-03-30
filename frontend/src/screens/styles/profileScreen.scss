@@ -132,3 +132,22 @@
     background-position: right;
   }
 }
+
+.item-list-enter {
+  opacity: 0;
+  transform: translateX(-110%);
+}
+.item-list-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 500ms;
+}
+.item-list-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.item-list-exit-active {
+  opacity: 0;
+  transform: translateX(110%);
+  transition: all 500ms;
+}
