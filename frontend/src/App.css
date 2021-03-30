@@ -27,7 +27,7 @@ button:active {
 .footer {
   bottom: 0;
   position: relative;
-  z-index: 999;
+  z-index: 1;
   background-color: #292929;
 }
 @media (min-width: 700px) {
