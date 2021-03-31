@@ -1,6 +1,5 @@
 .order_container {
   display: flex;
-
   margin: auto;
   margin-top: 50px;
   justify-content: space-evenly;
@@ -16,6 +15,7 @@
 @media (max-width: 600px) {
   .order_container {
     width: 90%;
+    margin-bottom: 1rem;
   }
 }
 

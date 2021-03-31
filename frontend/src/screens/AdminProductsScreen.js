@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getListProducts } from '../actions/productActions'
-import './styles/adminProductsScreen.css'
+import './styles/adminProductsScreen.scss'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import AddIcon from '@material-ui/icons/Add'
@@ -193,62 +193,64 @@ const AdminProductsScreen = ({ history, match }) => {
             </TransitionGroup>
           </Table>
         </TableContainer>
-        {products &&
-          products.map((product) => (
-            <TableContainer
-              className='small_table_products'
-              key={product._id}
-              component={Paper}>
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableCell variant='head'>Product ID</TableCell>
-                    <TableCell>{product._id}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Product Image</TableCell>
-                    <TableCell>
-                      <Link to={`/order/${product._id}`}>
-                        <img
-                          className='image_table_products'
-                          src={product.image}
-                          alt={product.name}
-                        />
-                      </Link>
-                    </TableCell>
-                  </TableRow>
+        <TableContainer className='small_table_products' component={Paper}>
+          <TransitionGroup component={Table}>
+            {products &&
+              products.map((product) => (
+                <CSSTransition
+                  key={product._id}
+                  classNames='item-list'
+                  timeout={500}>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell variant='head'>Product ID</TableCell>
+                      <TableCell>{product._id}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Product Image</TableCell>
+                      <TableCell>
+                        <Link to={`/order/${product._id}`}>
+                          <img
+                            className='image_table_products'
+                            src={product.image}
+                            alt={product.name}
+                          />
+                        </Link>
+                      </TableCell>
+                    </TableRow>
 
-                  <TableRow>
-                    <TableCell variant='head'>Product Name</TableCell>
-                    <TableCell>{product.name}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Price</TableCell>
-                    <TableCell>${product.price}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Brand</TableCell>
-                    <TableCell>{product.brand}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Edit / Delete</TableCell>
-                    <TableCell>
-                      <button
-                        className='admin_products_edit_btn'
-                        onClick={() => handleEditProduct(product._id)}>
-                        <EditIcon />
-                      </button>{' '}
-                      <button
-                        className='admin_products_delete_btn'
-                        onClick={() => handleDelete(product._id)}>
-                        <DeleteIcon />
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ))}
+                    <TableRow>
+                      <TableCell variant='head'>Product Name</TableCell>
+                      <TableCell>{product.name}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Price</TableCell>
+                      <TableCell>${product.price}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Brand</TableCell>
+                      <TableCell>{product.brand}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Edit / Delete</TableCell>
+                      <TableCell>
+                        <button
+                          className='admin_products_edit_btn'
+                          onClick={() => handleEditProduct(product._id)}>
+                          <EditIcon />
+                        </button>{' '}
+                        <button
+                          className='admin_products_delete_btn'
+                          onClick={() => handleDelete(product._id)}>
+                          <DeleteIcon />
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </CSSTransition>
+              ))}
+          </TransitionGroup>
+        </TableContainer>
 
         <Paginate isAdmin={true} pages={pages} page={page} />
       </div>

@@ -7,7 +7,7 @@ import {
   UPDATE_PRODUCT_RESET,
 } from '../constants/productConstants'
 import { Input, FormControl, InputLabel } from '@material-ui/core'
-import './styles/adminUpdateProduct.css'
+import './styles/adminUpdateProduct.scss'
 
 const AdminUpdateProduct = ({ match, history }) => {
   const productId = match.params.id

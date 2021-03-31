@@ -5,7 +5,7 @@ import {
   getItemCarousel,
   deleteItemCarousel,
 } from '../actions/carouselActions'
-import './styles/adminProductsScreen.css'
+import './styles/adminProductsScreen.scss'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import AddIcon from '@material-ui/icons/Add'
@@ -178,56 +178,59 @@ const AdminProductsScreen = ({ history, match }) => {
             </TransitionGroup>
           </Table>
         </TableContainer>
-        {carouselItems &&
-          carouselItems.map((product) => (
-            <TableContainer
-              className='small_table_products'
-              key={product._id}
-              component={Paper}>
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableCell variant='head'>Carousel ID</TableCell>
-                    <TableCell>{product._id}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Carousel Image</TableCell>
-                    <TableCell>
-                      <img
-                        className='image_table_products'
-                        src={product.image}
-                        alt={product.title}
-                      />
-                    </TableCell>
-                  </TableRow>
 
-                  <TableRow>
-                    <TableCell variant='head'>Carousel Title</TableCell>
-                    <TableCell>{product.title}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Carousel Category</TableCell>
-                    <TableCell>{product.category}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Edit / Delete</TableCell>
-                    <TableCell>
-                      <button
-                        className='admin_products_edit_btn'
-                        onClick={() => handleEditCarouselItem(product._id)}>
-                        <EditIcon />
-                      </button>{' '}
-                      <button
-                        className='admin_products_delete_btn'
-                        onClick={() => handleDelete(product._id)}>
-                        <DeleteIcon />
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ))}
+        <TableContainer className='small_table_products' component={Paper}>
+          <TransitionGroup component={Table}>
+            {carouselItems &&
+              carouselItems.map((product) => (
+                <CSSTransition
+                  key={product._id}
+                  classNames='item-list'
+                  timeout={500}>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell variant='head'>Carousel ID</TableCell>
+                      <TableCell>{product._id}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Carousel Image</TableCell>
+                      <TableCell>
+                        <img
+                          className='image_table_products'
+                          src={product.image}
+                          alt={product.title}
+                        />
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableCell variant='head'>Carousel Title</TableCell>
+                      <TableCell>{product.title}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Carousel Category</TableCell>
+                      <TableCell>{product.category}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Edit / Delete</TableCell>
+                      <TableCell>
+                        <button
+                          className='admin_products_edit_btn'
+                          onClick={() => handleEditCarouselItem(product._id)}>
+                          <EditIcon />
+                        </button>{' '}
+                        <button
+                          className='admin_products_delete_btn'
+                          onClick={() => handleDelete(product._id)}>
+                          <DeleteIcon />
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </CSSTransition>
+              ))}
+          </TransitionGroup>
+        </TableContainer>
       </div>
     </div>
   )

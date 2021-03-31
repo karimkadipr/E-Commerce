@@ -31,35 +31,6 @@
   width: 100%;
 }
 
-.submit_update_product_button {
-  padding: 15px;
-  border: none;
-  border-radius: 5px;
-  background: linear-gradient(to right, #191654, #43c6ac);
-  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
-  color: white;
-  font-size: 15px;
-  background-size: 200%;
-  background-position: left;
-  cursor: pointer;
-}
-
-.submit_update_product_button:hover {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-image: linear-gradient(to right, #191654, #43c6ac);
-  background-position: right;
-  animation: bg-animation 1.5s;
-}
-
-@keyframes bg-animation {
-  0% {
-    background-position: left;
-  }
-  100% {
-    background-position: right;
-  }
-}
-
 .custom-file-input::-webkit-file-upload-button {
   display: none;
 }
@@ -69,10 +40,9 @@
 .custom-file-input::before {
   content: 'Upload image';
   display: inline-block;
-  background: linear-gradient(to right, #191654, #43c6ac);
-  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  background: black;
   margin: 5px 5px 0 0;
-  border-radius: 5px;
+
   font-size: 13px;
   padding: 0.5rem;
   outline: none;

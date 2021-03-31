@@ -51,12 +51,12 @@ function DropMenu({ name, items, history, handleClick }) {
       onMouseOver={() => setOpen(true)}>
       <p
         className='div_ref'
-        onClick={() => {
-          setOpen(true)
+        onTouchStart={() => {
+          setOpen(!open)
         }}>
         {name}
       </p>
-      <Fade in={open} timeout={500}>
+      <Fade in={open} timeout={200}>
         <div>
           <Collapse
             in={open}

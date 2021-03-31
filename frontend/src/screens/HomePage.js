@@ -17,7 +17,7 @@ import { ReactComponent as GuaranteeSvg } from './images/guarantee1.svg'
 import imageNews from './images/bkg_newsletter.jpg'
 import './styles/homepage.scss'
 
-const HomePage = ({ history, match }) => {
+const HomePage = ({ match }) => {
   const [showMore, setShowMore] = useState(false)
   const keyword = match.params.keyword
   const pageNumber = match.params.pageNumber || 1
@@ -25,9 +25,6 @@ const HomePage = ({ history, match }) => {
 
   const getProducts = useSelector((state) => state.getProducts)
   const { error, products, page, pages } = getProducts
-
-  const toggleSideBar = useSelector((state) => state.toggleSideBar)
-  const { showSideBar } = toggleSideBar
 
   const getLastProductsValues = useSelector((state) => state.getLastProducts)
   const { products: lastProducts } = getLastProductsValues
@@ -158,7 +155,6 @@ const HomePage = ({ history, match }) => {
                   </div>
                 </div>
                 <div className='newsletter_container'>
-                  <img src={imageNews} alt='newsletter' />
                   <div className='newsletter_content'>
                     <h4>Our News</h4>
                     <h1>NEWSLETTER SIGNUP</h1>

@@ -7,7 +7,7 @@ import {
 } from '../actions/carouselActions'
 import { UPDATE_ITEM_CAROUSEL_RESET } from '../constants/carouselConstants'
 import { Input, FormControl, InputLabel } from '@material-ui/core'
-import './styles/adminUpdateProduct.css'
+import './styles/adminUpdateProduct.scss'
 
 const AdminUpdateProduct = ({ match, history }) => {
   const carouselItemId = match.params.id

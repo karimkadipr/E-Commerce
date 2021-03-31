@@ -163,61 +163,63 @@ const AdminOrdersScreen = ({ history }) => {
             </TransitionGroup>
           </Table>
         </TableContainer>
-        {orders &&
-          orders.map((order) => (
-            <TableContainer
-              className='small_table_orders'
-              key={order._id}
-              component={Paper}>
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableCell variant='head'>Order ID</TableCell>
-                    <TableCell>{order._id}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Date</TableCell>
-                    <TableCell>{order.createdAt.substring(0, 10)}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Total</TableCell>
-                    <TableCell>${order.totalPrice}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Paid</TableCell>
-                    {order.isPaid ? (
-                      <TableCell>Paid</TableCell>
-                    ) : (
-                      <TableCell>Not Paid</TableCell>
-                    )}
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Delivered</TableCell>
-                    {order.isDelivered ? (
-                      <TableCell>Delivered</TableCell>
-                    ) : (
-                      <TableCell>Not Delivered</TableCell>
-                    )}
-                  </TableRow>
-                  <TableRow>
-                    <TableCell variant='head'>Details</TableCell>
-                    <TableCell>
-                      <button
-                        className='orders_list_buttons_edit'
-                        onClick={() => handleClick(order._id)}>
-                        <EditIcon />
-                      </button>{' '}
-                      <button
-                        className='orders_list_buttons_delete'
-                        onClick={() => handleDeleteOrder(order._id)}>
-                        <DeleteIcon />
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ))}
+        <TableContainer className='small_table_orders' component={Paper}>
+          <TransitionGroup component={Table}>
+            {orders &&
+              orders.map((order) => (
+                <CSSTransition
+                  key={order._id}
+                  classNames='item-list'
+                  timeout={500}>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell variant='head'>Order ID</TableCell>
+                      <TableCell>{order._id}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Date</TableCell>
+                      <TableCell>{order.createdAt.substring(0, 10)}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Total</TableCell>
+                      <TableCell>${order.totalPrice}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Paid</TableCell>
+                      {order.isPaid ? (
+                        <TableCell>Paid</TableCell>
+                      ) : (
+                        <TableCell>Not Paid</TableCell>
+                      )}
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Delivered</TableCell>
+                      {order.isDelivered ? (
+                        <TableCell>Delivered</TableCell>
+                      ) : (
+                        <TableCell>Not Delivered</TableCell>
+                      )}
+                    </TableRow>
+                    <TableRow>
+                      <TableCell variant='head'>Details</TableCell>
+                      <TableCell>
+                        <button
+                          className='orders_list_buttons_edit'
+                          onClick={() => handleClick(order._id)}>
+                          <EditIcon />
+                        </button>{' '}
+                        <button
+                          className='orders_list_buttons_delete'
+                          onClick={() => handleDeleteOrder(order._id)}>
+                          <DeleteIcon />
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </CSSTransition>
+              ))}
+          </TransitionGroup>
+        </TableContainer>
       </div>
     </div>
   )

@@ -85,6 +85,9 @@
   margin-left: 0.1rem;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0;
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 
   span {
     margin-left: 0.5rem;

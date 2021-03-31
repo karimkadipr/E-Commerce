@@ -2,7 +2,7 @@
   width: 80%;
   margin: auto;
   margin-top: 50px;
-  min-width: 400px;
+  min-width: 320px;
 }
 
 .products_page_Container > h1 {
@@ -121,6 +121,11 @@
 .title_button_products_admin {
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 500px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .image_table_products {
